@@ -5,5 +5,6 @@ export const ROUTES = {
   RULES: '/rules',
   NEWS: '/news',
   HELPER: '/helper',
+  TRANSLATE: '/translate',
   NOT_FOUND: '*',
 }
