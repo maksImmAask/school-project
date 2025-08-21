@@ -1,12 +1,79 @@
 {
-  "hello": "Hello",
-  "home": "home",
-  "about": "about",
-  "learn": "learn",
-  "rules": "rules",
-  "news": "news",
-  "support": "support",
-  "contactus": "contact with us",
-  "welcome": "Welcome to our school",
-  "welcome-description": ""
+  "header": {
+    "home": "Home",
+    "about": "About School",
+    "learn": "Learning",
+    "rules": "Rules",
+    "news": "News",
+    "support": "Support",
+    "contactus": "Contact Us"
+  },
+  "home": {
+    "first-section": {
+      "welcome": "Welcome to our school",
+      "welcome-description": "A place where knowledge meets innovation, and students prepare for the challenges of tomorrow.",
+      "contact-btn": "Contact Us",
+      "more-btn": "Learn More"
+    },
+    "second-section": {
+      "last-news": "Latest News",
+      "all-btn": "All",
+      "fast-link": "Quick Links",
+      "date": "May 5, 2025",
+      "date2": "April 28, 2025",
+      "date3": "April 15, 2025",
+      "news-1": "Winners",
+      "new-1-desc": "Congratulations to our students and their parents",
+      "new-2": "New Computer Lab",
+      "new-2-desc": "We are pleased to announce the opening of a new computer lab",
+      "new-3": "Kundalik",
+      "new-3-desc": "We have published Kundalik",
+      "fast-link1": "Class Schedule",
+      "fast-link2": "School Documents",
+      "fast-link3": "Our Teachers",
+      "fast-link4": "Courses"
+    },
+    "third-section": {
+      "teachers-desc": "Meet our dedicated team of educators who strive to provide the highest quality of education and support for students.",
+      "teacher-name1": "Dr. Sarah Johnson",
+      "teacher-name2": "Prof. Michael Chen",
+      "teacher-name3": "Dr. Emily Rodriguez",
+      "teacher-name4": "Prof. David Kim"
+    },
+    "fourth-section": {
+      "about-school": "About Our School",
+      "about_desc": "Our school is committed to providing high-quality education, supporting students in their pursuit of knowledge and development.",
+      "students": "students",
+      "teachers": "teachers",
+      "class": "classes",
+      "years": "years",
+      "events": "Upcoming Events",
+      "event1": "Parents' Meeting",
+      "event1desc": "Main Building, 2nd Floor",
+      "event1date": "May 15, 2025",
+      "event1time": "4:00 PM - 7:00 PM",
+      "event2": "Science Fair",
+      "event2desc": "Gymnasium",
+      "event2date": "May 20, 2025",
+      "event2time": "10:00 AM - 3:00 PM",
+      "event3": "Final Concert",
+      "event3desc": "School Assembly Hall",
+      "event3date": "June 5, 2025",
+      "event3time": "School Assembly Hall",
+      "all-events": "view all events"
+    },
+    "fifth-section": {
+      "photo-gallery": "Photo Gallery"
+    },
+    "footer": {
+      "footer-desc": "Providing quality education since 1998. Developing knowledge, creativity, and character.",
+      "footer-links": "Useful Links",
+      "adress": "20 T. Qaypbergenov Street",
+      "phone-number": "+998 91 386 13 77",
+      "email": "maksimazamatov@gmail.com",
+      "newsletter": "Newsletter",
+      "news-desc": "Subscribe to our newsletter to receive updates and news.",
+      "subsc": "Subscribe"
+    }
+  }
 }

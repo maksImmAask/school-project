@@ -1,6 +1,6 @@
 import { Flex, Box, Button, Select } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import { SearchNormal1,  BinanceCoin, HamburgerMenu } from "iconsax-reactjs";
+import { SearchNormal1, BinanceCoin, HamburgerMenu } from "iconsax-reactjs";
 import { useTranslation } from "react-i18next";
 
 export const Header = () => {
@@ -16,6 +16,7 @@ export const Header = () => {
 
   return (
     <header className="header">
+      <div className="container">
       <Flex className="header-flex">
         <Box className="burger-menu" flex={0.2}>
           <Button className="btn btn-burger">
@@ -30,46 +31,51 @@ export const Header = () => {
         <Box className="box nav" flex={7.7}>
           <Flex>
             <Button className="btn-page" flex={1} onClick={() => navigate("/")}>
-              {t('hello')}
+              {t("header.home")}
             </Button>
             <Button className="btn-page" flex={1} onClick={() => navigate("/about")}>
-              О Школе
+              {t("header.about")}
             </Button>
             <Button className="btn-page" flex={1} onClick={() => navigate("/study")}>
-              Обучение
+              {t("header.learn")}
             </Button>
             <Button className="btn-page" flex={1} onClick={() => navigate("/rules")}>
-              Правила
+              {t("header.rules")}
             </Button>
             <Button className="btn-page" flex={1} onClick={() => navigate("/news")}>
-              Новости
+              {t("header.news")}
             </Button>
             <Button className="btn-page" flex={1} onClick={() => navigate("/helper")}>
-              Поддержка
+              {t("header.support")}
             </Button>
           </Flex>
         </Box>
 
-        <Box className="box" flex={2}>
+        <Box className="box" flex={1}>
           <Button className="btn">
             <SearchNormal1 size="32" color="var(--mantine-color-blue-6)" />
           </Button>
+        </Box>
+        <Box className="box lang" flex={1}>
 
           <Select
+          className="lang-sel"
             placeholder={i18n.language}
             data={[
-              { value: "ru", label: "Русский" },
-              { value: "en", label: "English" },
+              { value: "ru", label: "ru" },
+              { value: "en", label: "en" },
+              { value: "uz", label: "uz" }
             ]}
-            value={i18n.language} 
+            value={i18n.language}
             onChange={change}
           />
         </Box>
 
         <Box className="box" flex={1}>
-          <Button className="btn-contact">Связаться с нами</Button>
+          <Button className="btn-contact">{t("header.contactus")}</Button>
         </Box>
       </Flex>
+    </div>
     </header>
   );
 };

@@ -1,0 +1,79 @@
+{
+  "header": {
+    "home": "Bosh sahifa",
+    "about": "Maktab haqida",
+    "learn": "Ta’lim",
+    "rules": "Qoidalar",
+    "news": "Yangiliklar",
+    "support": "Qo‘llab-quvvatlash",
+    "contactus": "Biz bilan bog‘lanish"
+  },
+  "home": {
+    "first-section": {
+      "welcome": "Maktabimizga xush kelibsiz",
+      "welcome-description": "Bu yerda bilim va innovatsiya uchrashadi hamda o‘quvchilar ertangi kun chaqiriqlariga tayyorlanadilar.",
+      "contact-btn": "Bog‘lanish",
+      "more-btn": "Batafsil"
+    },
+    "second-section": {
+      "last-news": "So‘nggi yangiliklar",
+      "all-btn": "Barchasi",
+      "fast-link": "Tezkor havolalar",
+      "date": "2025-yil 5-may",
+      "date2": "2025-yil 28-aprel",
+      "date3": "2025-yil 15-aprel",
+      "news-1": "G‘oliblar",
+      "new-1-desc": "O‘quvchilarimiz va ularning ota-onalarini tabriklaymiz",
+      "new-2": "Yangi kompyuter xonasi",
+      "new-2-desc": "Yangi kompyuter xonasining ochilganini mamnuniyat bilan e’lon qilamiz",
+      "new-3": "Kundalik",
+      "new-3-desc": "Biz Kundalikni e’lon qildik",
+      "fast-link1": "Dars jadvali",
+      "fast-link2": "Maktab hujjatlari",
+      "fast-link3": "O‘qituvchilarimiz",
+      "fast-link4": "Kurslar"
+    },
+    "third-section": {
+      "teachers-desc": "Bizning fidoyi o‘qituvchilar jamoamiz bilan tanishing. Ular sifatli ta’lim berish va o‘quvchilarni qo‘llab-quvvatlashga intiladilar.",
+      "teacher-name1": "Dr. Sara Johnson",
+      "teacher-name2": "Prof. Michael Chen",
+      "teacher-name3": "Dr. Emily Rodriguez",
+      "teacher-name4": "Prof. David Kim"
+    },
+    "fourth-section": {
+      "about-school": "Maktabimiz haqida",
+      "about_desc": "Maktabimiz yuqori sifatli ta’lim berishga intiladi va o‘quvchilarni bilim olish hamda rivojlanishda qo‘llab-quvvatlaydi.",
+      "students": "o‘quvchilar",
+      "teachers": "o‘qituvchilar",
+      "class": "sinf",
+      "years": "yil",
+      "events": "Bo‘lajak tadbirlar",
+      "event1": "Ota-onalar yig‘ilishi",
+      "event1desc": "Asosiy bino, 2-qavat",
+      "event1date": "2025-yil 15-may",
+      "event1time": "16:00 - 19:00",
+      "event2": "Ilmiy yarmarka",
+      "event2desc": "Sport zali",
+      "event2date": "2025-yil 20-may",
+      "event2time": "10:00 - 15:00",
+      "event3": "Yakuniy konsert",
+      "event3desc": "Maktabning aktlar zali",
+      "event3date": "2025-yil 5-iyun",
+      "event3time": "Maktab aktlar zali",
+      "all-events": "barcha tadbirlarni ko‘rish"
+    },
+    "fifth-section": {
+      "photo-gallery": "Fotogalereya"
+    },
+    "footer": {
+      "footer-desc": "1998-yildan beri sifatli ta’lim berib kelmoqdamiz. Bilim, ijodkorlik va xarakterni rivojlantiramiz.",
+      "footer-links": "Foydali havolalar",
+      "adress": "T. Qaypbergenov ko‘chasi, 20-uy",
+      "phone-number": "+998 91 386 13 77",
+      "email": "maksimazamatov@gmail.com",
+      "newsletter": "Xabarnoma",
+      "news-desc": "Yangiliklar va e’lonlarni olish uchun xabarnomamizga obuna bo‘ling.",
+      "subsc": "Obuna bo‘lish"
+    }
+  }
+}
