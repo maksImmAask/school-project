@@ -3,10 +3,31 @@
   padding: 0;
   box-sizing: border-box;
 }
+section {
+  margin: 30px 0;
+}
 body {
   background-color: #faf4f4;
   color: var(--mantine-color-gray-9);
 }
+.empty-box {
+  display: none;
+}
+.img-news {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+ 
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 100%;
+  }
+  .news-text-flex {
+    width: 100%;
+    height: 100%;
+  }
 .lang {
   display: flex;
   justify-content: center;
@@ -65,7 +86,6 @@ body {
 .title {
   font-weight: bold;
   color: var(--mantine-color-blue-6);
-  padding: auto;
 }
 .teacher-title {
   font-weight: bold;
@@ -90,7 +110,6 @@ body {
   .news-content {
     width: 100%;
     height: 100%;
-    padding: 20px;
     overflow: hidden;
   }
   .box-footer {
@@ -114,16 +133,25 @@ body {
     overflow: hidden;
   }
   .news-box {
+    padding: 20px 0;
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    padding: 20px;
     overflow: hidden;
   }
   .news-item-box {
     width: 100%;
     height: 100%;
     overflow: hidden;
+  }
+  .flex-text-box-item {
+    height: 150px;
+    width: 100%;
+  }
+  .box-image-flex {
+    display: flex;
+    align-items: center;
+    padding: 20px;
   }
   .news-item-flex {
     width: 100%;
@@ -136,11 +164,6 @@ body {
     overflow: hidden;
   }
 
-  .container {
-    max-width: 1150px;
-    margin: auto;
-    height: 100%;
-  }
 .link-item {
   display: flex;
   align-items: center;
@@ -186,6 +209,9 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+.images-header {
+  margin-bottom: 20px;
 }
 .home-box {
   width: 100%;
@@ -252,11 +278,6 @@ body {
 }
 
 @media (min-width: 480px) {
-  .container {
-    max-width: 400px;
-    margin: auto;
-    height: 100%;
-  }
   .nav {
     display: none;
   }
@@ -285,6 +306,9 @@ body {
   .footer {
     height: 180vh;
   }
+  .bg-img {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -298,12 +322,10 @@ body {
     height: 70vh;
   }
   .last-news {
-    height: 240vh;
+    height: 200vh;
   }
-  .container {
-    max-width: 700px;
-    margin: auto;
-    height: 100%;
+  .empty-box {
+    display: inline;
   }
   .btn-burger {
     display: block;
@@ -346,11 +368,6 @@ body {
   .nav {
     display: block;
   }
-  .container {
-    max-width: 1280px;
-    margin: auto;
-    height: 100%;
-  }
   .about-item-title {
     background-color: rgba(255, 239, 239, 1);
     border-radius: 20px;
@@ -386,6 +403,10 @@ body {
     object-fit: cover;
     
 
+
+  }
+  .footer {
+    height: 40vh;
   }
   .bg-img {
     display: block;

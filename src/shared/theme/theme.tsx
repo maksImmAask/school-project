@@ -1,4 +1,4 @@
-import { createTheme  } from '@mantine/core';
+import { createTheme } from '@mantine/core';
 
 const theme = createTheme({
   colors: {
@@ -21,8 +21,8 @@ const theme = createTheme({
       '#98a0ca',
       '#7a84ba',
       '#6672b0',
-      '#c03232ff',
-      '#9e2d2dff',
+      'rgba(82, 85, 91, 1)',
+      'rgba(64, 66, 71, 1)',
       '#424e88',
       '#364379',
     ],
@@ -36,8 +36,73 @@ const theme = createTheme({
   headings: {
     fontFamily: 'Roboto, sans-serif',
     sizes: {
-      h1: { fontSize: '36' },
+      h1: { fontSize: '36px' },
+    },
+  },
+
+  components: {
+        Select: {
+      defaultProps: {
+        size: "xs",     
+        radius: "md",  
+        variant: "filled",
+        styles: {
+          input: {
+            padding: "2px 8px", 
+            fontSize: "14px",
+            minHeight: "28px",
+            width: '50px'
+          },
+          dropdown: {
+            borderRadius: "md",
+          },
+          option: {
+            fontSize: "14px",
+            padding: "4px 8px",
+          },
+        },
+      },
+    },
+    Button: {
+      defaultProps: {
+        radius: 'xl',
+        variant: 'filled',
+        color: 'blue.6',
+      },
+    },
+
+    TextInput: {
+      defaultProps: {
+        radius: 'md',
+        size: 'sm',
+      },
+      styles: {
+        input: {
+          borderColor: '#748dc1',
+          '&:focus': {
+            borderColor: '#228be6',
+          },
+        },
+      },
+    },
+
+    Card: {
+      defaultProps: {
+        shadow: 'md',
+        radius: 'lg',
+        padding: 'lg',
+      },
+      styles: {
+        root: {
+          border: '1px solid #e0e0e0',
+          transition: 'transform 0.2s ease',
+          '&:hover': {
+            transform: 'translateY(-4px)',
+          },
+        },
+      },
     },
   },
 });
+
 export default theme;

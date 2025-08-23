@@ -1,6 +1,6 @@
 import { Flex, Box, Button, Select } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import { SearchNormal1, BinanceCoin, HamburgerMenu } from "iconsax-reactjs";
+import {  BinanceCoin, HamburgerMenu } from "iconsax-reactjs";
 import { useTranslation } from "react-i18next";
 
 export const Header = () => {
@@ -17,7 +17,7 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="container">
-      <Flex className="header-flex">
+      <Flex className="header-flex" gap={'md'}>
         <Box className="burger-menu" flex={0.2}>
           <Button className="btn btn-burger">
             <HamburgerMenu size="32" color="black" />
@@ -50,28 +50,21 @@ export const Header = () => {
             </Button>
           </Flex>
         </Box>
-
-        <Box className="box" flex={1}>
-          <Button className="btn">
-            <SearchNormal1 size="32" color="var(--mantine-color-blue-6)" />
-          </Button>
-        </Box>
-        <Box className="box lang" flex={1}>
-
+        <Box className="empty-box" flex={3}></Box>
+        <Box className="box lang" flex={0.1}>
           <Select
-          className="lang-sel"
             placeholder={i18n.language}
             data={[
-              { value: "ru", label: "ru" },
-              { value: "en", label: "en" },
-              { value: "uz", label: "uz" }
+              { value: "ru", label: "RU" },
+              { value: "en", label: "EN" },
+              { value: "uz", label: "UZ" }
             ]}
             value={i18n.language}
             onChange={change}
           />
         </Box>
 
-        <Box className="box" flex={1}>
+        <Box className="box" flex={0.5}>
           <Button className="btn-contact">{t("header.contactus")}</Button>
         </Box>
       </Flex>
