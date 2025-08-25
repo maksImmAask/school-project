@@ -1,35 +1,29 @@
 import {Box, Flex, Text, Button } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
 import { Calendar, Blogger, Profile2User, Book } from "iconsax-reactjs";
 import { useTranslation } from 'react-i18next';
 export const Lastnews = () => {
   const { t} = useTranslation()
-  const isMobile = useMediaQuery('(min-width: 480px)');
-  const isNotebook = useMediaQuery('(min-width: 1024px)')
-  const isLargeNotebook = useMediaQuery('(min-width: 1440px)')
   return (
     <>
       <section className="last-news">
         <div className="container">
           <Box className="news-box">
-            <Flex className="news-flex" direction={isLargeNotebook ? 'row' : ( isNotebook ? 'row':'column')} justify="space-between" align="center" gap="md">
-              <Box flex={isMobile ? 4 : 2} className="news-content">
+            <Flex className="news-flex" justify="space-between" align="center" gap="md">
+              <Box flex={2} className="news-content">
                 <Flex className="news-content-flex" direction={'column'}>
                   <Box flex={0.1} className="header-news">
-                    <Flex>
-                    <Box flex={3}>
-                      <Text className="title-news" size="30px" fw={700} c="blue">
-                        {t("home.second-section.last-news")}
-                      </Text>
-                    </Box>
-                    <Box flex={1} ></Box>
-                    <Box flex={1}><Button className="btn-all">{t("home.second-section.all-btn")}</Button></Box>
-                    </Flex>
+                    
+                    <Text size="30px" fw={700} c="blue">
+                      {t("home.second-section.last-news")}
+                    </Text>
+                    
+                    <Button justify='flex-end' ml={'auto'} variant='outline'>{t("home.second-section.all-btn")}</Button>
+
                   </Box>
                   <Box flex={2} className="news-item-box">
                     <Flex direction={'column'} className="news-item-flex" gap="md">
                       <Box flex={1} className="news-item">
-                        <Flex className="news-text-flex" direction={isMobile ? 'row' :'column'}>
+                        <Flex className="news-text-flex">
                           <Box flex={1} className='img-box-item' ><img className='img-news' src="https://avatars.mds.yandex.net/i?id=160309fe7cfc3fc3402538983f654eab8ff6c3cd-16340611-images-thumbs&n=13" alt="" /></Box>
                           <Box flex={2} className='box-image-flex'>
                             <Flex direction={'column'} className='flex-text-box-item'>
@@ -53,7 +47,7 @@ export const Lastnews = () => {
                         </Flex>
                       </Box>
                       <Box flex={1} className="news-item">
-                        <Flex className="news-text-flex" direction={isMobile ? 'row' :'column'}>
+                        <Flex className="news-text-flex">
                           <Box flex={1} className='img-box-item' ><img className='img-news' src="https://avatars.mds.yandex.net/i?id=20a8adbe445d157f60d323267062dbc1e859b7f2-5026103-images-thumbs&n=13" alt="" /></Box>
                           <Box flex={2} className='box-image-flex'>
                             <Flex direction={'column'} className='flex-text-box-item'>
@@ -77,7 +71,7 @@ export const Lastnews = () => {
                         </Flex>
                       </Box>
                       <Box flex={1} className="news-item">
-                        <Flex className="news-text-flex" direction={isMobile ? 'row' :'column'}>
+                        <Flex className="news-text-flex">
                           <Box flex={1}  className='img-box-item'><img src="https://avatars.mds.yandex.net/i?id=aa3ac368a7c23f3ca455ad76f2a2aa6438b6c799-5583511-images-thumbs&n=13" alt="" className="img-news" /></Box>
                           <Box flex={2} className='box-image-flex'>
                             <Flex direction={'column'} className='flex-text-box-item'>
@@ -112,8 +106,8 @@ export const Lastnews = () => {
                     </Flex>
                   </Box>
 
-                  <Box flex={1}>
-                    <Flex direction={"column"}>
+                  <Box flex={1} className='content-links'>
+                    <Flex direction={"column"} className='flex-item-link'>
                       <Box className="link-box-item" flex={1}>
                         <Flex direction={'column'} gap={'lg'}>
                           <Box flex={1} className="link-item">

@@ -51,7 +51,6 @@ const theme = createTheme({
             padding: "2px 8px", 
             fontSize: "14px",
             minHeight: "28px",
-            width: '50px'
           },
           dropdown: {
             borderRadius: "md",
@@ -85,7 +84,11 @@ const theme = createTheme({
         },
       },
     },
-
+    Text: {
+      defaultProps: {
+        color: 'blue.6'
+      }
+    },
     Card: {
       defaultProps: {
         shadow: 'md',
