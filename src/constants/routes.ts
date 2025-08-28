@@ -4,7 +4,7 @@ export const ROUTES = {
   STUDY: '/study',
   RULES: '/rules',
   NEWS: '/news',
+  NEW_PAGE: '/new',
   HELPER: '/helper',
-  TRANSLATE: '/translate',
   NOT_FOUND: '*',
 }

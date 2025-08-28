@@ -1,8 +1,8 @@
+import { Questions } from "./components/first-sect";
 export const Helper = () => {
   return (
     <>
-      <h1>Helper Page</h1>
-      
+      <Questions/>
     </>
   );
 }

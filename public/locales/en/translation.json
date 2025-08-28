@@ -75,5 +75,160 @@
       "news-desc": "Subscribe to our newsletter to receive updates and news.",
       "subsc": "Subscribe"
     }
+  },
+  "about": {
+    "welcome": {
+      "title": "About Our School",
+      "desc1": "Our school has been providing quality education since 1998. We focus on developing not only academic knowledge but also critical thinking, creativity, and social skills in our students.",
+      "desc2": "We believe that every student has unique talents and abilities, and our mission is to help them discover and develop these talents to their fullest potential"
+    },
+    "facilities": {
+      "title": "School Facilities",
+      "items": [
+        {
+          "title": "Modern Classrooms",
+          "desc": "Equipped with the latest technology to enhance the learning experience."
+        },
+        {
+          "title": "Library",
+          "desc": "A vast collection of books, digital resources, and quiet study spaces."
+        },
+        {
+          "title": "Computer Labs",
+          "desc": "State-of-the-art computer labs with the latest software and hardware."
+        },
+        {
+          "title": "Sports Facilities",
+          "desc": "Indoor and outdoor sports facilities for various activities and physical education."
+        }
+      ]
+    },
+    "leadership": {
+      "title": "School Leadership",
+      "members": [
+        {
+          "name": "John Smith",
+          "role": "Principal",
+          "desc": "With over 20 years of experience in education, Mr. Smith leads our school with vision and dedication."
+        },
+        {
+          "name": "Maria Johnson",
+          "role": "Academic Director",
+          "desc": "Dr. Johnson oversees our academic programs, ensuring high standards and innovative teaching methods."
+        },
+        {
+          "name": "Robert Davis",
+          "role": "Student Affairs",
+          "desc": "Mr. Davis coordinates student activities and ensures a supportive environment for all students."
+        }
+      ]
+    },"tabs": {
+  "mission": {
+    "title": "Our Mission & Vision",
+    "missionText": "...",
+    "visionText": "..."
+  },
+  "history": {
+    "title": "Our History",
+    "text": "..."
+  },
+  "values": {
+    "title": "Core Values",
+    "text": "..."
   }
+}
+
+  },
+    "support": {
+      "title": "Support & Resources",
+      "accordion": {
+        "q1": "What are the school hours?",
+        "q2": "How do I enroll my child in the school?",
+        "q3": "What is the school's attendance policy?",
+        "q4": "How can parents get involved in the school?",
+        "q5": "What extracurricular activities are available?",
+        "q6": "How does the school handle bullying?",
+        "q7": "What technology resources are available to students?",
+        "q8": "How are students assessed and graded?",
+        "answer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+      },
+      "help": {
+        "title": "Need More Help?",
+        "desc": "Our support team is here to help you with any questions or concerns you may have.",
+        "meeting": {
+          "title": "Schedule a Meeting",
+          "desc": "Book a meeting with our counselors or administrators to discuss your concerns in person.",
+          "btn": "Book Appointment"
+        },
+        "chat": {
+          "title": "Live Chat Support",
+          "desc": "Chat with our support team during school hours for immediate assistance with your questions.",
+          "btn": "Start Chat"
+        }
+      },
+      "external": {
+        "title": "External Resources",
+        "left": {
+          "title": "Educational Resources",
+          "links": [
+            "National Education Portal",
+            "Online Learning Resources",
+            "Educational Games and Activities",
+            "Study Skills and Tips"
+          ]
+        },
+        "right": {
+          "title": "Parent Resources",
+          "links": [
+            "Parenting Tips and Advice",
+            "Supporting Your Child's Education",
+            "Parent-Teacher Communication Guide",
+            "Educational Activities at Home"
+          ]
+        }
+      }
+    },
+  "questions": {
+    "faq": {
+      "1": "How do I reset my password?",
+      "2": "How can I update my profile information?",
+      "3": "Where can I find my course materials?",
+      "4": "How do I contact support?",
+      "5": "Can I access resources offline?",
+      "6": "What payment methods are accepted?",
+      "7": "How do I track my progress?",
+      "8": "Is there a mobile app available?"
+    },
+    "faqAnswer": "This is a sample answer. Replace it with the actual FAQ answer.",
+    "supportTitle": "Support Center",
+    "helpTitle": "Need more help?",
+    "helpDesc": "If you couldn’t find the answer in our FAQ section, here are more ways to reach us.",
+    "meeting": {
+      "title": "Schedule a Meeting",
+      "desc": "Book a session with our support staff to discuss your issues in detail.",
+      "btn": "Book Now"
+    },
+    "chat": {
+      "title": "Live Chat",
+      "desc": "Chat with our support team in real-time and get instant help.",
+      "btn": "Start Chat"
+    },
+    "externalTitle": "External Resources",
+    "resourcesLeft": {
+      "title": "Documentation",
+      "1": "Getting Started Guide",
+      "2": "User Manual",
+      "3": "API Reference",
+      "4": "Release Notes"
+    },
+    "resourcesRight": {
+      "title": "Community",
+      "1": "Community Forum",
+      "2": "Developer Blog",
+      "3": "FAQ Forum",
+      "4": "Knowledge Base"
+    }
+  }
+
+
 }

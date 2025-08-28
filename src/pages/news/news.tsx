@@ -1,6 +1,8 @@
 import { Box, Flex , Text, Button } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 
 export const News = () => {
+  const nav = useNavigate()
   return (
     <>
       <section className="news-page-section">
@@ -25,7 +27,7 @@ Announced</Text>
                             <Text>Congratulations to all participants and winners of our
 annual School Olympics competition. This year's event
 saw record participation with over 300 students…</Text>
-                            <Button>Read More</Button>
+                            <Button variant="outline" onClick={()=>{nav('/new')}}>Read More</Button>
                           </Box>
                         </Flex>
                       </Box>
@@ -38,7 +40,7 @@ saw record participation with over 300 students…</Text>
                             <Text>We're excited to announce the opening of our new state-
 of-the-art computer laboratory. The lab features 30 new
 computers with the latest software for programming,…</Text>
-                            <Button>Read More</Button>
+                            <Button variant="outline" onClick={()=>{nav('/new')}}>Read More</Button>
                           </Box>
                         </Flex>
                       </Box>
@@ -52,7 +54,7 @@ Schedule</Text>
                             <Text>The schedule for the upcoming parent-teacher
 conferences has been published. Parents can book their
 preferred time slots through the online portal or by…</Text>
-                            <Button>Read More</Button>
+                            <Button variant="outline" onClick={()=>{nav('/new')}}>Read More</Button>
                           </Box>
                         </Flex>
                       </Box>
@@ -82,7 +84,7 @@ energy. They will now advance to the national competitio…</Text>
                             <Text>Our annual Arts Festival will take place next week,
 featuring student artwork, musical performances, and
 theatrical productions. Join us to celebrate the creative…</Text>
-                            <Button>Read More</Button>
+                            <Button variant="outline" onClick={()=>{nav('/new')}}>Read More</Button>
                           </Box>
                         </Flex>
                       </Box>
@@ -95,7 +97,7 @@ theatrical productions. Join us to celebrate the creative…</Text>
                             <Text>Starting next semester, we will be offering an expanded
 language program including Spanish and Chinese in
 addition to our current language offerings. Registration is…</Text>
-                            <Button>Read More</Button>
+                            <Button variant="outline" onClick={()=>{nav('/new')}}>Read More</Button>
                           </Box>
                         </Flex>
                       </Box>

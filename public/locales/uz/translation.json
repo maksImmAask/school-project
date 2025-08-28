@@ -2,78 +2,231 @@
   "header": {
     "home": "Bosh sahifa",
     "about": "Maktab haqida",
-    "learn": "Ta’lim",
+    "learn": "O‘qish",
     "rules": "Qoidalar",
     "news": "Yangiliklar",
-    "support": "Qo‘llab-quvvatlash",
-    "contactus": "Biz bilan bog‘lanish"
+    "support": "Yordam",
+    "contactus": "Bog‘lanish"
   },
   "home": {
     "first-section": {
       "welcome": "Maktabimizga xush kelibsiz",
-      "welcome-description": "Bu yerda bilim va innovatsiya uchrashadi hamda o‘quvchilar ertangi kun chaqiriqlariga tayyorlanadilar.",
+      "welcome-description": "Bilim innovatsiya bilan uchrashadigan va o‘quvchilar ertangi kun qiyinchiliklariga tayyorlanadigan joy.",
       "contact-btn": "Bog‘lanish",
       "more-btn": "Batafsil"
     },
     "second-section": {
       "last-news": "So‘nggi yangiliklar",
-      "all-btn": "Barchasi",
+      "all-btn": "Hammasi",
       "fast-link": "Tezkor havolalar",
       "date": "2025-yil 5-may",
       "date2": "2025-yil 28-aprel",
       "date3": "2025-yil 15-aprel",
       "news-1": "G‘oliblar",
       "new-1-desc": "O‘quvchilarimiz va ularning ota-onalarini tabriklaymiz",
-      "new-2": "Yangi kompyuter xonasi",
-      "new-2-desc": "Yangi kompyuter xonasining ochilganini mamnuniyat bilan e’lon qilamiz",
+      "new-2": "Yangi kompyuter sinfi",
+      "new-2-desc": "Yangi kompyuter sinfining ochilishini mamnuniyat bilan e'lon qilamiz",
       "new-3": "Kundalik",
-      "new-3-desc": "Biz Kundalikni e’lon qildik",
+      "new-3-desc": "Biz Kundalikni chop etdik",
       "fast-link1": "Dars jadvali",
       "fast-link2": "Maktab hujjatlari",
       "fast-link3": "O‘qituvchilarimiz",
       "fast-link4": "Kurslar"
     },
     "third-section": {
-      "teachers-desc": "Bizning fidoyi o‘qituvchilar jamoamiz bilan tanishing. Ular sifatli ta’lim berish va o‘quvchilarni qo‘llab-quvvatlashga intiladilar.",
-      "teacher-name1": "Dr. Sara Johnson",
-      "teacher-name2": "Prof. Michael Chen",
-      "teacher-name3": "Dr. Emily Rodriguez",
-      "teacher-name4": "Prof. David Kim"
+      "teachers-desc": "Talabalarga yuqori sifatli ta'lim va yordam ko'rsatishga intilayotgan sadoqatli pedagoglar jamoasi bilan tanishing.",
+      "teacher-name1": "Dr. Sara Jonson",
+      "teacher-name2": "Prof. Maykl Chen",
+      "teacher-name3": "Dr. Emili Rodriges",
+      "teacher-name4": "Prof. Devid Kim"
     },
     "fourth-section": {
       "about-school": "Maktabimiz haqida",
-      "about_desc": "Maktabimiz yuqori sifatli ta’lim berishga intiladi va o‘quvchilarni bilim olish hamda rivojlanishda qo‘llab-quvvatlaydi.",
-      "students": "o‘quvchilar",
-      "teachers": "o‘qituvchilar",
+      "about_desc": "Maktabimiz yuqori sifatli ta'lim berishga, o‘quvchilarni bilim va rivojlanish intilishlarida qo‘llab-quvvatlashga intiladi.",
+      "students": "o‘quvchi",
+      "teachers": "o‘qituvchi",
       "class": "sinf",
       "years": "yil",
-      "events": "Bo‘lajak tadbirlar",
+      "events": "Oldindagi tadbirlar",
       "event1": "Ota-onalar yig‘ilishi",
       "event1desc": "Asosiy bino, 2-qavat",
       "event1date": "2025-yil 15-may",
       "event1time": "16:00 - 19:00",
-      "event2": "Ilmiy yarmarka",
+      "event2": "Fan yarmarkasi",
       "event2desc": "Sport zali",
       "event2date": "2025-yil 20-may",
       "event2time": "10:00 - 15:00",
-      "event3": "Yakuniy konsert",
-      "event3desc": "Maktabning aktlar zali",
+      "event3": "Yakuniy kontsert",
+      "event3desc": "Maktab ma'ruzalar zali",
       "event3date": "2025-yil 5-iyun",
-      "event3time": "Maktab aktlar zali",
-      "all-events": "barcha tadbirlarni ko‘rish"
+      "event3time": "Maktab ma'ruzalar zali",
+      "all-events": "barcha tadbirlar"
     },
     "fifth-section": {
-      "photo-gallery": "Fotogalereya"
+      "photo-gallery": "Foto galereya"
     },
     "footer": {
-      "footer-desc": "1998-yildan beri sifatli ta’lim berib kelmoqdamiz. Bilim, ijodkorlik va xarakterni rivojlantiramiz.",
+      "footer-desc": "1998-yildan beri sifatli ta'lim. Bilim, ijodkorlik va xarakterni rivojlantirish.",
       "footer-links": "Foydali havolalar",
-      "adress": "T. Qaypbergenov ko‘chasi, 20-uy",
+      "adress": "T. Qaypbergenov ko‘chasi, 20",
       "phone-number": "+998 91 386 13 77",
       "email": "maksimazamatov@gmail.com",
-      "newsletter": "Xabarnoma",
-      "news-desc": "Yangiliklar va e’lonlarni olish uchun xabarnomamizga obuna bo‘ling.",
+      "newsletter": "Yangiliklar byulleteni",
+      "news-desc": "Yangilanishlar va yangiliklarni olish uchun yangiliklar byulletenimizga obuna bo‘ling.",
       "subsc": "Obuna bo‘lish"
+    }
+  },
+  "about": {
+    "welcome": {
+      "title": "Maktabimiz haqida",
+      "desc1": "Maktabimiz 1998-yildan beri sifatli ta'lim bermoqda. Biz nafaqat akademik bilimlarga, balki o‘quvchilarimizda tanqidiy fikrlash, ijodkorlik va ijtimoiy ko‘nikmalarni rivojlantirishga qaratilganmiz.",
+      "desc2": "Biz har bir o‘quvchining o‘ziga xos iste'dodlari va qobiliyatlari borligiga ishanamiz va bizning vazifamiz ularga bu iste'dodlarni to‘liq ochishda va rivojlantirishda yordam berishdir."
+    },
+    "facilities": {
+      "title": "Maktab imkoniyatlari",
+      "items": [
+        {
+          "title": "Zamonaviy sinf xonalari",
+          "desc": "O‘quv jarayonini yaxshilash uchun eng yangi texnologiyalar bilan jihozlangan."
+        },
+        {
+          "title": "Kutubxona",
+          "desc": "Kitoblar, raqamli resurslar va jim o‘qish joylarining keng to‘plami."
+        },
+        {
+          "title": "Kompyuter sinflari",
+          "desc": "Eng yangi dasturiy va apparat ta'minotiga ega zamonaviy kompyuter sinflari."
+        },
+        {
+          "title": "Sport inshootlari",
+          "desc": "Turli faoliyatlar va jismoniy tarbiya uchun yopiq va ochiq sport inshootlari."
+        }
+      ]
+    },
+    "leadership": {
+      "title": "Maktab rahbariyati",
+      "members": [
+        {
+          "name": "Jon Smit",
+          "role": "Direktor",
+          "desc": "Ta'limda 20 yildan ortiq tajribaga ega janob Smit maktabimizni visionerlik va sadoqat bilan boshqaradi."
+        },
+        {
+          "name": "Mariya Jonson",
+          "role": "Akademik direktor",
+          "desc": "Dr. Jonson akademik dasturlarimizni yuqori standartlar va innovatsion o‘qitish usullarini ta'minlab nazorat qiladi."
+        },
+        {
+          "name": "Robert Devis",
+          "role": "O‘quvchilar ishlari",
+          "desc": "Janob Devis o‘quvchilar faoliyatini muvofiqlashtiradi va barcha o‘quvchilar uchun qo‘llab-quvvatlovchi muhitni ta'minlaydi."
+        }
+      ]
+    },
+    "tabs": {
+      "mission": {
+        "title": "Missiyamiz va Vizyomiz",
+        "missionText": "...",
+        "visionText": "..."
+      },
+      "history": {
+        "title": "Tariximiz",
+        "text": "..."
+      },
+      "values": {
+        "title": "Asosiy qadriyatlar",
+        "text": "..."
+      }
+    }
+  },
+  "support": {
+    "title": "Yordam va resurslar",
+    "accordion": {
+      "q1": "Maktab ish soatlari qanday?",
+      "q2": "Bolaмni maktabga qanday yozdirishim mumkin?",
+      "q3": "Maktabning davomat siyosati qanday?",
+      "q4": "Ota-onalar maktab hayotida qanday ishtirok etishlari mumkin?",
+      "q5": "Qanday davradan tashqari mashg‘ulotlar mavjud?",
+      "q6": "Maktab bezorilik (bullying) bilan qanday kurashadi?",
+      "q7": "O‘quvchilar qanday texnologik resurslardan foydalanishlari mumkin?",
+      "q8": "O‘quvchilar qanday baholanadi va ularga qanday baho qo‘yiladi?",
+      "answer": "Bu namuna javob. Uni haqiqiy javob bilan almashtiring."
+    },
+    "help": {
+      "title": "Yana yordam kerakmi?",
+      "desc": "Yordam jamoaмiz sizning har qanday savol yoki tashvishlaringizda yordam berish uchun shu yerda.",
+      "meeting": {
+        "title": "Uchrashuv belgilash",
+        "desc": "Tashvishlaringizni shaxsan muhokama qilish uchun maslahatchilarimiz yoki ma'murlarimiz bilan uchrashuv belgilang.",
+        "btn": "Band qilish"
+      },
+      "chat": {
+        "title": "Onlayn chat yordami",
+        "desc": "Savollaringiz bo‘yicha darhol yordam olish uchun maktab ish soatlarida yordam jamoamiz bilan chatlang.",
+        "btn": "Chatni boshlash"
+      }
+    },
+    "external": {
+      "title": "Tashqi resurslar",
+      "left": {
+        "title": "Ta'lim resurslari",
+        "links": [
+          "Milliy ta'lim portali",
+          "Onlayn o‘qish resurslari",
+          "O‘quv o‘yinlari va mashg‘ulotlar",
+          "O‘qish ko‘nikmalari va maslahatlar"
+        ]
+      },
+      "right": {
+        "title": "Ota-onalar uchun resurslar",
+        "links": [
+          "Tarbiya bo‘yicha maslahatlar",
+          "Farzandingiz ta'limini qo‘llab-quvvatlash",
+          "Ota-ona va o‘qituvchi aloqa qo‘llanmasi",
+          "Uydagi ta'lim mashg‘ulotlari"
+        ]
+      }
+    }
+  },
+  "questions": {
+    "faq": {
+      "1": "Parolni qanday qayta o‘rnataman?",
+      "2": "Profil ma'lumotlarimni qanday yangilayman?",
+      "3": "Kurs materiallarimni qayerdan topishim mumkin?",
+      "4": "Qanday qilib yordam xizmatiga murojaat qilishim mumkin?",
+      "5": "Resurslarga oflayn tarzda kirishim mumkinmi?",
+      "6": "Qanday to‘lov usullari qabul qilinadi?",
+      "7": "Taraqqiyotimni qanday kuzatishim mumkin?",
+      "8": "Mobil ilova mavjudmi?"
+    },
+    "faqAnswer": "Bu namuna javob. Uni haqiqiy Savol-Javob javobi bilan almashtiring.",
+    "supportTitle": "Yordam markazi",
+    "helpTitle": "Yana yordam kerakmi?",
+    "helpDesc": "Agar Savol-Javob bo‘limimizda javob topa olmagan bo‘lsangiz, biz bilan bog‘lanishning yana usullari.",
+    "meeting": {
+      "title": "Uchrashuv belgilash",
+      "desc": "Muammolaringizni batafsil muhokama qilish uchun yordam xodimlarimiz bilan sessiya belgilang.",
+      "btn": "Hozir band qilish"
+    },
+    "chat": {
+      "title": "Onlayn chat",
+      "desc": "Yordam jamoamiz bilan real vaqt rejimida chatlang va darhol yordam oling.",
+      "btn": "Chatni boshlash"
+    },
+    "externalTitle": "Tashqi resurslar",
+    "resourcesLeft": {
+      "title": "Hujjatlar",
+      "1": "Ish boshlash qo‘llanmasi",
+      "2": "Foydalanuvchi qo‘llanmasi",
+      "3": "API havolasi",
+      "4": "Chiqarish eslatmalari"
+    },
+    "resourcesRight": {
+      "title": "Hamjamiyat",
+      "1": "Hamjamiyat forumi",
+      "2": "Dasturchilar blogi",
+      "3": "Savol-Javob forumi",
+      "4": "Bilimlar bazasi"
     }
   }
 }
