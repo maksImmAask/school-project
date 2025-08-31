@@ -17,17 +17,17 @@ export const Questions = () => {
   ]
 
   const leftLinks = [
-    t("questions.links.left.1"),
-    t("questions.links.left.2"),
-    t("questions.links.left.3"),
-    t("questions.links.left.4")
+    t("support.external.left.links.1"),
+    t("support.external.left.links.2"),
+    t("support.external.left.links.3"),
+    t("support.external.left.links.4"),
   ]
 
   const rightLinks = [
-    t("questions.links.right.1"),
-    t("questions.links.right.2"),
-    t("questions.links.right.3"),
-    t("questions.links.right.4")
+    t("support.external.right.links.1"),
+    t("support.external.right.links.2"),
+    t("support.external.right.links.3"),
+    t("support.external.right.links.4"),
   ]
 
   const items = questions.map((item, index) => (

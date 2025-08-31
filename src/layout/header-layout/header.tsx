@@ -1,6 +1,6 @@
 import { Flex, Box, Button, Select } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import {  BinanceCoin  } from "iconsax-reactjs";
+import {  BinanceCoin, HamburgerMenu } from "iconsax-reactjs";
 import { useTranslation } from "react-i18next";
 
 export const Header = () => {
@@ -18,6 +18,11 @@ export const Header = () => {
     <header className="header">
       <div className="container">
       <Flex className="header-flex" gap={'md'}>
+        <Box className="burger-menu" flex={0.2}>
+          <Button className="btn btn-burger">
+            <HamburgerMenu size="32" color="black" />
+          </Button>
+        </Box>
 
         <Box className="box" flex={0.1}>
           <BinanceCoin size="32" color="var(--mantine-color-blue-6)" />
@@ -45,14 +50,13 @@ export const Header = () => {
             </Button>
           </Flex>
         </Box>
-        <Box className="empty-box" flex={3}></Box>
         <Box className="box lang" flex={1}>
           <Select
             placeholder={i18n.language}
             data={[
-              { value: "ru", label: "Русский" },
-              { value: "en", label: "English" },
-              { value: "uz", label: "Ozbekcha" }
+              { value: "ru", label: "RU" },
+              { value: "en", label: "EN" },
+              { value: "uz", label: "UZ" }
             ]}
             value={i18n.language}
             onChange={change}

@@ -61,6 +61,15 @@ body {
   border-radius: 50px;
   border: none;
 }
+.document-box {
+  border: 1px solid var(--mantine-color-blue-6);
+  border-radius: 20px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
 .btn-all:hover {
   background-color: transparent;
   color: var(--mantine-color-blue-7);
@@ -193,6 +202,10 @@ body {
     background: #fff;
     padding: 20px;
     overflow: hidden;
+  }
+  .school-hours {
+    height: fit-content;
+    border-radius: 20px;
   }
 .img-news {
   height: 100%;
@@ -387,6 +400,22 @@ body {
 .quest-btn {
   width: fit-content;
 }
+.item-study {
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid var(--mantine-color-blue-6);
+  padding: 20px;
+}
+.item-study-box {
+  display: flex;
+  align-self: start;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid var(--mantine-color-blue-6);
+  border-radius: 20px;
+  margin: 10px;
+  gap: 10px;
+}
 .link-quest {
   background-color: #fff;
   border-radius: 20px;
@@ -500,16 +529,10 @@ body {
   overflow: hidden;
 }
 
-/* 
+
 @media (min-width: 480px) {
   .nav {
     display: none;
-  }
-  .teachers {
-    height: 300vh;
-  }
-  .last-news {
-    height: 280vh;
   }
   .images-box {
     height: 100%;
@@ -520,16 +543,6 @@ body {
   .images-flex {
     height: 100%;
   }
-  .section {
-    width: 100%;
-    height: 70vh;
-  }
-  .images-section {
-    height: 100vh;
-  }
-  .footer {
-    height: 180vh;
-  }
   .bg-img {
     display: none;
   }
@@ -538,15 +551,6 @@ body {
 @media (min-width: 768px) {
   .empty-link {
     display: none;
-  }
-  .teachers {
-    height: 160vh;
-  }
-  .footer {
-    height: 70vh;
-  }
-  .last-news {
-    height: 200vh;
   }
   .empty-box {
     display: inline;
@@ -563,9 +567,6 @@ body {
   .img-item {
     border: 1px solid black;
   }
-  .about-section {
-    height: 130vh;
-  }
   .imgs-flex {
     height: 100%;
   }
@@ -574,21 +575,6 @@ body {
 .btn-burger {
   display: none;
 }
-  .section {
-    width: 100%;
-    height: 70vh;
-    margin: 30px 0;
-  }
-  .last-news {
-    width: 100%;
-    height: 120vh;
-    margin: 30px 0;
-  }
-  .teachers {
-      width: 100%;
-      height: 140vh;
-      margin: 30px 0;
-  }
   .nav {
     display: block;
   }
@@ -605,9 +591,6 @@ body {
     width: 100%;
     height: 100%;
     padding: 20px;
-  }
-  .about-section {
-    height: 250vh;
   }
   .bg-img {
     width: 100%;
@@ -628,9 +611,6 @@ body {
     
 
 
-  }
-  .footer {
-    height: 40vh;
   }
   .bg-img {
     display: block;
@@ -653,10 +633,6 @@ body {
     font-size: large;
     color: var(--mantine-color-blue-6);
     font-weight: 900;
-  }
-  .images-section {
-    width: 100%;
-    height: 85vh;
   }
   .imgs-flex {
     width: 100%;
@@ -715,11 +691,6 @@ body {
     border-radius: 20px;
     border: none;
   }
-  .about-section {
-    width: 100%;
-    height: 120vh;
-    margin: 30px 0;
-  }
   .about-content-flex, .about-header-flex, .about-items-flex, .about-item-flex {
     width: 100%;
     height: 100%;
@@ -735,9 +706,3 @@ body {
     border-radius: 20px;
   }
 }
-
-@media (min-width: 1440px) {
-  .teachers {
-    height: 160vh;
-  }
-} */
