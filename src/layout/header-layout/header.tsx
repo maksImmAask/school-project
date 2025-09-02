@@ -1,11 +1,12 @@
-import { Flex, Box, Button, Select } from "@mantine/core";
+import { Flex, Box, Button, Select , Menu} from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import {  BinanceCoin, HamburgerMenu } from "iconsax-reactjs";
 import { useTranslation } from "react-i18next";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export const Header = () => {
   const { t, i18n } = useTranslation();
-
+  const { user, isAuthenticated, logout } = useAuthStore();
   const change = (value: string | null) => {
     if (value) {
       i18n.changeLanguage(value);
@@ -63,9 +64,31 @@ export const Header = () => {
           />
         </Box>
 
-        <Box className="box" flex={0.5}>
-          <Button className="btn-contact">{t("header.contactus")}</Button>
-        </Box>
+<Box className="box" flex={0.5}>
+            {isAuthenticated ? (
+              <Menu shadow="md" width={150}>
+                <Menu.Target>
+                  <Button variant="light">{user?.name}</Button>
+                </Menu.Target>
+
+                <Menu.Dropdown>
+                  <Menu.Item
+                    color="red"
+                    onClick={() => {
+                      logout();
+                      navigate("/");
+                    }}
+                  >
+                    Logout
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+            ) : (
+              <Button className="btn btn-login" onClick={() => navigate("/login")}>
+                {t("header.login")}
+              </Button>
+            )}
+</Box>
       </Flex>
     </div>
     </header>

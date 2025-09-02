@@ -6,7 +6,9 @@
     "rules": "Правила",
     "news": "Новости",
     "support": "Поддержка",
-    "contactus": "Связаться с нами"
+    "contactus": "Связаться с нами",
+    "login": "Войти",
+    "register": "Регистрация"
   },
   "home": {
     "first-section": {

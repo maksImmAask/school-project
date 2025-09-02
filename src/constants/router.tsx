@@ -9,6 +9,8 @@ import { News } from '../pages/news/news'
 import { Helper } from '../pages/helper/helper'
 import { NotFoundPage } from '../pages/not-found/not-found'
 import { NewPage } from '../pages/new-page/new-page'
+import { LoginPage } from '../pages/auth/login'
+import { RegisterPage } from '../pages/auth/register'
 
 import { Layout } from '../layout/layout'
 
@@ -16,6 +18,8 @@ export const Router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
+      { path: ROUTES.LOGIN, element: <LoginPage /> },
+      { path: ROUTES.REGISTER, element: <RegisterPage /> },
       { index: true, element: <Home /> },
       { path: ROUTES.NEW_PAGE, element: <NewPage /> },
       { path: ROUTES.ABOUT, element: <About /> },

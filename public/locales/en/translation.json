@@ -6,7 +6,9 @@
     "rules": "Rules",
     "news": "News",
     "support": "Support",
-    "contactus": "Contact Us"
+    "contactus": "Contact Us",
+    "login": "Login",
+    "register": "Register"
   },
   "home": {
     "first-section": {

@@ -6,7 +6,9 @@
     "rules": "Qoidalar",
     "news": "Yangiliklar",
     "support": "Yordam",
-    "contactus": "Bog‘lanish"
+    "contactus": "Bog‘lanish",
+    "login": "Kirish",
+    "register": "Ro‘yxatdan o‘tish"
   },
   "home": {
     "first-section": {
