@@ -15,7 +15,7 @@ import {
 
 export const RegisterPage = () => {
   const nav = useNavigate()
-  const { register, loading } = useAuthStore();
+  const { register, loading , isAuthenticated} = useAuthStore();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,6 +27,9 @@ export const RegisterPage = () => {
     await register({ name, email, password, age: age ?? 0, phone });
     nav('/')
   };
+  if(isAuthenticated) {
+    nav('/')
+  }
 
   return (
     <Container

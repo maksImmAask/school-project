@@ -14,14 +14,17 @@ import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const nav = useNavigate()
-  const { login, loading } = useAuthStore();
+  const { login, loading , isAuthenticated} = useAuthStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async () => {
     await login(email, password);
     nav('/')
-  };
+  }; 
+  if(isAuthenticated) {
+    nav('/')
+  }
 
   return (
     <Container
