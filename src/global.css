@@ -61,6 +61,9 @@ body {
   border-radius: 50px;
   border: none;
 }
+.input-auth {
+  border: none;
+}
 .document-box {
   border: 1px solid var(--mantine-color-blue-6);
   border-radius: 20px;

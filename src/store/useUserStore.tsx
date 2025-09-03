@@ -1,5 +1,6 @@
 import { create } from "zustand"
 import { api } from "../api/api"
+import { showNotification } from "@mantine/notifications"
 
 export type User = {
   id: string
@@ -62,8 +63,18 @@ export const useUsersStore = create<UsersStore>((set) => ({
     try {
       const { data } = await api.post<User>("/users", user)
       set((state) => ({ users: [...state.users, data] }))
+      showNotification({
+        title: "Пользователь создан",
+        message: `Пользователь ${data.name} успешно создан`,
+        color: "green",
+      })
     } catch (err) {
       console.error(err);
+      showNotification({
+        title: "Ошибка",
+        message: "Не удалось создать пользователя",
+        color: "red",
+      })
     } finally {
       set({ loading: false })
     }
@@ -76,8 +87,18 @@ export const useUsersStore = create<UsersStore>((set) => ({
       set((state) => ({
         users: state.users.map((u) => (u.id === id ? data : u)),
       }))
+      showNotification({
+        title: "Пользователь обновлен",
+        message: `Пользователь ${data.name} успешно обновлен`,
+        color: "green",
+      })
     } catch (err) {
       console.error(err);
+      showNotification({
+        title: "Ошибка",
+        message: "Не удалось обновить пользователя",
+        color: "red",
+      })
     } finally {
       set({ loading: false })
     }
@@ -90,10 +111,22 @@ export const useUsersStore = create<UsersStore>((set) => ({
       set((state) => ({
         users: state.users.filter((u) => u.id !== id),
       }))
+      showNotification({
+        title: "Пользователь удален",
+        message: `Пользователь успешно удален`,
+        color: "green",
+      })
     } catch (err) {
       console.error(err);
+      showNotification({
+        title: "Ошибка",
+        message: "Не удалось удалить пользователя",
+        color: "red",
+      })
     } finally {
       set({ loading: false })
     }
   },
 }))
+
+useUsersStore.getState().fetchUsers()

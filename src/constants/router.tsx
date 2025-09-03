@@ -11,6 +11,11 @@ import { NotFoundPage } from '../pages/not-found/not-found'
 import { NewPage } from '../pages/new-page/new-page'
 import { LoginPage } from '../pages/auth/login'
 import { RegisterPage } from '../pages/auth/register'
+import { Admin } from '../pages/admin/admin'
+import { Education } from '../pages/admin/admin-inner/education'
+import { Users } from '../pages/admin/admin-inner/users'
+import { News as AdminNews } from '../pages/admin/admin-inner/news'
+import { Teachers } from '../pages/admin/admin-inner/teachers'
 
 import { Layout } from '../layout/layout'
 
@@ -18,6 +23,20 @@ export const Router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
+      {path: ROUTES.ADMIN, element: <Admin /> , children: [
+        {
+          path: ROUTES.EDUCATION, element: <Education />
+        },
+        {
+          path: ROUTES.USERS, element: <Users />
+        },
+        {
+          path: ROUTES.ADMIN_NEWS, element: <AdminNews />
+        },
+        {
+          path: ROUTES.TEACHERS, element: <Teachers />
+        }
+      ]},
       { path: ROUTES.LOGIN, element: <LoginPage /> },
       { path: ROUTES.REGISTER, element: <RegisterPage /> },
       { index: true, element: <Home /> },

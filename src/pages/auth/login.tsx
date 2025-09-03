@@ -1,30 +1,44 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { useAuthStore } from "../../store/useAuthStore";
 import {
-  TextInput,
-  PasswordInput,
+  Text,
   Button,
   Paper,
   Title,
   Stack,
   Container,
-  NavLink,
+  Anchor,
+  Input,
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "@mantine/form";
 
 export const LoginPage = () => {
-  const nav = useNavigate()
-  const { login, loading , isAuthenticated} = useAuthStore();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const nav = useNavigate();
+  const { login, loading, isAuthenticated } = useAuthStore();
 
-  const handleSubmit = async () => {
-    await login(email, password);
-    nav('/')
-  }; 
-  if(isAuthenticated) {
-    nav('/')
-  }
+  const form = useForm({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+
+    validate: {
+      email: (value) =>
+        /^\S+@\S+$/.test(value) ? null : "Invalid email address",
+      password: (value) =>
+        value.length >= 5 ? null : "Password must be at least 6 characters",
+    },
+  });
+
+  const handleSubmit = async (values: typeof form.values) => {
+    await login(values.email, values.password);
+  };
+  useEffect(() => {
+    if (isAuthenticated) {
+      nav("/");
+    }
+  }, [isAuthenticated, nav]);
 
   return (
     <Container
@@ -36,38 +50,41 @@ export const LoginPage = () => {
         justifyContent: "center",
       }}
     >
-      <Paper
-        shadow="md"
-        radius="md"
-        p="xl"
-        withBorder
-        w={400}
-      >
+      <Paper shadow="md" radius="md" p="xl" withBorder w={400}>
         <Title order={2} ta="center" mb="lg">
           Login
         </Title>
-        <Stack>
-          <TextInput
-            label="Email"
-            placeholder="you@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.currentTarget.value)}
-          />
-          <PasswordInput
-            label="Password"
-            placeholder="Your password"
-            value={password}
-            onChange={(e) => setPassword(e.currentTarget.value)}
-          />
-          <Button fullWidth loading={loading} onClick={handleSubmit}>
-            Login
-          </Button>
-        </Stack>
-        <NavLink
-          label="Don't have an account? Register"
-          href="/register"
-          style={{ marginTop: 20, textAlign: "center" }}
-        />
+
+        <form onSubmit={form.onSubmit(handleSubmit)}>
+          <Stack>
+            <Text>Email</Text>
+            <Input
+              type="email"
+              className="input-auth"
+              placeholder="you@example.com"
+              {...form.getInputProps("email")}
+            />
+            <Text>Password</Text>
+            <Input
+              type="password"
+              className="input-auth"
+              placeholder="Your password"
+              {...form.getInputProps("password")}
+            />
+
+            <Button fullWidth type="submit" loading={loading}>
+              Login
+            </Button>
+          </Stack>
+        </form>
+
+        <Anchor
+          component="button"
+          onClick={() => nav("/register")}
+          style={{ display: "block", marginTop: 20, textAlign: "center" }}
+        >
+          Don't have an account? Register
+        </Anchor>
       </Paper>
     </Container>
   );

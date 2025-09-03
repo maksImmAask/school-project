@@ -1,3 +1,6 @@
+
+
+
 export const ROUTES = {
   HOME: '/',
   ABOUT: '/about',
@@ -8,5 +11,10 @@ export const ROUTES = {
   HELPER: '/helper',
   LOGIN: '/login',
   REGISTER: '/register',
+  ADMIN: '/admin',
+  USERS: '/admin/users',
+  EDUCATION: '/admin/education',
+  ADMIN_NEWS: '/admin/news',
+  TEACHERS: '/admin/teachers',
   NOT_FOUND: '*',
 }

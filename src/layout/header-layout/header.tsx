@@ -72,6 +72,14 @@ export const Header = () => {
                 </Menu.Target>
 
                 <Menu.Dropdown>
+
+                  {user?.role === "admin" && (
+                    <Menu.Item
+                      onClick={() => navigate("/admin")}
+                    >
+                      Admin Panel
+                    </Menu.Item>
+                  )}
                   <Menu.Item
                     color="red"
                     onClick={() => {
@@ -83,6 +91,7 @@ export const Header = () => {
                   </Menu.Item>
                 </Menu.Dropdown>
               </Menu>
+
             ) : (
               <Button className="btn btn-login" onClick={() => navigate("/login")}>
                 {t("header.login")}
