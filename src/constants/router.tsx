@@ -16,6 +16,7 @@ import { Education } from '../pages/admin/admin-inner/education'
 import { Users } from '../pages/admin/admin-inner/users'
 import { News as AdminNews } from '../pages/admin/admin-inner/news'
 import { Teachers } from '../pages/admin/admin-inner/teachers'
+import { Owners } from '../pages/admin/admin-inner/owners'
 
 import { Layout } from '../layout/layout'
 
@@ -27,6 +28,10 @@ export const Router = createBrowserRouter([
         {
           path: ROUTES.EDUCATION, element: <Education />
         },
+        {
+          path: ROUTES.OWNERS, element: <Owners />
+        }
+        ,
         {
           path: ROUTES.USERS, element: <Users />
         },

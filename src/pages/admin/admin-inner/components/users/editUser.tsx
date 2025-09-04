@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useForm } from "@mantine/form";
-import { useUsersStore } from "../../../../store/useUserStore";
+import { useUsersStore } from "../../../../../store/useUserStore";
 
 interface EditUserModalProps {
   opened: boolean;

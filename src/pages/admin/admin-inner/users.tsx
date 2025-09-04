@@ -1,11 +1,13 @@
-import { Button, Table } from "@mantine/core"
+import { Button, Flex, Table , Text} from "@mantine/core"
 import { useUsersStore } from "../../../store/useUserStore"
-import { ConfirmDeleteModal } from "./components/deleteUser"
+import { ConfirmDeleteModal } from "./components/users/deleteUser"
 import { useState } from "react";
-import { EditUserModal } from "./components/editUser";
+import { EditUserModal } from "./components/users/editUser";
+import { AddUserModal } from "./components/users/addUser";
 export const Users = () => {
   const [openedId, setOpenedId] = useState<string | null>(null);
   const [openedEditId, setOpenedEditId] = useState<string | null>(null);
+  const [openedAdd, setOpenedAdd] = useState(false);
   const { users } = useUsersStore();
 
   const handleOpen = (id: string) => {setOpenedId(id); console.log('hello')};
@@ -23,8 +25,10 @@ export const Users = () => {
       <Table.Td>{user.phone}</Table.Td>
       <Table.Td>{user.role}</Table.Td>
       <Table.Td>
-        <Button onClick={()=>{handleOpenEdit(user.id)}}>Update</Button>
-        <Button variant="outline" onClick={()=> {handleOpen(user.id)}}>Delete</Button>
+        <Flex gap={'xs'}>
+        <Button onClick={()=>{handleOpenEdit(user.id)}} disabled={user.role==='admin' ? true : false}>Update</Button>
+        <Button variant="outline" onClick={()=> {handleOpen(user.id)}} disabled={user.role==='admin' ? true : false}>Delete</Button>
+        </Flex>
 
         <EditUserModal
           opened={openedEditId === user.id}
@@ -43,6 +47,10 @@ export const Users = () => {
   ))
   return (
     <>
+    <Flex justify="space-between" mb="md">
+      <Text size="30px" fw={700}>Список пользователей</Text>
+      <Button onClick={() => setOpenedAdd(true)}>Добавить пользователя</Button>
+    </Flex>
     
     <Table>
       <Table.Thead>
@@ -59,6 +67,7 @@ export const Users = () => {
       </Table.Thead>
       <Table.Tbody>{items}</Table.Tbody>
     </Table>
+    <AddUserModal opened={openedAdd} onClose={() => setOpenedAdd(false)} />
 
 
     </>

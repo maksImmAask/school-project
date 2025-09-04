@@ -1,6 +1,6 @@
 import { Modal, Text, Button, Group, Stack } from "@mantine/core";
 import { useState } from "react";
-import { useUsersStore } from "../../../../store/useUserStore";
+import { useUsersStore } from "../../../../../store/useUserStore";
 
 interface ConfirmDeleteModalProps {
   opened: boolean;
