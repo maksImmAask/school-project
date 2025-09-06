@@ -19,8 +19,8 @@ interface EditUserModalProps {
 
 export const EditUserModal = ({ opened, onClose, userId }: EditUserModalProps) => {
   const { getUser, updateUser } = useUsersStore();
-  const [initialLoading, setInitialLoading] = useState(true); // загрузка данных пользователя
-  const [saving, setSaving] = useState(false); // индикатор сохранения
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [saving, setSaving] = useState(false); 
 
   const form = useForm({
     initialValues: {
@@ -40,7 +40,6 @@ export const EditUserModal = ({ opened, onClose, userId }: EditUserModalProps) =
     },
   });
 
-  // Загружаем данные пользователя при открытии модалки
   useEffect(() => {
     const fetchUser = async () => {
       if (!opened || !userId) return;

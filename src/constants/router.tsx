@@ -17,6 +17,7 @@ import { Users } from '../pages/admin/admin-inner/users'
 import { News as AdminNews } from '../pages/admin/admin-inner/news'
 import { Teachers } from '../pages/admin/admin-inner/teachers'
 import { Owners } from '../pages/admin/admin-inner/owners'
+import { FacultiesPage } from '../pages/admin/admin-inner/faculties'
 
 import { Layout } from '../layout/layout'
 
@@ -24,6 +25,16 @@ export const Router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
+      { index: true, element: <Home /> },
+      { path: ROUTES.NEW_PAGE, element: <NewPage /> },
+      { path: ROUTES.ABOUT, element: <About /> },
+      { path: ROUTES.STUDY, element: <Study /> },
+      { path: ROUTES.RULES, element: <Rules /> },
+      { path: ROUTES.NEWS, element: <News /> },
+      { path: ROUTES.HELPER, element: <Helper /> },
+      { path: ROUTES.NOT_FOUND, element: <NotFoundPage /> },
+    ],
+  },
       {path: ROUTES.ADMIN, element: <Admin /> , children: [
         {
           path: ROUTES.EDUCATION, element: <Education />
@@ -40,20 +51,13 @@ export const Router = createBrowserRouter([
         },
         {
           path: ROUTES.TEACHERS, element: <Teachers />
+        },
+        {
+          path: ROUTES.FACULTIES, element: <FacultiesPage />
         }
       ]},
       { path: ROUTES.LOGIN, element: <LoginPage /> },
       { path: ROUTES.REGISTER, element: <RegisterPage /> },
-      { index: true, element: <Home /> },
-      { path: ROUTES.NEW_PAGE, element: <NewPage /> },
-      { path: ROUTES.ABOUT, element: <About /> },
-      { path: ROUTES.STUDY, element: <Study /> },
-      { path: ROUTES.RULES, element: <Rules /> },
-      { path: ROUTES.NEWS, element: <News /> },
-      { path: ROUTES.HELPER, element: <Helper /> },
-      { path: ROUTES.NOT_FOUND, element: <NotFoundPage /> },
-    ],
-  },
 ])
 
 export default function AppRouter() {

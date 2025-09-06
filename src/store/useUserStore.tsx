@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { api } from "../api/api"
+import { api } from "../api/http"
 import { showNotification } from "@mantine/notifications"
 
 export type User = {

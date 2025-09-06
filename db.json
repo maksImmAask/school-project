@@ -1,0 +1,215 @@
+{
+  "users": [
+    {
+      "name": "adminadadada",
+      "email": "admin@admin.admin",
+      "password": "admin",
+      "age": 1123,
+      "phone": "admin",
+      "role": "admin",
+      "id": "1"
+    },
+    {
+      "name": "Brandy Ratke12345",
+      "email": "Yazmin.Gutmann33@yahoo.com",
+      "password": "xWAYetopAnQKk7w",
+      "age": 19,
+      "phone": "phone 5",
+      "role": "user",
+      "id": "5"
+    },
+    {
+      "name": "Anna Metz MD",
+      "email": "Krystina.Russel@yahoo.com",
+      "password": "lky8fbxRpexTMn9",
+      "age": 89,
+      "phone": "phone 6",
+      "role": "user",
+      "id": "6"
+    },
+    {
+      "name": "Miss Alice Emmerich",
+      "email": "Tomas.Mann@yahoo.com",
+      "password": "bvoaOOPBM2t5n2a",
+      "age": 14,
+      "phone": "phone 7",
+      "role": "user",
+      "id": "7"
+    },
+    {
+      "name": "Mrs. Emily Murray I",
+      "email": "Augustine41@gmail.com",
+      "password": "WLioTaRPJDJtrRQ",
+      "age": 86,
+      "phone": "phone 8",
+      "role": "user",
+      "id": "8"
+    },
+    {
+      "name": "sdasd",
+      "email": "sadasda",
+      "password": "sdasda",
+      "age": 1,
+      "phone": "23123sdsada",
+      "role": "user",
+      "id": "9"
+    },
+    {
+      "name": "sadasdas",
+      "email": "dasdadas",
+      "password": "dasda",
+      "age": 13212,
+      "phone": "sdasdasda",
+      "role": "user",
+      "id": "10"
+    },
+    {
+      "name": "sdasd",
+      "email": "dasdasda",
+      "password": "dasdad",
+      "age": 1313,
+      "phone": "1sdsd",
+      "role": "user",
+      "id": "11"
+    },
+    {
+      "name": "максим",
+      "email": "maksim@.",
+      "password": "maksim",
+      "age": 14,
+      "phone": "+998913861377",
+      "role": "user",
+      "id": "12"
+    }
+  ],
+  "owners": [
+    {
+      "name": "Dustin",
+      "surname": "Wisozk",
+      "job": "job 2",
+      "desc": "desc 2",
+      "id": "2"
+    },
+    {
+      "name": "Violette",
+      "surname": "Windler",
+      "job": "job 3",
+      "desc": "desc 3",
+      "id": "3"
+    },
+    {
+      "name": "Shawn",
+      "surname": "Powlowski",
+      "job": "job 4",
+      "desc": "desc 4",
+      "id": "4"
+    },
+    {
+      "name": "Electa",
+      "surname": "Olson",
+      "job": "job 5",
+      "desc": "desc 5",
+      "id": "5"
+    },
+    {
+      "name": "Onie",
+      "surname": "Hodkiewicz",
+      "job": "job 6",
+      "desc": "desc 6",
+      "id": "6"
+    },
+    {
+      "name": "Stephon",
+      "surname": "Littel",
+      "job": "job 7",
+      "desc": "desc 7",
+      "id": "7"
+    },
+    {
+      "name": "Maximus",
+      "surname": "Lemke",
+      "job": "job 8",
+      "desc": "desc 8",
+      "id": "8"
+    },
+    {
+      "name": "Josefina",
+      "surname": "Kilback",
+      "job": "job 9",
+      "desc": "desc 9",
+      "id": "9"
+    },
+    {
+      "name": "вы",
+      "surname": "вывы",
+      "job": "ывфыв",
+      "desc": "фывфыв",
+      "id": "10"
+    }
+  ],
+  "faculties": [
+    {
+      "id": "1",
+      "name": "Факультет информационных технологий",
+      "desc": "Подготовка специалистов в области программирования, кибербезопасности и анализа данных."
+    },
+    {
+      "id": "2",
+      "name": "Факультет экономики",
+      "desc": "Изучение финансов, менеджмента и бухгалтерского учета."
+    },
+    {
+      "id": "3",
+      "name": "Факультет филологии",
+      "desc": "Углубленное изучение языков, литературы и культурологии."
+    },
+    {
+      "id": "4",
+      "name": "Факультет медицины",
+      "desc": "Подготовка врачей и медсестер по современным стандартам."
+    },
+    {
+      "id": "5",
+      "name": "Факультет архитектуры",
+      "desc": "Изучение проектирования зданий и градостроительства."
+    },
+    {
+      "id": "6",
+      "name": "Факультет права",
+      "desc": "Подготовка специалистов в области юриспруденции."
+    },
+    {
+      "id": "7",
+      "name": "Факультет психологии",
+      "desc": "Изучение психологии и педагогики."
+    },
+    {
+      "id": "8",
+      "name": "Факультет математики",
+      "desc": "Фундаментальная подготовка по математике и аналитике."
+    },
+    {
+      "id": "fa48",
+      "title": "???",
+      "desc": "???dasda"
+    }
+  ],
+  "educations": [
+    {
+      "id": "1",
+      "title": "Введение в программирование",
+      "desc": "Базовый курс для начинающих изучать программирование",
+      "date": "2025-09-15",
+      "startTime": "09:00",
+      "endTime": "12:00"
+    },
+    {
+      "id": "2",
+      "title": "Финансовая грамотность",
+      "desc": "Курс по основам экономики и управления личными финансами",
+      "date": "2025-09-20",
+      "startTime": "14:00",
+      "endTime": "17:30"
+    }
+  ]
+}

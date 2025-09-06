@@ -45,6 +45,13 @@ export const Admin = () => {
           Users
         </Button>
         <Button
+          variant={isActive("/admin/faculties") ? "filled" : "light"}
+          color={isActive("/admin/faculties") ? "blue" : "gray"}
+          onClick={() => navigate("/admin/faculties")}
+        >
+          Faculties
+        </Button>
+        <Button
           variant={isActive("/admin/owners") ? "filled" : "light"}
           color={isActive("/admin/owners") ? "blue" : "gray"}
           onClick={() => navigate("/admin/owners")}

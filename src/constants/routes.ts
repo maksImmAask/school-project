@@ -17,5 +17,6 @@ export const ROUTES = {
   ADMIN_NEWS: '/admin/news',
   TEACHERS: '/admin/teachers',
   OWNERS: '/admin/owners',
+  FACULTIES: '/admin/faculties',
   NOT_FOUND: '*',
 }

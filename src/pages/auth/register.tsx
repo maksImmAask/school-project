@@ -11,6 +11,7 @@ import {
   Stack,
   Container,
   Anchor,
+  Box,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
@@ -67,9 +68,11 @@ export const RegisterPage = () => {
       }}
     >
       <Paper shadow="md" radius="md" p="xl" withBorder w={400}>
+        <Box>
         <Title order={2} ta="center" mb="lg">
           Register
         </Title>
+        </Box>
 
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <Stack>

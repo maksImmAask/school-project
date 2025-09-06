@@ -2,19 +2,28 @@ import { useState } from "react";
 import { Button, Flex, Table, Text } from "@mantine/core";
 import { useOwnersStore } from "../../../store/useOwnersStore";
 import { DeleteOwnerModal } from "./components/owners/deleteOwner";
+import { EditOwnerModal } from "./components/owners/updateOwner";
+import { AddOwnerModal } from "./components/owners/createOwner";
 
 export const Owners = () => {
   const { owners, loading } = useOwnersStore();
 
-  const [opened, setOpened] = useState(false);
-  const [selectedOwner, setSelectedOwner] = useState<{
-    id: string;
-    name: string;
-  } | null>(null);
+  const [createOpened, setCreateOpened] = useState(false);
+  const [updateOpened, setUpdateOpened] = useState(false);
+  const [deleteOpened, setDeleteOpened] = useState(false);
 
-  const openModal = (id: string, name: string) => {
-    setSelectedOwner({ id, name });
-    setOpened(true);
+  const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
+  const [selectedOwnerName, setSelectedOwnerName] = useState<string>("");
+
+  const openUpdateModal = (id: string) => {
+    setSelectedOwnerId(id);
+    setUpdateOpened(true);
+  };
+
+  const openDeleteModal = (id: string, name: string) => {
+    setSelectedOwnerId(id);
+    setSelectedOwnerName(name);
+    setDeleteOpened(true);
   };
 
   const rows = owners.map((owner, index) => (
@@ -25,13 +34,18 @@ export const Owners = () => {
       <Table.Td>{owner.job}</Table.Td>
       <Table.Td>{owner.desc}</Table.Td>
       <Table.Td>
-        <Button size="xs" mr="xs">
+        <Button
+          size="xs"
+          mr="xs"
+          onClick={() => openUpdateModal(owner.id)}
+        >
           Update
         </Button>
+
         <Button
           variant="outline"
           size="xs"
-          onClick={() => openModal(owner.id, owner.name)}
+          onClick={() => openDeleteModal(owner.id, owner.name)}
         >
           Delete
         </Button>
@@ -41,11 +55,11 @@ export const Owners = () => {
 
   return (
     <>
-      <Flex justify={"space-between"} mb="md">
+      <Flex justify="space-between" mb="md">
         <Text size="30px" fw={700}>
           Owners
         </Text>
-        <Button>Add Owner</Button>
+        <Button onClick={() => setCreateOpened(true)}>Add Owner</Button>
       </Flex>
 
       <Table>
@@ -72,12 +86,24 @@ export const Owners = () => {
         </Table.Tbody>
       </Table>
 
-      {selectedOwner && (
+      <AddOwnerModal
+        opened={createOpened}
+        onClose={() => setCreateOpened(false)}
+      />
+
+      {selectedOwnerId && (
+        <EditOwnerModal
+          opened={updateOpened}
+          onClose={() => setUpdateOpened(false)}
+          ownerId={selectedOwnerId}
+        />
+      )}
+      {selectedOwnerId && (
         <DeleteOwnerModal
-          opened={opened}
-          onClose={() => setOpened(false)}
-          ownerId={selectedOwner.id}
-          ownerName={selectedOwner.name}
+          opened={deleteOpened}
+          onClose={() => setDeleteOpened(false)}
+          ownerId={selectedOwnerId}
+          ownerName={selectedOwnerName}
         />
       )}
     </>

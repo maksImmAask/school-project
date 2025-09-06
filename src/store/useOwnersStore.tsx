@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { api } from "../api/api";
+import { api } from "../api/http";
 
 export type Owner = {
   id: string;
@@ -29,68 +29,59 @@ export const useOwnersStore = create<OwnersStore>((set) => ({
   fetchOwners: async () => {
     set({ loading: true, error: null });
     try {
-      const { data } = await api.get<Owner[]>("/school-leaders");
-      set({ owners: data });
+      const { data } = await api.get<Owner[]>("/owners");
+      set({ owners: data, loading: false });
     } catch (err) {
       console.error(err);
-      set({ error: "Не удалось загрузить владельцев" });
-    } finally {
-      set({ loading: false });
+      set({ error: "Не удалось загрузить владельцев", loading: false });
     }
   },
 
   getOwner: async (id) => {
     try {
-      const { data } = await api.get<Owner>(`/school-leaders/${id}`);
+      const { data } = await api.get<Owner>(`/owners/${id}`);
       return data;
     } catch (err) {
       console.error(err);
       return null;
     }
   },
+
   addOwner: async (owner) => {
-    set({ loading: true, error: null });
     try {
-      const { data } = await api.post<Owner>("/school-leaders", owner);
+      const { data } = await api.post<Owner>("/owners", owner);
       set((state) => ({
         owners: [...state.owners, data],
       }));
     } catch (err) {
       console.error(err);
       set({ error: "Не удалось добавить владельца" });
-    } finally {
-      set({ loading: false });
     }
   },
 
   updateOwner: async (id, owner) => {
-    set({ loading: true, error: null });
     try {
-      const { data } = await api.put<Owner>(`/school-leaders/${id}`, owner);
+      const { data } = await api.put<Owner>(`/owners/${id}`, owner);
       set((state) => ({
         owners: state.owners.map((o) => (o.id === id ? data : o)),
       }));
     } catch (err) {
       console.error(err);
       set({ error: "Не удалось обновить владельца" });
-    } finally {
-      set({ loading: false });
     }
   },
 
   deleteOwner: async (id) => {
-    set({ loading: true, error: null });
     try {
-      await api.delete(`/owners/${id}`);
+      await api.delete(`/ownersф/${id}`);
       set((state) => ({
         owners: state.owners.filter((o) => o.id !== id),
       }));
     } catch (err) {
       console.error(err);
       set({ error: "Не удалось удалить владельца" });
-    } finally {
-      set({ loading: false });
     }
   },
 }));
+
 useOwnersStore.getState().fetchOwners();
