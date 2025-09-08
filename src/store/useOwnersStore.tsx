@@ -73,7 +73,7 @@ export const useOwnersStore = create<OwnersStore>((set) => ({
 
   deleteOwner: async (id) => {
     try {
-      await api.delete(`/ownersф/${id}`);
+      await api.delete(`/owners/${id}`);
       set((state) => ({
         owners: state.owners.filter((o) => o.id !== id),
       }));

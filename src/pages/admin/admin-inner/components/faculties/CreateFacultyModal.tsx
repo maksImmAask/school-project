@@ -12,12 +12,14 @@ export const CreateFacultyModal = ({ opened, onClose }: Props) => {
 
   const form = useForm({
     initialValues: {
-      title: "",
+      name: "", 
       desc: "",
     },
     validate: {
-      title: (value) => (value.length < 2 ? "Название слишком короткое" : null),
-      desc: (value) => (value.length < 5 ? "Описание слишком короткое" : null),
+      name: (value) =>
+        value.length < 2 ? "Название слишком короткое" : null,
+      desc: (value) =>
+        value.length < 5 ? "Описание слишком короткое" : null,
     },
   });
 
@@ -31,8 +33,16 @@ export const CreateFacultyModal = ({ opened, onClose }: Props) => {
     <Modal opened={opened} onClose={onClose} title="Добавить факультет" centered>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack>
-          <TextInput label="Название" placeholder="Введите название" {...form.getInputProps("title")} />
-          <TextInput label="Описание" placeholder="Введите описание" {...form.getInputProps("desc")} />
+          <TextInput
+            label="Название"
+            placeholder="Введите название"
+            {...form.getInputProps("name")} 
+          />
+          <TextInput
+            label="Описание"
+            placeholder="Введите описание"
+            {...form.getInputProps("desc")}
+          />
           <Button type="submit">Создать</Button>
         </Stack>
       </form>

@@ -18,6 +18,7 @@ import { News as AdminNews } from '../pages/admin/admin-inner/news'
 import { Teachers } from '../pages/admin/admin-inner/teachers'
 import { Owners } from '../pages/admin/admin-inner/owners'
 import { FacultiesPage } from '../pages/admin/admin-inner/faculties'
+import { Gallery } from '../pages/admin/admin-inner/galery'
 
 import { Layout } from '../layout/layout'
 
@@ -41,6 +42,10 @@ export const Router = createBrowserRouter([
         },
         {
           path: ROUTES.OWNERS, element: <Owners />
+        }
+        ,
+        {
+          path: ROUTES.GALERY, element: <Gallery />
         }
         ,
         {

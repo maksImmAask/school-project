@@ -39,7 +39,7 @@ export const Education = () => {
             Редактировать
           </Button>
           <Button
-            color="red"
+          variant="outline"
             size="xs"
             onClick={() => {
               setSelectedEducationId(education.id);
@@ -60,7 +60,7 @@ export const Education = () => {
         <Button onClick={() => setCreateModalOpen(true)}>Добавить обучение</Button>
       </Group>
 
-      <Table striped highlightOnHover withTableBorder withColumnBorders>
+      <Table>
         <Table.Thead>
           <Table.Tr>
             <Table.Th>Название</Table.Th>
@@ -73,8 +73,6 @@ export const Education = () => {
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
-
-      {/* Модалки */}
       <CreateEducationModal
         opened={createModalOpen}
         onClose={() => setCreateModalOpen(false)}

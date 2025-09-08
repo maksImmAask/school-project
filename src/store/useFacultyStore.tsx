@@ -4,12 +4,12 @@ import { showNotification } from "@mantine/notifications";
 
 export type Faculty = {
   id: string;
-  title: string;
+  name: string;
   desc: string;
 };
 
 export type CreateFaculty = {
-  title: string;
+  name: string;
   desc: string;
 };
 
@@ -60,7 +60,7 @@ export const useFacultiesStore = create<FacultiesStore>((set) => ({
 
       showNotification({
         title: "Факультет создан",
-        message: `Факультет "${data.title}" успешно создан`,
+        message: `Факультет "${data.name}" успешно создан`,
         color: "green",
       });
     } catch (err) {
@@ -85,7 +85,7 @@ export const useFacultiesStore = create<FacultiesStore>((set) => ({
 
       showNotification({
         title: "Факультет обновлен",
-        message: `Факультет "${data.title}" успешно обновлен`,
+        message: `Факультет "${data.name}" успешно обновлен`,
         color: "green",
       });
     } catch (err) {
@@ -99,31 +99,31 @@ export const useFacultiesStore = create<FacultiesStore>((set) => ({
       set({ loading: false });
     }
   },
+deleteFaculty: async (id: string) => {
+  set({ loading: true, error: null });
+  try {
+    await api.delete(`/faculties/${id}`);
 
-  deleteFaculty: async (id) => {
-    set({ loading: true, error: null });
-    try {
-      await api.delete(`/faculties/${id}`);
-      set((state) => ({
-        faculties: state.faculties.filter((f) => f.id !== id),
-      }));
+    set((state) => ({
+      faculties: state.faculties.filter((f) => f.id !== id),
+    }));
 
-      showNotification({
-        title: "Факультет удален",
-        message: `Факультет успешно удален`,
-        color: "green",
-      });
-    } catch (err) {
-      console.error(err);
-      showNotification({
-        title: "Ошибка",
-        message: "Не удалось удалить факультет",
-        color: "red",
-      });
-    } finally {
-      set({ loading: false });
-    }
-  },
+    showNotification({
+      title: "Факультет удален",
+      message: `Факультет успешно удален`,
+      color: "green",
+    });
+  } catch (err) {
+    console.error(err);
+    showNotification({
+      title: "Ошибка",
+      message: "Не удалось удалить факультет",
+      color: "red",
+    });
+  } finally {
+    set({ loading: false });
+  }
+},
 }));
 
 useFacultiesStore.getState().fetchFaculties();

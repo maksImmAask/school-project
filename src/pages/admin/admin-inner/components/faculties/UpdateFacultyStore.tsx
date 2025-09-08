@@ -24,7 +24,7 @@ export const UpdateFacultyModal = ({ opened, onClose, facultyId }: Props) => {
       getFaculty(facultyId).then((faculty) => {
         if (faculty) {
           form.setValues({
-            title: faculty.title,
+            title: faculty.name,
             desc: faculty.desc,
           });
         }
@@ -41,7 +41,7 @@ export const UpdateFacultyModal = ({ opened, onClose, facultyId }: Props) => {
     <Modal opened={opened} onClose={onClose} title="Редактировать факультет" centered>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack>
-          <TextInput label="Название" {...form.getInputProps("title")} />
+          <TextInput label="Название" {...form.getInputProps("name")} />
           <TextInput label="Описание" {...form.getInputProps("desc")} />
           <Button type="submit">Сохранить</Button>
         </Stack>

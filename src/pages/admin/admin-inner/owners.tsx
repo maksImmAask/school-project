@@ -10,21 +10,24 @@ export const Owners = () => {
 
   const [createOpened, setCreateOpened] = useState(false);
   const [updateOpened, setUpdateOpened] = useState(false);
-  const [deleteOpened, setDeleteOpened] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [selectedOwner, setSelectedOwner] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
 
   const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
-  const [selectedOwnerName, setSelectedOwnerName] = useState<string>("");
 
   const openUpdateModal = (id: string) => {
     setSelectedOwnerId(id);
     setUpdateOpened(true);
   };
 
-  const openDeleteModal = (id: string, name: string) => {
-    setSelectedOwnerId(id);
-    setSelectedOwnerName(name);
-    setDeleteOpened(true);
+  const openDeleteModal = (ownerId: string, ownerName: string) => {
+    setSelectedOwner({ id: ownerId, name: ownerName });
+    setDeleteModalOpen(true);
   };
+
 
   const rows = owners.map((owner, index) => (
     <Table.Tr key={owner.id}>
@@ -43,11 +46,11 @@ export const Owners = () => {
         </Button>
 
         <Button
-          variant="outline"
+        variant="outline"
           size="xs"
           onClick={() => openDeleteModal(owner.id, owner.name)}
         >
-          Delete
+          Удалить
         </Button>
       </Table.Td>
     </Table.Tr>
@@ -98,14 +101,15 @@ export const Owners = () => {
           ownerId={selectedOwnerId}
         />
       )}
-      {selectedOwnerId && (
+      {selectedOwner && (
         <DeleteOwnerModal
-          opened={deleteOpened}
-          onClose={() => setDeleteOpened(false)}
-          ownerId={selectedOwnerId}
-          ownerName={selectedOwnerName}
+          opened={deleteModalOpen}
+          onClose={() => setDeleteModalOpen(false)}
+          ownerId={selectedOwner.id}
+          ownerName={selectedOwner.name}
         />
       )}
+
     </>
   );
 };

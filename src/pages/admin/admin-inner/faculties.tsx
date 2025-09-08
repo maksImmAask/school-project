@@ -7,40 +7,37 @@ import {
   Loader,
   Center,
 } from "@mantine/core";
-import { modals } from "@mantine/modals";
 import { useFacultiesStore } from "../../../store/useFacultyStore";
 import { CreateFacultyModal } from "./components/faculties/CreateFacultyModal";
 import { UpdateFacultyModal } from "./components/faculties/UpdateFacultyStore";
+import { ConfirmDeleteModal } from "./components/faculties/DeleteModal";
 
 export const FacultiesPage = () => {
-  const { faculties, fetchFaculties, loading, deleteFaculty } = useFacultiesStore();
+  const { faculties, fetchFaculties, loading } = useFacultiesStore();
 
-  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [opened, setOpened] = useState(false);
+  const [createModalOpen, setCreateModalOpen] = useState(false);  
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
+
+  const [selectedFaculty, setSelectedFaculty] = useState<{
+    id: string;
+    title: string;
+  } | null>(null);
+
   const [selectedFacultyId, setSelectedFacultyId] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchFaculties(); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    fetchFaculties(); 
+  }, [fetchFaculties]);
 
   const handleEdit = (id: string) => {
     setSelectedFacultyId(id);
     setUpdateModalOpen(true);
   };
 
-  const handleDelete = (id: string, title: string) => {
-    modals.openConfirmModal({
-      title: "Удалить факультет?",
-      centered: true,
-      children: (
-        <p>
-          Вы действительно хотите удалить факультет <strong>{title}</strong>?
-        </p>
-      ),
-      labels: { confirm: "Удалить", cancel: "Отмена" },
-      confirmProps: { color: "red" },
-      onConfirm: () => deleteFaculty(id),
-    });
+  const openDeleteModal = (faculty: { id: string; title: string }) => {
+    setSelectedFaculty(faculty);
+    setOpened(true);
   };
 
   if (loading) {
@@ -72,23 +69,25 @@ export const FacultiesPage = () => {
             faculties.map((faculty, index) => (
               <Table.Tr key={faculty.id}>
                 <Table.Td>{index + 1}</Table.Td>
-                <Table.Td>{faculty.title}</Table.Td>
+                <Table.Td>{faculty.name}</Table.Td>
                 <Table.Td>{faculty.desc}</Table.Td>
                 <Table.Td>
                   <Button
                     size="xs"
                     mr="xs"
-                      onClick={() => handleEdit(faculty.id)}
+                    onClick={() => handleEdit(faculty.id)}
                   >
                     Update
                   </Button>
 
                   <Button
-                    variant="outline"
+                  variant="outline"
                     size="xs"
-                      onClick={() => handleDelete(faculty.id, faculty.title)}
+                    onClick={() =>
+                      openDeleteModal({ id: faculty.id, title: faculty.name })
+                    }
                   >
-                    Delete
+                    Удалить
                   </Button>
                 </Table.Td>
               </Table.Tr>
@@ -107,12 +106,19 @@ export const FacultiesPage = () => {
         opened={createModalOpen}
         onClose={() => setCreateModalOpen(false)}
       />
-
       {selectedFacultyId && (
         <UpdateFacultyModal
           opened={updateModalOpen}
           onClose={() => setUpdateModalOpen(false)}
           facultyId={selectedFacultyId}
+        />
+      )}
+      {selectedFaculty && (
+        <ConfirmDeleteModal
+          opened={opened}
+          onClose={() => setOpened(false)}
+          facultyId={selectedFaculty.id}
+          facultyTitle={selectedFaculty.title}
         />
       )}
     </div>
