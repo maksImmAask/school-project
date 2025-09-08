@@ -1,0 +1,426 @@
+{
+  "users": [
+    {
+      "name": {
+        "uz": "adminadadada",
+        "ru": "adminadadada",
+        "en": "adminadadada"
+      },
+      "email": "admin@admin.admin",
+      "password": "admin",
+      "age": 1123,
+      "phone": "admin",
+      "role": "admin",
+      "id": "1"
+    },
+    {
+      "name": {
+        "uz": "Miss Alice Emmerich",
+        "ru": "Мисс Алиса Эммерих",
+        "en": "Miss Alice Emmerich"
+      },
+      "email": "Tomas.Mann@yahoo.com",
+      "password": "bvoaOOPBM2t5n2a",
+      "age": 14,
+      "phone": "phone 7",
+      "role": "user",
+      "id": "7"
+    },
+    {
+      "name": {
+        "uz": "Mrs. Emily Murray I",
+        "ru": "Миссис Эмили Мюррей I",
+        "en": "Mrs. Emily Murray I"
+      },
+      "email": "Augustine41@gmail.com",
+      "password": "WLioTaRPJDJtrRQ",
+      "age": 86,
+      "phone": "phone 8",
+      "role": "user",
+      "id": "8"
+    },
+    {
+      "name": {
+        "uz": "sdasd",
+        "ru": "sdasd",
+        "en": "sdasd"
+      },
+      "email": "sadasda",
+      "password": "sdasda",
+      "age": 1,
+      "phone": "23123sdsada",
+      "role": "user",
+      "id": "9"
+    },
+    {
+      "name": {
+        "uz": "sadasdas",
+        "ru": "sadasdas",
+        "en": "sadasdas"
+      },
+      "email": "dasdadas",
+      "password": "dasda",
+      "age": 13212,
+      "phone": "sdasdasda",
+      "role": "user",
+      "id": "10"
+    },
+    {
+      "name": {
+        "uz": "sdasd",
+        "ru": "sdasd",
+        "en": "sdasd"
+      },
+      "email": "dasdasda",
+      "password": "dasdad",
+      "age": 1313,
+      "phone": "1sdsd",
+      "role": "user",
+      "id": "11"
+    },
+    {
+      "name": {
+        "uz": "максим",
+        "ru": "максим",
+        "en": "maksim"
+      },
+      "email": "maksim@.",
+      "password": "maksim",
+      "age": 14,
+      "phone": "+998913861377",
+      "role": "user",
+      "id": "12"
+    }
+  ],
+  "owners": [
+    {
+      "name": {
+        "uz": "Shawn",
+        "ru": "Шон",
+        "en": "Shawn"
+      },
+      "surname": {
+        "uz": "Powlowski",
+        "ru": "Повловски",
+        "en": "Powlowski"
+      },
+      "job": {
+        "uz": "job 4",
+        "ru": "работа 4",
+        "en": "job 4"
+      },
+      "desc": {
+        "uz": "desc 4",
+        "ru": "описание 4",
+        "en": "description 4"
+      },
+      "id": "4"
+    },
+    {
+      "name": {
+        "uz": "Electa",
+        "ru": "Электа",
+        "en": "Electa"
+      },
+      "surname": {
+        "uz": "Olson",
+        "ru": "Олсон",
+        "en": "Olson"
+      },
+      "job": {
+        "uz": "job 5",
+        "ru": "работа 5",
+        "en": "job 5"
+      },
+      "desc": {
+        "uz": "desc 5",
+        "ru": "описание 5",
+        "en": "description 5"
+      },
+      "id": "5"
+    },
+    {
+      "name": {
+        "uz": "Onie",
+        "ru": "Они",
+        "en": "Onie"
+      },
+      "surname": {
+        "uz": "Hodkiewicz",
+        "ru": "Ходкевич",
+        "en": "Hodkiewicz"
+      },
+      "job": {
+        "uz": "job 6",
+        "ru": "работа 6",
+        "en": "job 6"
+      },
+      "desc": {
+        "uz": "desc 6",
+        "ru": "описание 6",
+        "en": "description 6"
+      },
+      "id": "6"
+    },
+    {
+      "name": {
+        "uz": "Stephon",
+        "ru": "Стефон",
+        "en": "Stephon"
+      },
+      "surname": {
+        "uz": "Littel",
+        "ru": "Литтел",
+        "en": "Littel"
+      },
+      "job": {
+        "uz": "job 7",
+        "ru": "работа 7",
+        "en": "job 7"
+      },
+      "desc": {
+        "uz": "desc 7",
+        "ru": "описание 7",
+        "en": "description 7"
+      },
+      "id": "7"
+    },
+    {
+      "name": {
+        "uz": "Maximus",
+        "ru": "Максимус",
+        "en": "Maximus"
+      },
+      "surname": {
+        "uz": "Lemke",
+        "ru": "Лемке",
+        "en": "Lemke"
+      },
+      "job": {
+        "uz": "job 8",
+        "ru": "работа 8",
+        "en": "job 8"
+      },
+      "desc": {
+        "uz": "desc 8",
+        "ru": "описание 8",
+        "en": "description 8"
+      },
+      "id": "8"
+    },
+    {
+      "name": {
+        "uz": "Josefina",
+        "ru": "Жозефина",
+        "en": "Josefina"
+      },
+      "surname": {
+        "uz": "Kilback",
+        "ru": "Килбэк",
+        "en": "Kilback"
+      },
+      "job": {
+        "uz": "job 9",
+        "ru": "работа 9",
+        "en": "job 9"
+      },
+      "desc": {
+        "uz": "desc 9",
+        "ru": "описание 9",
+        "en": "description 9"
+      },
+      "id": "9"
+    },
+    {
+      "name": {
+        "uz": "вы",
+        "ru": "вы",
+        "en": "vy"
+      },
+      "surname": {
+        "uz": "вывы",
+        "ru": "вывы",
+        "en": "vyvy"
+      },
+      "job": {
+        "uz": "ывфыв",
+        "ru": "ывфыв",
+        "en": "yvyv"
+      },
+      "desc": {
+        "uz": "фывфыв",
+        "ru": "фывфыв",
+        "en": "fyvfyv"
+      },
+      "id": "10"
+    }
+  ],
+  "faculties": [
+    {
+      "desc": {
+        "uz": "Bu fakultetning tavsifi.",
+        "ru": "Описание этого факультета.",
+        "en": "Description of this faculty."
+      },
+      "name": {
+        "uz": "erw",
+        "ru": "erw",
+        "en": "erw"
+      },
+      "id": "3"
+    },
+    {
+      "id": "f4df",
+      "name": {
+        "uz": "???",
+        "ru": "???",
+        "en": "???"
+      },
+      "desc": {
+        "uz": "?????",
+        "ru": "?????",
+        "en": "?????"
+      }
+    },
+    {
+      "id": "dd4a",
+      "name": {
+        "uz": "fakultet",
+        "ru": "факультет",
+        "en": "faculty"
+      },
+      "desc": {
+        "uz": "sfdsdfsdfs",
+        "ru": "sfdsdfsdfs",
+        "en": "sfdsdfsdfs"
+      }
+    }
+  ],
+  "educations": [
+    {
+      "id": "3cef",
+      "title": {
+        "uz": "324234",
+        "ru": "324234",
+        "en": "324234"
+      },
+      "desc": {
+        "uz": "34234",
+        "ru": "34234",
+        "en": "34234"
+      },
+      "date": "234234-04-23",
+      "startTime": "04:23",
+      "endTime": "04:23"
+    },
+    {
+      "id": "a1b2",
+      "title": {
+        "uz": "sdfdsf",
+        "ru": "sdfdsf",
+        "en": "sdfdsf"
+      },
+      "desc": {
+        "uz": "sdfsdf",
+        "ru": "sdfsdf",
+        "en": "sdfsdf"
+      },
+      "date": "2024-05-01",
+      "startTime": "12:00",
+      "endTime": "14:00"
+    },
+    {
+      "id": "b2c3",
+      "title": {
+        "uz": "sdfsdf",
+        "ru": "sdfsdf",
+        "en": "sdfsdf"
+      },
+      "desc": {
+        "uz": "sdfsdf",
+        "ru": "sdfsdf",
+        "en": "sdfsdf"
+      },
+      "date": "2024-05-02",
+      "startTime": "10:00",
+      "endTime": "12:00"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "3",
+      "firstName": {
+        "uz": "Alice",
+        "ru": "Алиса",
+        "en": "Alice"
+      },
+      "lastName": {
+        "uz": "Johnson",
+        "ru": "Джонсон",
+        "en": "Johnson"
+      },
+      "subject": {
+        "uz": "Chemistry",
+        "ru": "Химия",
+        "en": "Chemistry"
+      },
+      "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA"
+    },
+    {
+      "id": "c8a9",
+      "firstName": {
+        "uz": "adasdas",
+        "ru": "адасдас",
+        "en": "adasdas"
+      },
+      "lastName": {
+        "uz": "dasdas",
+        "ru": "дасдас",
+        "en": "dasdas"
+      },
+      "subject": {
+        "uz": "dasdasdasd",
+        "ru": "дасдасдасд",
+        "en": "dasdasdasd"
+      }
+    },
+    {
+      "id": "0c8c",
+      "firstName": {
+        "uz": "sfdfsd",
+        "ru": "сфдфсд",
+        "en": "sfdfsd"
+      },
+      "lastName": {
+        "uz": "fsdfs",
+        "ru": "фсдфс",
+        "en": "fsdfs"
+      },
+      "subject": {
+        "uz": "dfsdfsdf",
+        "ru": "дфсдфсдф",
+        "en": "dfsdfsdf"
+      }
+    }
+  ],
+  "gallery": [
+    {
+      "id": "1",
+      "title": {
+        "uz": "Dengiz ustidagi quyosh botishi",
+        "ru": "Закат над морем",
+        "en": "Sunset over the sea"
+      },
+      "img": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
+    },
+    {
+      "id": "2",
+      "title": {
+        "uz": "Tog'lar va bulutlar",
+        "ru": "Горы и облака",
+        "en": "Mountains and clouds"
+      },
+      "img": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
+    }
+  ]
+}
