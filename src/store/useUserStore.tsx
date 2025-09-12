@@ -128,5 +128,3 @@ export const useUsersStore = create<UsersStore>((set) => ({
     }
   },
 }))
-
-useUsersStore.getState().fetchUsers()

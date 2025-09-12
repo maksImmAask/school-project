@@ -19,5 +19,6 @@ export const ROUTES = {
   OWNERS: '/admin/owners',
   FACULTIES: '/admin/faculties',
   GALERY: '/admin/galery',
+  POSITION: '/admin/position',
   NOT_FOUND: '*',
 }

@@ -14,7 +14,7 @@ export const UpdateFacultyModal = ({ opened, onClose, facultyId }: Props) => {
 
   const form = useForm({
     initialValues: {
-      title: "",
+      name: "",
       desc: "",
     },
   });
@@ -24,7 +24,7 @@ export const UpdateFacultyModal = ({ opened, onClose, facultyId }: Props) => {
       getFaculty(facultyId).then((faculty) => {
         if (faculty) {
           form.setValues({
-            title: faculty.name,
+            name: faculty.name,
             desc: faculty.desc,
           });
         }

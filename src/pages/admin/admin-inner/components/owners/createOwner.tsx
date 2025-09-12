@@ -4,10 +4,12 @@ import {
   Button,
   Stack,
   Group,
+  Select,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useOwnersStore } from "../../../../../store/useOwnersStore";
+import { usePositionsStore } from "../../../../../store/usePositionStore";
 
 interface AddOwnerModalProps {
   opened: boolean;
@@ -16,20 +18,28 @@ interface AddOwnerModalProps {
 
 export const AddOwnerModal = ({ opened, onClose }: AddOwnerModalProps) => {
   const { addOwner } = useOwnersStore();
+  const { positions, fetchPositions } = usePositionsStore();
   const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    fetchPositions();
+  }, [fetchPositions]);
 
   const form = useForm({
     initialValues: {
       name: "",
       surname: "",
-      job: "",
+      positionId: "",
       desc: "",
     },
     validate: {
-      name: (value) => (value.length < 2 ? "Имя должно быть не короче 2 символов" : null),
-      surname: (value) => (value.length < 2 ? "Фамилия должна быть не короче 2 символов" : null),
-      job: (value) => (value.length < 2 ? "Должность должна быть не короче 2 символов" : null),
-      desc: (value) => (value.length < 5 ? "Описание должно быть не короче 5 символов" : null),
+      name: (value) =>
+        value.length < 2 ? "Имя должно быть не короче 2 символов" : null,
+      surname: (value) =>
+        value.length < 2 ? "Фамилия должна быть не короче 2 символов" : null,
+      positionId: (value) => (!value ? "Выберите должность" : null),
+      desc: (value) =>
+        value.length < 5 ? "Описание должно быть не короче 5 символов" : null,
     },
   });
 
@@ -55,11 +65,17 @@ export const AddOwnerModal = ({ opened, onClose }: AddOwnerModalProps) => {
             placeholder="Введите фамилию"
             {...form.getInputProps("surname")}
           />
-          <TextInput
+
+          <Select
             label="Должность"
-            placeholder="Введите должность"
-            {...form.getInputProps("job")}
+            placeholder="Выберите должность"
+            data={positions.map((p) => ({
+              value: p.id,
+              label: p.title,
+            }))}
+            {...form.getInputProps("positionId")}
           />
+
           <TextInput
             label="Описание"
             placeholder="Введите описание"

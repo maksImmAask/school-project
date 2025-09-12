@@ -54,7 +54,7 @@ export const Education = () => {
   ));
 
   return (
-    <Stack w={1000} m="auto" mt={10}>
+    <Stack m="auto" mt={10}>
       <Group justify="space-between" mb="md">
         <Title order={2}>Обучения</Title>
         <Button onClick={() => setCreateModalOpen(true)}>Добавить обучение</Button>

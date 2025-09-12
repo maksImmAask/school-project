@@ -19,6 +19,7 @@ import { Teachers } from '../pages/admin/admin-inner/teachers'
 import { Owners } from '../pages/admin/admin-inner/owners'
 import { FacultiesPage } from '../pages/admin/admin-inner/faculties'
 import { Gallery } from '../pages/admin/admin-inner/galery'
+import { PositionOptions } from '../pages/admin/admin-inner/position'
 
 import { Layout } from '../layout/layout'
 
@@ -37,6 +38,11 @@ export const Router = createBrowserRouter([
     ],
   },
       {path: ROUTES.ADMIN, element: <Admin /> , children: [
+        {
+          path: ROUTES.POSITION, element: <PositionOptions />
+        }
+        ,
+
         {
           path: ROUTES.EDUCATION, element: <Education />
         },

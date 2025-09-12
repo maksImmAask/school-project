@@ -5,7 +5,7 @@ export type Owner = {
   id: string;
   name: string;
   surname: string;
-  job: string;
+  positionId: string;
   desc: string;
 };
 
@@ -83,5 +83,3 @@ export const useOwnersStore = create<OwnersStore>((set) => ({
     }
   },
 }));
-
-useOwnersStore.getState().fetchOwners();

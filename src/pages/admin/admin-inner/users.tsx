@@ -1,15 +1,18 @@
 import { Button, Flex, Table , Text} from "@mantine/core"
 import { useUsersStore } from "../../../store/useUserStore"
 import { ConfirmDeleteModal } from "./components/users/deleteUser"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EditUserModal } from "./components/users/editUser";
 import { AddUserModal } from "./components/users/addUser";
 export const Users = () => {
   const [openedId, setOpenedId] = useState<string | null>(null);
   const [openedEditId, setOpenedEditId] = useState<string | null>(null);
   const [openedAdd, setOpenedAdd] = useState(false);
-  const { users } = useUsersStore();
+  const { users, fetchUsers } = useUsersStore();
 
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
   const handleOpen = (id: string) => {setOpenedId(id); console.log('hello')};
   const handleClose = () => setOpenedId(null);
 

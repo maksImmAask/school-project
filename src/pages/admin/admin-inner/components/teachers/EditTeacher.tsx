@@ -5,11 +5,12 @@ import {
   Stack,
   TextInput,
   FileInput,
+  Image,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useTeachersStore } from "../../../../../store/useTeachersStore";
 import { fileToBase64 } from "../../../../../utils/filetobase64";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface EditTeacherModalProps {
   opened: boolean;
@@ -17,10 +18,15 @@ interface EditTeacherModalProps {
   teacherId: string | null;
 }
 
-export const EditTeacherModal = ({ opened, onClose, teacherId }: EditTeacherModalProps) => {
+export const EditTeacherModal = ({
+  opened,
+  onClose,
+  teacherId,
+}: EditTeacherModalProps) => {
   const { teachers, updateTeacher } = useTeachersStore();
-
   const teacher = teachers.find((t) => t.id === teacherId);
+
+  const [preview, setPreview] = useState<string>(""); 
 
   const form = useForm({
     initialValues: {
@@ -30,6 +36,7 @@ export const EditTeacherModal = ({ opened, onClose, teacherId }: EditTeacherModa
       avatar: null as File | null,
     },
   });
+
   useEffect(() => {
     if (teacher) {
       form.setValues({
@@ -38,12 +45,13 @@ export const EditTeacherModal = ({ opened, onClose, teacherId }: EditTeacherModa
         subject: teacher.subject,
         avatar: null,
       });
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
+      setPreview(teacher.avatar || "");
+    }// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teacher]);
 
   const handleSubmit = async (values: typeof form.values) => {
     try {
-      let avatarBase64 = teacher?.avatar || ""; 
+      let avatarBase64 = teacher?.avatar || "";
 
       if (values.avatar) {
         avatarBase64 = await fileToBase64(values.avatar);
@@ -58,13 +66,22 @@ export const EditTeacherModal = ({ opened, onClose, teacherId }: EditTeacherModa
 
       onClose();
       form.reset();
+      setPreview("");
     } catch (error) {
       console.error("Ошибка при обновлении учителя", error);
     }
   };
 
   return (
-    <Modal opened={opened} onClose={onClose} title="Редактировать учителя" centered>
+    <Modal
+      opened={opened}
+      onClose={onClose}
+      title="Редактировать учителя"
+      centered
+  overlayProps={{
+    backgroundOpacity: 0.4,
+  }}
+    >
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack>
           <TextInput
@@ -85,12 +102,36 @@ export const EditTeacherModal = ({ opened, onClose, teacherId }: EditTeacherModa
             {...form.getInputProps("subject")}
             required
           />
+
           <FileInput
             label="Фото учителя"
             placeholder="Выберите файл"
             accept="image/*"
-            onChange={(file) => form.setFieldValue("avatar", file)}
+            onChange={async (file) => {
+              form.setFieldValue("avatar", file);
+              if (file) {
+                const base64 = await fileToBase64(file);
+                setPreview(base64); 
+              } else {
+                setPreview("");
+              }
+            }}
           />
+
+          {preview && (
+            <Image
+              src={preview}
+              alt="Превью фото учителя"
+              style={{
+                border: "1px solid #ccc",
+                padding: "5px",
+                borderRadius: "8px",
+                maxHeight: "200px",
+                objectFit: "contain",
+              }}
+            />
+          )}
+
           <Group justify="flex-end" mt="md">
             <Button variant="default" onClick={onClose}>
               Отмена

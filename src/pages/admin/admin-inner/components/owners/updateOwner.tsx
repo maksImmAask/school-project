@@ -5,10 +5,12 @@ import {
   Stack,
   Group,
   Loader,
+  Select,
 } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useForm } from "@mantine/form";
 import { useOwnersStore } from "../../../../../store/useOwnersStore";
+import { usePositionsStore } from "../../../../../store/usePositionStore";
 
 interface EditOwnerModalProps {
   opened: boolean;
@@ -18,6 +20,7 @@ interface EditOwnerModalProps {
 
 export const EditOwnerModal = ({ opened, onClose, ownerId }: EditOwnerModalProps) => {
   const { getOwner, updateOwner } = useOwnersStore();
+  const { positions, fetchPositions } = usePositionsStore();
   const [initialLoading, setInitialLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -25,16 +28,23 @@ export const EditOwnerModal = ({ opened, onClose, ownerId }: EditOwnerModalProps
     initialValues: {
       name: "",
       surname: "",
-      job: "",
+      positionId: "",
       desc: "",
     },
     validate: {
-      name: (value) => (value.length < 2 ? "Имя должно быть не короче 2 символов" : null),
-      surname: (value) => (value.length < 2 ? "Фамилия должна быть не короче 2 символов" : null),
-      job: (value) => (value.length < 2 ? "Должность должна быть не короче 2 символов" : null),
-      desc: (value) => (value.length < 5 ? "Описание должно быть не короче 5 символов" : null),
+      name: (value) =>
+        value.length < 2 ? "Имя должно быть не короче 2 символов" : null,
+      surname: (value) =>
+        value.length < 2 ? "Фамилия должна быть не короче 2 символов" : null,
+      positionId: (value) => (!value ? "Выберите должность" : null),
+      desc: (value) =>
+        value.length < 5 ? "Описание должно быть не короче 5 символов" : null,
     },
   });
+
+  useEffect(() => {
+    fetchPositions();
+  }, [fetchPositions]);
 
   useEffect(() => {
     const fetchOwner = async () => {
@@ -46,7 +56,7 @@ export const EditOwnerModal = ({ opened, onClose, ownerId }: EditOwnerModalProps
         form.setValues({
           name: owner.name,
           surname: owner.surname,
-          job: owner.job,
+          positionId: owner.positionId,
           desc: owner.desc,
         });
       }
@@ -82,11 +92,17 @@ export const EditOwnerModal = ({ opened, onClose, ownerId }: EditOwnerModalProps
               placeholder="Введите фамилию"
               {...form.getInputProps("surname")}
             />
-            <TextInput
+
+            <Select
               label="Должность"
-              placeholder="Введите должность"
-              {...form.getInputProps("job")}
+              placeholder="Выберите должность"
+              data={positions.map((p) => ({
+                value: p.id,
+                label: p.title,
+              }))}
+              {...form.getInputProps("positionId")}
             />
+
             <TextInput
               label="Описание"
               placeholder="Введите описание"
