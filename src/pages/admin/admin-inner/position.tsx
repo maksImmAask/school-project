@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Table, Text } from "@mantine/core";
+import { Button, Flex, Stack, Table, Text } from "@mantine/core";
 import { usePositionsStore } from "../../../store/usePositionStore";
 import { AddPositionModal } from "./components/positions/AddPosition";
 import { EditPositionModal  } from "./components/positions/EditPosition";
-import { ConfirmDeleteModal } from "./components/positions/ConfirmDeletePosition";
+import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 
 export const PositionOptions = () => {
-  const { positions, fetchPositions } = usePositionsStore();
+  const { positions, fetchPositions , deletePosition } = usePositionsStore();
   const [openedAdd, setOpenedAdd] = useState(false);
   const [openedEditId, setOpenedEditId] = useState<string | null>(null);
-  const [openedDeleteId, setOpenedDeleteId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchPositions();
@@ -18,11 +17,9 @@ export const PositionOptions = () => {
   const handleOpenEdit = (id: string) => setOpenedEditId(id);
   const handleCloseEdit = () => setOpenedEditId(null);
 
-  const handleOpenDelete = (id: string) => setOpenedDeleteId(id);
-  const handleCloseDelete = () => setOpenedDeleteId(null);
 
   return (
-    <>
+    <Stack m="auto" mt={10}>
       <Flex justify="space-between" mb="md">
         <Text size="30px" fw={700}>Список должностей</Text>
         <Button onClick={() => setOpenedAdd(true)}>Добавить должность</Button>
@@ -46,24 +43,13 @@ export const PositionOptions = () => {
                   <Button variant="filled" onClick={() => handleOpenEdit(pos.id)}>
                     Редактировать
                   </Button>
-                  <Button
-                    variant="outline"
-                    onClick={() => handleOpenDelete(pos.id)}
-                  >
-                    Удалить
-                  </Button>
+                  <ConfirmDeleteModal onConfirm={() => {deletePosition(pos.id)}}/>
                 </Flex>
 
                 <EditPositionModal
                   opened={openedEditId === pos.id}
                   onClose={handleCloseEdit}
                   positionId={pos.id}
-                />
-                <ConfirmDeleteModal
-                  opened={openedDeleteId === pos.id}
-                  onClose={handleCloseDelete}
-                  positionId={pos.id}
-                  positionTitle={pos.title}
                 />
               </Table.Td>
             </Table.Tr>
@@ -72,6 +58,6 @@ export const PositionOptions = () => {
       </Table>
 
       <AddPositionModal opened={openedAdd} onClose={() => setOpenedAdd(false)} />
-    </>
+    </Stack>
   );
 };

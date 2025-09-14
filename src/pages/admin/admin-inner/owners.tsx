@@ -1,23 +1,17 @@
 import { useState, useEffect } from "react";
-import { Button, Flex, Table, Text } from "@mantine/core";
+import { Button, Flex, Stack, Table, Text } from "@mantine/core";
 import { useOwnersStore } from "../../../store/useOwnersStore";
 import { usePositionsStore } from "../../../store/usePositionStore";
-import { DeleteOwnerModal } from "./components/owners/deleteOwner";
 import { EditOwnerModal } from "./components/owners/updateOwner";
 import { AddOwnerModal } from "./components/owners/createOwner";
+import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 
 export const Owners = () => {
-  const { owners, loading, fetchOwners } = useOwnersStore();
+  const { owners, loading, fetchOwners , deleteOwner} = useOwnersStore();
   const { positions, fetchPositions } = usePositionsStore();
 
   const [createOpened, setCreateOpened] = useState(false);
   const [updateOpened, setUpdateOpened] = useState(false);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-
-  const [selectedOwner, setSelectedOwner] = useState<{
-    id: string;
-    name: string;
-  } | null>(null);
 
   const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
 
@@ -29,11 +23,6 @@ export const Owners = () => {
   const openUpdateModal = (id: string) => {
     setSelectedOwnerId(id);
     setUpdateOpened(true);
-  };
-
-  const openDeleteModal = (ownerId: string, ownerName: string) => {
-    setSelectedOwner({ id: ownerId, name: ownerName });
-    setDeleteModalOpen(true);
   };
 
   const rows = owners.map((owner, index) => {
@@ -50,21 +39,14 @@ export const Owners = () => {
           <Button size="xs" mr="xs" onClick={() => openUpdateModal(owner.id)}>
             Update
           </Button>
-
-          <Button
-            variant="outline"
-            size="xs"
-            onClick={() => openDeleteModal(owner.id, owner.name)}
-          >
-            Удалить
-          </Button>
+          <ConfirmDeleteModal onConfirm={()=>{deleteOwner(owner.id)}} />
         </Table.Td>
       </Table.Tr>
     );
   });
 
   return (
-    <>
+    <Stack m="auto" mt={10}>
       <Flex justify="space-between" mb="md">
         <Text size="30px" fw={700}>
           Owners
@@ -108,15 +90,6 @@ export const Owners = () => {
           ownerId={selectedOwnerId}
         />
       )}
-
-      {selectedOwner && (
-        <DeleteOwnerModal
-          opened={deleteModalOpen}
-          onClose={() => setDeleteModalOpen(false)}
-          ownerId={selectedOwner.id}
-          ownerName={selectedOwner.name}
-        />
-      )}
-    </>
+    </Stack>
   );
 };

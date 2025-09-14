@@ -26,6 +26,11 @@ export const AddTeacherModal = ({ opened, onClose }: AddTeacherModalProps) => {
       subject: "",
       avatar: "", 
     },
+    validate: {
+      firstName: (value) => (value.length < 2 ? "Минимум 2 символа" : null),
+      lastName: (value) => (value.length < 2 ? "Минимум 2 символа" : null),
+      subject: (value) => (value.length < 2 ? "Минимум 2 символа" : null),
+    },
   });
 
   const handleFileChange = async (file: File | null) => {

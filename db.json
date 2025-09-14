@@ -1,31 +1,13 @@
 {
   "users": [
     {
-      "name": "adminadadada",
+      "name": "admin",
       "email": "admin@admin.admin",
       "password": "admin",
-      "age": 1123,
+      "age": 14,
       "phone": "admin",
       "role": "admin",
       "id": "1"
-    },
-    {
-      "name": "Miss Alice Emmerich",
-      "email": "Tomas.Mann@yahoo.com",
-      "password": "bvoaOOPBM2t5n2a",
-      "age": 14,
-      "phone": "phone 7",
-      "role": "user",
-      "id": "7"
-    },
-    {
-      "name": "Mrs. Emily Murray I",
-      "email": "Augustine41@gmail.com",
-      "password": "WLioTaRPJDJtrRQ",
-      "age": 86,
-      "phone": "phone 8",
-      "role": "user",
-      "id": "8"
     },
     {
       "name": "sdasd",
@@ -137,11 +119,6 @@
     }
   ],
   "faculties": [
-    {
-      "desc": "Bu fakultetning tavsifi.",
-      "name": "erw",
-      "id": "3"
-    },
     {
       "id": "f4df",
       "name": "???",

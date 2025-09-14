@@ -8,6 +8,7 @@ import {
   Image,
   Textarea,
 } from "@mantine/core";
+import { DateInput } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";
 import { useNewsStore } from "../../../../../store/useNewsStore";
@@ -94,9 +95,8 @@ export const EditNewsModal = ({ opened, onClose, news }: EditNewsModalProps) => 
             {...form.getInputProps("desc")}
           />
 
-          <TextInput
+          <DateInput
             label="Дата"
-            type="date"
             {...form.getInputProps("date")}
           />
 

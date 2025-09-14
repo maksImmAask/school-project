@@ -3,14 +3,13 @@ import { Button, Group, Stack, Table, Title } from "@mantine/core";
 import { useEducationStore } from "../../../store/useEducationStore";
 import { CreateEducationModal } from "./components/education/CreateEducationModal";
 import { EditEducationModal } from "./components/education/EditEducationModal";
-import { ConfirmDeleteModal } from "./components/education/ConfirmDeleteModal";
+import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 
 export const Education = () => {
-  const { educations, fetchEducations,} = useEducationStore();
+  const { educations, fetchEducations,deleteEducation} = useEducationStore();
 
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const [deleteModalOpened, setDeleteModalOpened] = useState(false);
   const [selectedEducationId, setSelectedEducationId] = useState<string | null>(null);
 
 
@@ -38,16 +37,7 @@ export const Education = () => {
           >
             Редактировать
           </Button>
-          <Button
-          variant="outline"
-            size="xs"
-            onClick={() => {
-              setSelectedEducationId(education.id);
-              setDeleteModalOpened(true);
-            }}
-          >
-            Delete
-          </Button>
+          <ConfirmDeleteModal onConfirm={() => {deleteEducation(education.id)}} />
         </Group>
       </Table.Td>
     </Table.Tr>
@@ -84,13 +74,6 @@ export const Education = () => {
         educationId={selectedEducationId}
       />
 
-      {selectedEducationId && (
-        <ConfirmDeleteModal
-          opened={deleteModalOpened}
-          onClose={() => setDeleteModalOpened(false)}
-          educationId={selectedEducationId}
-        />
-      )}
     </Stack>
   );
 };

@@ -12,6 +12,7 @@ import { useForm } from "@mantine/form";
 import { useState } from "react";
 import { useNewsStore } from "../../../../../store/useNewsStore";
 import { fileToBase64 } from "../../../../../utils/filetobase64";
+import { DateInput } from "@mantine/dates";
 
 interface AddNewsModalProps {
   opened: boolean;
@@ -75,10 +76,9 @@ export const AddNewsModal = ({ opened, onClose }: AddNewsModalProps) => {
             {...form.getInputProps("desc")}
           />
 
-          <TextInput
+          <DateInput
             label="Дата"
             placeholder="2025-09-10"
-            type="date"
             {...form.getInputProps("date")}
           />
 

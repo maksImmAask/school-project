@@ -18,7 +18,7 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="container">
-      <Flex className="header-flex" gap={'md'}>
+      <Flex className="header-flex" gap={'md'} >
         <Box className="burger-menu" flex={0.2}>
           <Button className="btn btn-burger">
             <HamburgerMenu size="32" color="black" />

@@ -7,6 +7,7 @@ import {
 import { useForm } from "@mantine/form";
 import { useEducationStore } from "../../../../../store/useEducationStore";
 import { useEffect } from "react";
+import { DateInput, TimeInput } from "@mantine/dates";
 
 type Props = {
   opened: boolean;
@@ -55,9 +56,9 @@ export const EditEducationModal = ({ opened, onClose, educationId }: Props) => {
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <TextInput label="Название" {...form.getInputProps("title")} mb="sm" />
         <TextInput label="Описание" {...form.getInputProps("desc")} mb="sm" />
-        <TextInput type="date" label="Дата" {...form.getInputProps("date")} mb="sm" />
-        <TextInput type="time" label="Время начала" {...form.getInputProps("startTime")} mb="sm" />
-        <TextInput type="time" label="Время окончания" {...form.getInputProps("endTime")} mb="sm" />
+        <DateInput label="Дата" {...form.getInputProps("date")} mb="sm" />
+        <TimeInput label="Время начала" {...form.getInputProps("startTime")} mb="sm" />
+        <TimeInput label="Время окончания" {...form.getInputProps("endTime")} mb="sm" />
 
         <Group mt="md">
           <Button type="submit">Сохранить</Button>

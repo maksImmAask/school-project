@@ -6,23 +6,18 @@ import {
   Title,
   Loader,
   Center,
+  Stack,
 } from "@mantine/core";
 import { useFacultiesStore } from "../../../store/useFacultyStore";
 import { CreateFacultyModal } from "./components/faculties/CreateFacultyModal";
 import { UpdateFacultyModal } from "./components/faculties/UpdateFacultyStore";
-import { ConfirmDeleteModal } from "./components/faculties/DeleteModal";
+import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 
 export const FacultiesPage = () => {
-  const { faculties, fetchFaculties, loading } = useFacultiesStore();
+  const { faculties, fetchFaculties, loading , deleteFaculty} = useFacultiesStore();
 
-  const [opened, setOpened] = useState(false);
   const [createModalOpen, setCreateModalOpen] = useState(false);  
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
-
-  const [selectedFaculty, setSelectedFaculty] = useState<{
-    id: string;
-    title: string;
-  } | null>(null);
 
   const [selectedFacultyId, setSelectedFacultyId] = useState<string | null>(null);
 
@@ -35,10 +30,6 @@ export const FacultiesPage = () => {
     setUpdateModalOpen(true);
   };
 
-  const openDeleteModal = (faculty: { id: string; title: string }) => {
-    setSelectedFaculty(faculty);
-    setOpened(true);
-  };
 
   if (loading) {
     return (
@@ -49,7 +40,7 @@ export const FacultiesPage = () => {
   }
 
   return (
-    <div>
+    <Stack m="auto" mt={10}>
       <Group mb="lg">
         <Title order={2}>Факультеты</Title>
         <Button onClick={() => setCreateModalOpen(true)}>Добавить факультет</Button>
@@ -79,16 +70,7 @@ export const FacultiesPage = () => {
                   >
                     Update
                   </Button>
-
-                  <Button
-                  variant="outline"
-                    size="xs"
-                    onClick={() =>
-                      openDeleteModal({ id: faculty.id, title: faculty.name })
-                    }
-                  >
-                    Удалить
-                  </Button>
+                  <ConfirmDeleteModal onConfirm={() => {deleteFaculty(faculty.id)}} />
                 </Table.Td>
               </Table.Tr>
             ))
@@ -113,14 +95,6 @@ export const FacultiesPage = () => {
           facultyId={selectedFacultyId}
         />
       )}
-      {selectedFaculty && (
-        <ConfirmDeleteModal
-          opened={opened}
-          onClose={() => setOpened(false)}
-          facultyId={selectedFaculty.id}
-          facultyTitle={selectedFaculty.title}
-        />
-      )}
-    </div>
+    </Stack>
   );
 };

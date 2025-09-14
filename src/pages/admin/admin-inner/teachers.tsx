@@ -1,19 +1,17 @@
-import { Button, Flex, Table, Text , Modal, Image} from "@mantine/core";
+import { Button, Flex, Table, Text , Modal, Image, Stack} from "@mantine/core";
 import { useTeachersStore } from "../../../store/useTeachersStore";
 import { useEffect, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { AddTeacherModal } from "./components/teachers/AddTeacherModal";
 import { EditTeacherModal } from "./components/teachers/EditTeacher";
-import { DeleteTeacherModal } from "./components/teachers/DeleteTeacher";
+import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 
 export const Teachers = () => {
   const [openedAvatarId, setOpenedAvatarId] = useState<string | null>(null); 
-  const { teachers, fetchTeachers } = useTeachersStore();
+  const { teachers, fetchTeachers , deleteTeacher} = useTeachersStore();
   const [openedEdit, { open: openEdit, close: closeEdit }] = useDisclosure(false);
-  const [openedDelete, { open: openDelete, close: closeDelete }] = useDisclosure(false);
 
   const [selectedTeacherId, setSelectedTeacherId] = useState<string | null>(null);
-  const [selectedTeacherName, setSelectedTeacherName] = useState<string>("");
   const handleOpenAvatar = (id: string) => setOpenedAvatarId(id);
   const handleCloseAvatar = () => setOpenedAvatarId(null);
   const [opened, { open, close }] = useDisclosure(false);
@@ -23,12 +21,6 @@ export const Teachers = () => {
     setSelectedTeacherId(id);
     openEdit();
   };
-  const handleOpenDelete = (id: string, name: string) => {
-    setSelectedTeacherId(id);
-    setSelectedTeacherName(name);
-    openDelete();
-  };
-
 
   useEffect(() => {
     fetchTeachers();
@@ -54,18 +46,9 @@ export const Teachers = () => {
                   >
                     Редактировать
                   </Button>
-                  <Button
-                  variant="outline"
-                    size="xs"
-                    onClick={() =>
-                      handleOpenDelete(
-                        teacher.id,
-                        `${teacher.firstName} ${teacher.lastName}`
-                      )
-                    }
-                  >
-                    Удалить
-                  </Button>
+                  <ConfirmDeleteModal 
+                  onConfirm={() => {deleteTeacher(teacher.id)}}
+                   />
           <Modal
             opened={isAvatarOpen}
             onClose={handleCloseAvatar}
@@ -88,19 +71,13 @@ export const Teachers = () => {
         onClose={closeEdit}
         teacherId={selectedTeacherId}
       />
-      <DeleteTeacherModal
-        opened={openedDelete}
-        onClose={closeDelete}
-        teacherId={selectedTeacherId}
-        teacherName={selectedTeacherName}
-      />
       </Table.Td>
     </Table.Tr>
     )
   });
 
   return (
-    <>
+    <Stack m="auto" mt={10}>
       <Flex justify="space-between" mb="md">
         <Text size="30px" fw={700}>
           Список учителей
@@ -121,6 +98,6 @@ export const Teachers = () => {
         </Table.Thead>
         <Table.Tbody>{items}</Table.Tbody>
       </Table>
-    </>
+    </Stack>
   );
 };

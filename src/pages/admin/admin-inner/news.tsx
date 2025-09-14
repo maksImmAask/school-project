@@ -9,37 +9,28 @@ import {
   ScrollArea,
   Modal,
   Image,
+  Stack,
 } from "@mantine/core";
 import { useNewsStore } from "../../../store/useNewsStore";
 import type { NewsItem } from "../../../store/useNewsStore";
 import { AddNewsModal } from "./components/news/AddNew";
 import { EditNewsModal } from "./components/news/EditNews";
-import { DeleteNewsModal } from "./components/news/DeleteNews";
+import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 
 export const News = () => {
-  const { news, loading, error, fetchNews } = useNewsStore();
+  const { news, loading, error, fetchNews, deleteNewsItem } = useNewsStore();
 
   const [createOpened, setCreateOpened] = useState(false);
   const [editOpened, setEditOpened] = useState(false);
-  const [deleteOpened, setDeleteOpened] = useState(false);
 
   const [imageOpened, setImageOpened] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
-  const [selectedForDelete, setSelectedForDelete] = useState<{
-    id: string;
-    title: string;
-  } | null>(null);
 
   useEffect(() => {
     fetchNews();
   }, [fetchNews]);
-
-  const openDeleteModal = (id: string, title: string) => {
-    setSelectedForDelete({ id, title });
-    setDeleteOpened(true);
-  };
 
   const openImageModal = (imageUrl: string) => {
     setSelectedImage(imageUrl);
@@ -73,14 +64,7 @@ export const News = () => {
         >
           Редактировать
         </Button>
-
-        <Button
-          size="xs"
-          variant="outline"
-          onClick={() => openDeleteModal(item.id, item.title)}
-        >
-          Удалить
-        </Button>
+        <ConfirmDeleteModal onConfirm={() => {deleteNewsItem(item.id)}} />
         </Flex>      
       </Table.Td>
     </Table.Tr>
@@ -103,7 +87,7 @@ export const News = () => {
   }
 
   return (
-    <>
+    <Stack m="auto" mt={10}>
       <Flex justify="space-between" mb="md">
         <Text size="30px" fw={700}>
           Новости
@@ -153,18 +137,6 @@ export const News = () => {
           news={selectedNews}
         />
       )}
-
-      {selectedForDelete && (
-        <DeleteNewsModal
-          opened={deleteOpened}
-          onClose={() => {
-            setDeleteOpened(false);
-            setSelectedForDelete(null);
-          }}
-          newsId={selectedForDelete.id}
-          newsTitle={selectedForDelete.title}
-        />
-      )}
       <Modal
         opened={imageOpened}
         onClose={() => {
@@ -192,6 +164,6 @@ export const News = () => {
           </Center>
         )}
       </Modal>
-    </>
+    </Stack>
   );
 };

@@ -7,20 +7,19 @@ import {
   Text,
   Button,
   Flex,
-  ScrollArea,
+  Stack,
 } from "@mantine/core";
 import { ShowGalleryModal } from "./components/gallery/showGallery";
 import { AddGalleryModal } from "./components/gallery/addGallery";
 import { EditGalleryModal } from "./components/gallery/editGallery";
-import { DeleteGalleryModal } from "./components/gallery/deleteGallery";
+import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 
 export const Gallery = () => {
-  const { gallery, loading, error, fetchGallery } = useGalleryStore();
+  const { gallery, loading, error, fetchGallery , deleteGalleryItem} = useGalleryStore();
 
   const [showOpened, setShowOpened] = useState(false);
   const [createOpened, setCreateOpened] = useState(false);
   const [editOpened, setEditOpened] = useState(false);
-  const [deleteOpened, setDeleteOpened] = useState(false);
 
   const [selectedItem, setSelectedItem] = useState<{
     id: string;
@@ -58,13 +57,9 @@ export const Gallery = () => {
     setEditOpened(true);
   };
 
-  const openDeleteModal = (item: { id: string; title: string; img: string }) => {
-    setSelectedItem(item);
-    setDeleteOpened(true);
-  };
 
   return (
-    <ScrollArea>
+    <Stack>
       <Flex justify="space-between" mb="md">
         <Text size="30px" fw={700}>
           Gallery
@@ -114,14 +109,8 @@ export const Gallery = () => {
                     >
                       Редактировать
                     </Button>
+                    <ConfirmDeleteModal onConfirm={() => {deleteGalleryItem(item.id)}} />
 
-                    <Button
-                      size="xs"
-                      variant="outline"
-                      onClick={() => openDeleteModal(item)}
-                    >
-                      Удалить
-                    </Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>
@@ -144,12 +133,6 @@ export const Gallery = () => {
             onClose={() => setEditOpened(false)}
             item={selectedItem}
           />
-
-          <DeleteGalleryModal
-            opened={deleteOpened}
-            onClose={() => setDeleteOpened(false)}
-            item={selectedItem}
-          />
         </>
       )}
 
@@ -157,6 +140,6 @@ export const Gallery = () => {
         opened={createOpened}
         onClose={() => setCreateOpened(false)}
       />
-    </ScrollArea>
+    </Stack>
   );
 };

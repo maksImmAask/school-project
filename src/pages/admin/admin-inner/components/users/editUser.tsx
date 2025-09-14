@@ -6,6 +6,7 @@ import {
   Stack,
   Group,
   Loader,
+  PasswordInput,
 } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useForm } from "@mantine/form";
@@ -87,7 +88,7 @@ export const EditUserModal = ({ opened, onClose, userId }: EditUserModalProps) =
               placeholder="Введите email"
               {...form.getInputProps("email")}
             />
-            <TextInput
+            <PasswordInput
               label="Пароль"
               placeholder="Введите пароль"
               type="password"
@@ -98,7 +99,7 @@ export const EditUserModal = ({ opened, onClose, userId }: EditUserModalProps) =
               placeholder="Введите возраст"
               {...form.getInputProps("age")}
             />
-            <TextInput
+            <NumberInput
               label="Телефон"
               placeholder="Введите номер телефона"
               {...form.getInputProps("phone")}
