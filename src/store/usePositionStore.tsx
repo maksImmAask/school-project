@@ -10,7 +10,7 @@ interface PositionsState {
   positions: Position[];
   loading: boolean;
   fetchPositions: () => Promise<void>;
-  getPositionById: (id: string) => Promise<Position | null>; // <-- новый метод
+  getPositionById: (id: string) => Promise<Position | null>; 
   addPosition: (title: string) => Promise<void>;
   updatePosition: (id: string, title: string) => Promise<void>;
   deletePosition: (id: string) => Promise<void>;
@@ -20,14 +20,12 @@ export const usePositionsStore = create<PositionsState>((set) => ({
   positions: [],
   loading: false,
 
-  // Получение всех должностей
   fetchPositions: async () => {
     set({ loading: true });
     const res = await api.get("/positions");
     set({ positions: res.data, loading: false });
   },
 
-  // Получение конкретной должности по ID
   getPositionById: async (id) => {
     try {
       const res = await api.get(`/positions/${id}`);
@@ -38,7 +36,6 @@ export const usePositionsStore = create<PositionsState>((set) => ({
     }
   },
 
-  // Добавление новой должности
   addPosition: async (title) => {
     const newPosition = { id: Date.now().toString(), title };
     await api.post("/positions", newPosition);
@@ -47,7 +44,6 @@ export const usePositionsStore = create<PositionsState>((set) => ({
     }));
   },
 
-  // Обновление должности
   updatePosition: async (id, title) => {
     await api.patch(`/positions/${id}`, { title });
     set((state) => ({
@@ -57,7 +53,6 @@ export const usePositionsStore = create<PositionsState>((set) => ({
     }));
   },
 
-  // Удаление должности
   deletePosition: async (id) => {
     await api.delete(`/positions/${id}`);
     set((state) => ({
