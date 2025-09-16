@@ -13,20 +13,15 @@ import {
 } from "@mantine/core";
 import { useNewsStore } from "../../../store/useNewsStore";
 import type { NewsItem } from "../../../store/useNewsStore";
-import { AddNewsModal } from "./components/news/AddNew";
-import { EditNewsModal } from "./components/news/EditNews";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
+import { NewsModal } from "./components/news/addedit";
 
 export const News = () => {
   const { news, loading, error, fetchNews, deleteNewsItem } = useNewsStore();
 
-  const [createOpened, setCreateOpened] = useState(false);
-  const [editOpened, setEditOpened] = useState(false);
-
   const [imageOpened, setImageOpened] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
 
   useEffect(() => {
     fetchNews();
@@ -54,16 +49,7 @@ export const News = () => {
       </Table.Td>
       <Table.Td>
         <Flex>
-        <Button
-          size="xs"
-          mr="xs"
-          onClick={() => {
-            setSelectedNews(item);
-            setEditOpened(true);
-          }}
-        >
-          Редактировать
-        </Button>
+          <NewsModal newsId={item.id} />
         <ConfirmDeleteModal onConfirm={() => {deleteNewsItem(item.id)}} />
         </Flex>      
       </Table.Td>
@@ -92,7 +78,7 @@ export const News = () => {
         <Text size="30px" fw={700}>
           Новости
         </Text>
-        <Button onClick={() => setCreateOpened(true)}>Добавить новость</Button>
+        <NewsModal />
       </Flex>
 
       <ScrollArea>
@@ -125,18 +111,6 @@ export const News = () => {
         </Table>
       </ScrollArea>
 
-      <AddNewsModal opened={createOpened} onClose={() => setCreateOpened(false)} />
-
-      {selectedNews && (
-        <EditNewsModal
-          opened={editOpened}
-          onClose={() => {
-            setEditOpened(false);
-            setSelectedNews(null);
-          }}
-          news={selectedNews}
-        />
-      )}
       <Modal
         opened={imageOpened}
         onClose={() => {

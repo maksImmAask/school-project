@@ -1,29 +1,19 @@
-import { useState, useEffect } from "react";
-import { Button, Flex, Stack, Table, Text } from "@mantine/core";
+import { useEffect } from "react";
+import {  Flex, Stack, Table, Text } from "@mantine/core";
 import { useOwnersStore } from "../../../store/useOwnersStore";
 import { usePositionsStore } from "../../../store/usePositionStore";
-import { EditOwnerModal } from "./components/owners/updateOwner";
-import { AddOwnerModal } from "./components/owners/createOwner";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
+import { OwnerModal } from "./components/owners/addedit";
 
 export const Owners = () => {
   const { owners, loading, fetchOwners , deleteOwner} = useOwnersStore();
   const { positions, fetchPositions } = usePositionsStore();
-
-  const [createOpened, setCreateOpened] = useState(false);
-  const [updateOpened, setUpdateOpened] = useState(false);
-
-  const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchOwners();
     fetchPositions();
   }, [fetchOwners, fetchPositions]);
 
-  const openUpdateModal = (id: string) => {
-    setSelectedOwnerId(id);
-    setUpdateOpened(true);
-  };
 
   const rows = owners.map((owner, index) => {
     const position = positions.find((p) => p.id === owner.positionId);
@@ -36,9 +26,7 @@ export const Owners = () => {
         <Table.Td>{position ? position.title : "—"}</Table.Td>
         <Table.Td>{owner.desc}</Table.Td>
         <Table.Td>
-          <Button size="xs" mr="xs" onClick={() => openUpdateModal(owner.id)}>
-            Update
-          </Button>
+          <OwnerModal ownerId={owner.id} />
           <ConfirmDeleteModal onConfirm={()=>{deleteOwner(owner.id)}} />
         </Table.Td>
       </Table.Tr>
@@ -51,7 +39,7 @@ export const Owners = () => {
         <Text size="30px" fw={700}>
           Owners
         </Text>
-        <Button onClick={() => setCreateOpened(true)}>Add Owner</Button>
+        <OwnerModal />
       </Flex>
 
       <Table>
@@ -78,18 +66,7 @@ export const Owners = () => {
         </Table.Tbody>
       </Table>
 
-      <AddOwnerModal
-        opened={createOpened}
-        onClose={() => setCreateOpened(false)}
-      />
 
-      {selectedOwnerId && (
-        <EditOwnerModal
-          opened={updateOpened}
-          onClose={() => setUpdateOpened(false)}
-          ownerId={selectedOwnerId}
-        />
-      )}
     </Stack>
   );
 };

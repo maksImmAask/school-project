@@ -1,28 +1,23 @@
-import { useEffect, useState } from "react";
-import { Button, Flex, Stack, Table, Text } from "@mantine/core";
+import { useEffect,} from "react";
+import { Flex, Stack, Table, Text } from "@mantine/core";
 import { usePositionsStore } from "../../../store/usePositionStore";
-import { AddPositionModal } from "./components/positions/AddPosition";
-import { EditPositionModal  } from "./components/positions/EditPosition";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
+import { PositionModal } from "./components/positions/addedit";
 
 export const PositionOptions = () => {
   const { positions, fetchPositions , deletePosition } = usePositionsStore();
-  const [openedAdd, setOpenedAdd] = useState(false);
-  const [openedEditId, setOpenedEditId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchPositions();
   }, [fetchPositions]);
 
-  const handleOpenEdit = (id: string) => setOpenedEditId(id);
-  const handleCloseEdit = () => setOpenedEditId(null);
 
 
   return (
     <Stack m="auto" mt={10}>
       <Flex justify="space-between" mb="md">
         <Text size="30px" fw={700}>Список должностей</Text>
-        <Button onClick={() => setOpenedAdd(true)}>Добавить должность</Button>
+        <PositionModal />
       </Flex>
 
       <Table>
@@ -40,24 +35,16 @@ export const PositionOptions = () => {
               <Table.Td>{pos.title}</Table.Td>
               <Table.Td>
                 <Flex gap="xs">
-                  <Button variant="filled" onClick={() => handleOpenEdit(pos.id)}>
-                    Редактировать
-                  </Button>
+                  <PositionModal positionId={pos.id} />
                   <ConfirmDeleteModal onConfirm={() => {deletePosition(pos.id)}}/>
                 </Flex>
 
-                <EditPositionModal
-                  opened={openedEditId === pos.id}
-                  onClose={handleCloseEdit}
-                  positionId={pos.id}
-                />
               </Table.Td>
             </Table.Tr>
           ))}
         </Table.Tbody>
       </Table>
 
-      <AddPositionModal opened={openedAdd} onClose={() => setOpenedAdd(false)} />
     </Stack>
   );
 };

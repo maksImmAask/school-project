@@ -9,17 +9,14 @@ import {
   Flex,
   Stack,
 } from "@mantine/core";
+import { GalleryModal } from "./components/gallery/addedit";
 import { ShowGalleryModal } from "./components/gallery/showGallery";
-import { AddGalleryModal } from "./components/gallery/addGallery";
-import { EditGalleryModal } from "./components/gallery/editGallery";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 
 export const Gallery = () => {
   const { gallery, loading, error, fetchGallery , deleteGalleryItem} = useGalleryStore();
 
   const [showOpened, setShowOpened] = useState(false);
-  const [createOpened, setCreateOpened] = useState(false);
-  const [editOpened, setEditOpened] = useState(false);
 
   const [selectedItem, setSelectedItem] = useState<{
     id: string;
@@ -52,10 +49,6 @@ export const Gallery = () => {
     setShowOpened(true);
   };
 
-  const openEditModal = (item: { id: string; title: string; img: string }) => {
-    setSelectedItem(item);
-    setEditOpened(true);
-  };
 
 
   return (
@@ -64,7 +57,7 @@ export const Gallery = () => {
         <Text size="30px" fw={700}>
           Gallery
         </Text>
-        <Button onClick={() => setCreateOpened(true)}>Add Image</Button>
+        <GalleryModal />
       </Flex>
 
       <Table>
@@ -102,13 +95,8 @@ export const Gallery = () => {
                     >
                       Показать
                     </Button>
+                    <GalleryModal galleryId={item.id} />
 
-                    <Button
-                      size="xs"
-                      onClick={() => openEditModal(item)}
-                    >
-                      Редактировать
-                    </Button>
                     <ConfirmDeleteModal onConfirm={() => {deleteGalleryItem(item.id)}} />
 
                   </Flex>
@@ -119,7 +107,6 @@ export const Gallery = () => {
         </Table.Tbody>
       </Table>
 
-      {/* Модалки */}
       {selectedItem && (
         <>
           <ShowGalleryModal
@@ -127,19 +114,9 @@ export const Gallery = () => {
             onClose={() => setShowOpened(false)}
             item={selectedItem}
           />
-
-          <EditGalleryModal
-            opened={editOpened}
-            onClose={() => setEditOpened(false)}
-            item={selectedItem}
-          />
         </>
       )}
 
-      <AddGalleryModal
-        opened={createOpened}
-        onClose={() => setCreateOpened(false)}
-      />
     </Stack>
   );
 };

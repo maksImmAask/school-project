@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   Table,
-  Button,
   Group,
   Title,
   Loader,
@@ -9,26 +8,16 @@ import {
   Stack,
 } from "@mantine/core";
 import { useFacultiesStore } from "../../../store/useFacultyStore";
-import { CreateFacultyModal } from "./components/faculties/CreateFacultyModal";
-import { UpdateFacultyModal } from "./components/faculties/UpdateFacultyStore";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
-
+import { FacultyModal } from "./components/faculties/addedit";
 export const FacultiesPage = () => {
   const { faculties, fetchFaculties, loading , deleteFaculty} = useFacultiesStore();
 
-  const [createModalOpen, setCreateModalOpen] = useState(false);  
-  const [updateModalOpen, setUpdateModalOpen] = useState(false);
-
-  const [selectedFacultyId, setSelectedFacultyId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchFaculties(); 
   }, [fetchFaculties]);
 
-  const handleEdit = (id: string) => {
-    setSelectedFacultyId(id);
-    setUpdateModalOpen(true);
-  };
 
 
   if (loading) {
@@ -43,7 +32,7 @@ export const FacultiesPage = () => {
     <Stack m="auto" mt={10}>
       <Group mb="lg">
         <Title order={2}>Факультеты</Title>
-        <Button onClick={() => setCreateModalOpen(true)}>Добавить факультет</Button>
+        <FacultyModal />
       </Group>
 
       <Table>
@@ -63,13 +52,7 @@ export const FacultiesPage = () => {
                 <Table.Td>{faculty.name}</Table.Td>
                 <Table.Td>{faculty.desc}</Table.Td>
                 <Table.Td>
-                  <Button
-                    size="xs"
-                    mr="xs"
-                    onClick={() => handleEdit(faculty.id)}
-                  >
-                    Update
-                  </Button>
+                  <FacultyModal facultyId={faculty.id} />
                   <ConfirmDeleteModal onConfirm={() => {deleteFaculty(faculty.id)}} />
                 </Table.Td>
               </Table.Tr>
@@ -84,17 +67,6 @@ export const FacultiesPage = () => {
         </Table.Tbody>
       </Table>
 
-      <CreateFacultyModal
-        opened={createModalOpen}
-        onClose={() => setCreateModalOpen(false)}
-      />
-      {selectedFacultyId && (
-        <UpdateFacultyModal
-          opened={updateModalOpen}
-          onClose={() => setUpdateModalOpen(false)}
-          facultyId={selectedFacultyId}
-        />
-      )}
     </Stack>
   );
 };

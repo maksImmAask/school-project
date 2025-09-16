@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react";
-import { Button, Group, Stack, Table, Title } from "@mantine/core";
+import { useEffect } from "react";
+import { Group, Stack, Table, Title } from "@mantine/core";
 import { useEducationStore } from "../../../store/useEducationStore";
-import { CreateEducationModal } from "./components/education/CreateEducationModal";
-import { EditEducationModal } from "./components/education/EditEducationModal";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
+import { EducationModal } from "./components/education/addedit";
 
 export const Education = () => {
   const { educations, fetchEducations,deleteEducation} = useEducationStore();
 
-  const [createModalOpen, setCreateModalOpen] = useState(false);
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const [selectedEducationId, setSelectedEducationId] = useState<string | null>(null);
 
 
 
@@ -28,15 +24,7 @@ export const Education = () => {
       <Table.Td>{education.endTime}</Table.Td>
       <Table.Td>
         <Group>
-          <Button
-            size="xs"
-            onClick={() => {
-              setSelectedEducationId(education.id);
-              setEditModalOpen(true);
-            }}
-          >
-            Редактировать
-          </Button>
+          <EducationModal educationId={education.id} />
           <ConfirmDeleteModal onConfirm={() => {deleteEducation(education.id)}} />
         </Group>
       </Table.Td>
@@ -47,7 +35,7 @@ export const Education = () => {
     <Stack m="auto" mt={10}>
       <Group justify="space-between" mb="md">
         <Title order={2}>Обучения</Title>
-        <Button onClick={() => setCreateModalOpen(true)}>Добавить обучение</Button>
+        <EducationModal />
       </Group>
 
       <Table>
@@ -63,16 +51,7 @@ export const Education = () => {
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
-      <CreateEducationModal
-        opened={createModalOpen}
-        onClose={() => setCreateModalOpen(false)}
-      />
 
-      <EditEducationModal
-        opened={editModalOpen}
-        onClose={() => setEditModalOpen(false)}
-        educationId={selectedEducationId}
-      />
 
     </Stack>
   );

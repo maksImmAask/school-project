@@ -2,11 +2,11 @@ import { create } from "zustand";
 import { api } from "../api/http";
 
 type Teacher = {
-  id: string;       
-  firstName: string; 
-  lastName: string; 
-  subject: string;   
-  avatar: string;   
+  id: string;
+  firstName: string;
+  lastName: string;
+  subject: string;
+  avatar: string;
 };
 
 type TeachersStore = {
@@ -15,6 +15,7 @@ type TeachersStore = {
   error: string | null;
 
   fetchTeachers: () => Promise<void>;
+  getTeacherById: (id: string) => Promise<Teacher | null>;
   addTeacher: (newTeacher: Omit<Teacher, "id">) => Promise<void>;
   updateTeacher: (id: string, updatedData: Partial<Teacher>) => Promise<void>;
   deleteTeacher: (id: string) => Promise<void>;
@@ -33,6 +34,16 @@ export const useTeachersStore = create<TeachersStore>((set) => ({
     } catch (err) {
       console.error("Ошибка при получении списка учителей:", err);
       set({ loading: false, error: "Не удалось загрузить учителей" });
+    }
+  },
+
+  getTeacherById: async (id) => {
+    try {
+      const { data } = await api.get<Teacher>(`/teachers/${id}`);
+      return data;
+    } catch (err) {
+      console.error(`Ошибка при получении учителя с id=${id}:`, err);
+      return null;
     }
   },
 
