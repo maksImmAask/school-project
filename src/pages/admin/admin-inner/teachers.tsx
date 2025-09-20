@@ -3,8 +3,10 @@ import { useTeachersStore } from "../../../store/useTeachersStore";
 import { useEffect, useState } from "react";
 import { TeacherModal } from "./components/teachers/addedit";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
+import { useTranslation } from "react-i18next";
 
 export const Teachers = () => {
+  const { i18n } = useTranslation(); 
   const [openedAvatarId, setOpenedAvatarId] = useState<string | null>(null);
   const { teachers, fetchTeachers, deleteTeacher } = useTeachersStore();
 
@@ -21,9 +23,13 @@ export const Teachers = () => {
     return (
       <Table.Tr key={teacher.id}>
         <Table.Td>{index + 1}</Table.Td>
-        <Table.Td>{teacher.firstName}</Table.Td>
-        <Table.Td>{teacher.lastName}</Table.Td>
-        <Table.Td>{teacher.subject}</Table.Td>
+
+        <Table.Td>{teacher.firstName[i18n.language as "ru" | "en" | "uz"]}</Table.Td>
+
+        <Table.Td>{teacher.lastName[i18n.language as "ru" | "en" | "uz"]}</Table.Td>
+
+        <Table.Td>{teacher.subject[i18n.language as "ru" | "en" | "uz"]}</Table.Td>
+
         <Table.Td>
           <Flex gap="xs">
             <Button variant="light" onClick={() => handleOpenAvatar(teacher.id)}>
@@ -37,13 +43,17 @@ export const Teachers = () => {
             <Modal
               opened={isAvatarOpen}
               onClose={handleCloseAvatar}
-              title={`${teacher.firstName} ${teacher.lastName} — Фото`}
+              title={`${teacher.firstName[i18n.language as "ru" | "en" | "uz"]} ${
+                teacher.lastName[i18n.language as "ru" | "en" | "uz"]
+              } — Фото`}
               centered
               size="lg"
             >
               <Image
                 src={teacher.avatar}
-                alt={`${teacher.firstName} ${teacher.lastName}`}
+                alt={`${teacher.firstName[i18n.language as "ru" | "en" | "uz"]} ${
+                  teacher.lastName[i18n.language as "ru" | "en" | "uz"]
+                }`}
                 fit="contain"
                 radius="md"
                 style={{ maxHeight: "70vh" }}

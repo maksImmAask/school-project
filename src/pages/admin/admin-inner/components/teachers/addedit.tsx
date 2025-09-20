@@ -7,31 +7,42 @@ import {
   FileInput,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
+import { useForm, isNotEmpty } from "@mantine/form";
 import { useEffect } from "react";
 import { fileToBase64 } from "../../../../../utils/filetobase64";
 import { useTeachersStore } from "../../../../../store/useTeachersStore";
 
 interface TeacherModalProps {
-  teacherId?: string | null; 
+  teacherId?: string | null;
 }
 
 export const TeacherModal = ({ teacherId }: TeacherModalProps) => {
   const { addTeacher, updateTeacher, getTeacherById } = useTeachersStore();
-
   const [opened, { open, close }] = useDisclosure(false);
 
   const form = useForm({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      subject: "",
+      firstName: { ru: "", en: "", uz: "" },
+      lastName: { ru: "", en: "", uz: "" },
+      subject: { ru: "", en: "", uz: "" },
       avatar: "",
     },
     validate: {
-      firstName: (value) => (value.trim().length < 2 ? "Минимум 2 символа" : null),
-      lastName: (value) => (value.trim().length < 2 ? "Минимум 2 символа" : null),
-      subject: (value) => (!value.trim() ? "Обязательное поле" : null),
+      firstName: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
+      lastName: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
+      subject: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
     },
   });
 
@@ -51,7 +62,8 @@ export const TeacherModal = ({ teacherId }: TeacherModalProps) => {
       fetchTeacher();
     } else if (opened && !teacherId) {
       form.reset();
-    }// eslint-disable-next-line react-hooks/exhaustive-deps
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened, teacherId, getTeacherById]);
 
   const handleFileChange = async (file: File | null) => {
@@ -88,19 +100,50 @@ export const TeacherModal = ({ teacherId }: TeacherModalProps) => {
         <form onSubmit={handleSubmit}>
           <Stack>
             <TextInput
-              label="Имя"
-              placeholder="Введите имя"
-              {...form.getInputProps("firstName")}
+              label="Имя (ru)"
+              placeholder="Введите имя на русском"
+              {...form.getInputProps("firstName.ru")}
             />
             <TextInput
-              label="Фамилия"
-              placeholder="Введите фамилию"
-              {...form.getInputProps("lastName")}
+              label="Имя (en)"
+              placeholder="Введите имя на английском"
+              {...form.getInputProps("firstName.en")}
             />
             <TextInput
-              label="Предмет"
-              placeholder="Введите предмет"
-              {...form.getInputProps("subject")}
+              label="Имя (uz)"
+              placeholder="Введите имя на узбекском"
+              {...form.getInputProps("firstName.uz")}
+            />
+            <TextInput
+              label="Фамилия (ru)"
+              placeholder="Введите фамилию на русском"
+              {...form.getInputProps("lastName.ru")}
+            />
+            <TextInput
+              label="Фамилия (en)"
+              placeholder="Введите фамилию на английском"
+              {...form.getInputProps("lastName.en")}
+            />
+            <TextInput
+              label="Фамилия (uz)"
+              placeholder="Введите фамилию на узбекском"
+              {...form.getInputProps("lastName.uz")}
+            />
+
+            <TextInput
+              label="Предмет (ru)"
+              placeholder="Введите предмет на русском"
+              {...form.getInputProps("subject.ru")}
+            />
+            <TextInput
+              label="Предмет (en)"
+              placeholder="Введите предмет на английском"
+              {...form.getInputProps("subject.en")}
+            />
+            <TextInput
+              label="Предмет (uz)"
+              placeholder="Введите предмет на узбекском"
+              {...form.getInputProps("subject.uz")}
             />
 
             <FileInput

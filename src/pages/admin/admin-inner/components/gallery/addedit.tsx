@@ -7,7 +7,7 @@ import {
   Group,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
+import { useForm , isNotEmpty} from "@mantine/form";
 import { useEffect } from "react";
 import { fileToBase64 } from "../../../../../utils/filetobase64";
 import { useGalleryStore } from "../../../../../store/useGaleryStore";
@@ -23,11 +23,19 @@ export const GalleryModal = ({ galleryId }: GalleryModalProps) => {
 
   const form = useForm({
     initialValues: {
-      title: "",
+      title: {
+        ru: "",
+        en: "",
+        uz: "",
+      },
       img: "",
     },
     validate: {
-      title: (value) => (value.trim().length < 2 ? "Минимум 2 символа" : null),
+      title: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
       img: (value) => (!value ? "Обязательное поле" : null),
     },
   });
@@ -43,7 +51,8 @@ export const GalleryModal = ({ galleryId }: GalleryModalProps) => {
       }
     } else if (opened && !galleryId) {
       form.reset();
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened, galleryId, gallery]);
 
   const handleFileChange = async (file: File | null) => {
@@ -63,10 +72,7 @@ export const GalleryModal = ({ galleryId }: GalleryModalProps) => {
 
   return (
     <>
-      <Button
-        variant={galleryId ? "light" : "filled"}
-        onClick={open}
-      >
+      <Button variant={galleryId ? "light" : "filled"} onClick={open}>
         {galleryId ? "Редактировать" : "Добавить элемент"}
       </Button>
 
@@ -80,9 +86,19 @@ export const GalleryModal = ({ galleryId }: GalleryModalProps) => {
         <form onSubmit={handleSubmit}>
           <Stack>
             <TextInput
-              label="Название"
-              placeholder="Введите название"
-              {...form.getInputProps("title")}
+              label="Название (Русский)"
+              placeholder="Введите название на русском"
+              {...form.getInputProps("title.ru")}
+            />
+            <TextInput
+              label="Название (Английский)"
+              placeholder="Введите название на английском"
+              {...form.getInputProps("title.en")}
+            />
+            <TextInput
+              label="Название (Узбекский)"
+              placeholder="Введите название на узбекском"
+              {...form.getInputProps("title.uz")}
             />
 
             <FileInput

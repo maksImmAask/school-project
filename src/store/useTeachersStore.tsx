@@ -1,11 +1,12 @@
 import { create } from "zustand";
 import { api } from "../api/http";
+import type { lang } from "../types/lang";
 
 type Teacher = {
   id: string;
-  firstName: string;
-  lastName: string;
-  subject: string;
+  firstName: lang;
+  lastName: lang;
+  subject: lang;
   avatar: string;
 };
 

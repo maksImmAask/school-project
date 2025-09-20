@@ -12,15 +12,17 @@ import {
 import { GalleryModal } from "./components/gallery/addedit";
 import { ShowGalleryModal } from "./components/gallery/showGallery";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
+import { useTranslation } from "react-i18next";
 
 export const Gallery = () => {
-  const { gallery, loading, error, fetchGallery , deleteGalleryItem} = useGalleryStore();
+  const { gallery, loading, error, fetchGallery, deleteGalleryItem } = useGalleryStore();
+  const { i18n } = useTranslation();
 
   const [showOpened, setShowOpened] = useState(false);
 
   const [selectedItem, setSelectedItem] = useState<{
     id: string;
-    title: string;
+    title: { ru: string; en: string; uz: string };
     img: string;
   } | null>(null);
 
@@ -44,12 +46,14 @@ export const Gallery = () => {
     );
   }
 
-  const openShowModal = (item: { id: string; title: string; img: string }) => {
+  const openShowModal = (item: {
+    id: string;
+    title: { ru: string; en: string; uz: string };
+    img: string;
+  }) => {
     setSelectedItem(item);
     setShowOpened(true);
   };
-
-
 
   return (
     <Stack>
@@ -83,7 +87,9 @@ export const Gallery = () => {
             gallery.map((item) => (
               <Table.Tr key={item.id}>
                 <Table.Td>
-                  <Text fw={500}>{item.title}</Text>
+                  <Text fw={500}>
+                    {item.title[i18n.language as "ru" | "en" | "uz"]}
+                  </Text>
                 </Table.Td>
 
                 <Table.Td>
@@ -96,9 +102,7 @@ export const Gallery = () => {
                       Показать
                     </Button>
                     <GalleryModal galleryId={item.id} />
-
-                    <ConfirmDeleteModal onConfirm={() => {deleteGalleryItem(item.id)}} />
-
+                    <ConfirmDeleteModal onConfirm={() => deleteGalleryItem(item.id)} />
                   </Flex>
                 </Table.Td>
               </Table.Tr>
@@ -108,15 +112,12 @@ export const Gallery = () => {
       </Table>
 
       {selectedItem && (
-        <>
-          <ShowGalleryModal
-            opened={showOpened}
-            onClose={() => setShowOpened(false)}
-            item={selectedItem}
-          />
-        </>
+        <ShowGalleryModal
+          opened={showOpened}
+          onClose={() => setShowOpened(false)}
+          item={selectedItem}
+        />
       )}
-
     </Stack>
   );
 };

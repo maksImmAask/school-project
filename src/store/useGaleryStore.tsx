@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { api } from "../api/http";
+import type { lang } from "../types/lang";
 
 export type GalleryItem = {
   id: string;       
-  title: string;    
+  title: lang;    
   img: string;      
 };
 type GalleryStore = {

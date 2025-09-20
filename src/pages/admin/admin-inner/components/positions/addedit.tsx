@@ -6,7 +6,7 @@ import {
   Group,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
+import { useForm, isNotEmpty} from "@mantine/form";
 import { useEffect } from "react";
 import { usePositionsStore } from "../../../../../store/usePositionStore";
 
@@ -20,11 +20,18 @@ export const PositionModal = ({ positionId }: PositionModalProps) => {
 
   const form = useForm({
     initialValues: {
-      title: "",
+      title: {
+        ru: "",
+        en: "",
+        uz: "",
+      },
     },
     validate: {
-      title: (value) =>
-        value.trim().length < 2 ? "Минимум 2 символа" : null,
+      title: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
     },
   });
 
@@ -33,24 +40,30 @@ export const PositionModal = ({ positionId }: PositionModalProps) => {
       const fetchPosition = async () => {
         const position = await getPositionById(positionId);
         if (position) {
-          form.setValues({ title: position.title });
+          form.setValues({
+            title: {
+              ru: position.title.ru,
+              en: position.title.en,
+              uz: position.title.uz,
+            },
+          });
         }
       };
       fetchPosition();
     } else if (opened && !positionId) {
       form.reset();
-    }// eslint-disable-next-line react-hooks/exhaustive-deps
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened, positionId, getPositionById]);
 
   const handleSubmit = form.onSubmit(async (values) => {
     if (positionId) {
       await updatePosition(positionId, values.title);
     } else {
-      await addPosition(values.title); 
+      await addPosition(values.title);
     }
     close();
   });
-
 
   return (
     <>
@@ -71,9 +84,19 @@ export const PositionModal = ({ positionId }: PositionModalProps) => {
         <form onSubmit={handleSubmit}>
           <Stack>
             <TextInput
-              label="Название должности"
-              placeholder="Введите название"
-              {...form.getInputProps("title")}
+              label="Название (Русский)"
+              placeholder="Введите название на русском"
+              {...form.getInputProps("title.ru")}
+            />
+            <TextInput
+              label="Название (Английский)"
+              placeholder="Введите название на английском"
+              {...form.getInputProps("title.en")}
+            />
+            <TextInput
+              label="Название (Узбекский)"
+              placeholder="Введите название на узбекском"
+              {...form.getInputProps("title.uz")}
             />
 
             <Group justify="flex-end" mt="md">

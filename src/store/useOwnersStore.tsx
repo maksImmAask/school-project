@@ -1,12 +1,13 @@
 import { create } from "zustand";
 import { api } from "../api/http";
+import type { lang } from "../types/lang";
 
 export type Owner = {
   id: string;
-  name: string;
-  surname: string;
+  name: lang;
+  surname: lang;
   positionId: string;
-  desc: string;
+  desc: lang;
 };
 
 type OwnersStore = {

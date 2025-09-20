@@ -6,8 +6,9 @@ import {
   Group,
   Select,
 } from "@mantine/core";
+import { useTranslation } from "react-i18next";
 import { useDisclosure } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
+import { useForm, isNotEmpty } from "@mantine/form";
 import { useEffect } from "react";
 import { useOwnersStore } from "../../../../../store/useOwnersStore";
 import { usePositionsStore } from "../../../../../store/usePositionStore";
@@ -16,23 +17,38 @@ interface OwnerModalProps {
   ownerId?: string | null;
 }
 
+const INITIAL_VALUES = {
+  name: { ru: "", en: "", uz: "" },
+  surname: { ru: "", en: "", uz: "" },
+  positionId: "",
+  desc: { ru: "", en: "", uz: "" },
+};
+
 export const OwnerModal = ({ ownerId }: OwnerModalProps) => {
+  const {i18n}=useTranslation()
   const { addOwner, updateOwner, getOwner } = useOwnersStore();
   const { positions, fetchPositions } = usePositionsStore();
-
   const [opened, { open, close }] = useDisclosure(false);
 
   const form = useForm({
-    initialValues: {
-      name: "",
-      surname: "",
-      positionId: "",
-      desc: "",
-    },
+    initialValues: INITIAL_VALUES,
     validate: {
-      name: (value) => (value.trim().length < 2 ? "Минимум 2 символа" : null),
-      surname: (value) => (value.trim().length < 2 ? "Минимум 2 символа" : null),
-      positionId: (value) => (!value ? "Выберите должность" : null),
+      name: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
+      surname: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
+      positionId: isNotEmpty("Выберите должность"),
+      desc: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
     },
   });
 
@@ -41,17 +57,13 @@ export const OwnerModal = ({ ownerId }: OwnerModalProps) => {
       fetchPositions();
     }
   }, [opened, fetchPositions]);
+
   useEffect(() => {
     if (opened && ownerId) {
       const fetchOwner = async () => {
         const owner = await getOwner(ownerId);
         if (owner) {
-          form.setValues({
-            name: owner.name,
-            surname: owner.surname,
-            positionId: owner.positionId,
-            desc: owner.desc,
-          });
+          form.setValues(owner); 
         }
       };
       fetchOwner();
@@ -81,36 +93,63 @@ export const OwnerModal = ({ ownerId }: OwnerModalProps) => {
         onClose={close}
         title={ownerId ? "Редактировать владельца" : "Добавить владельца"}
         centered
-        size="md"
+        size="lg"
       >
         <form onSubmit={handleSubmit}>
           <Stack>
             <TextInput
-              label="Имя"
-              placeholder="Введите имя"
-              {...form.getInputProps("name")}
+              label="Имя (ru)"
+              placeholder="Введите имя на русском"
+              {...form.getInputProps("name.ru")}
+            />
+            <TextInput
+              label="Имя (en)"
+              placeholder="Введите имя на английском"
+              {...form.getInputProps("name.en")}
+            />
+            <TextInput
+              label="Имя (uz)"
+              placeholder="Введите имя на узбекском"
+              {...form.getInputProps("name.uz")}
             />
 
             <TextInput
-              label="Фамилия"
-              placeholder="Введите фамилию"
-              {...form.getInputProps("surname")}
+              label="Фамилия (ru)"
+              placeholder="Введите фамилию на русском"
+              {...form.getInputProps("surname.ru")}
             />
-
-            <Select
-              label="Должность"
-              placeholder="Выберите должность"
-              data={positions.map((pos) => ({
-                value: pos.id,
-                label: pos.title,
-              }))}
-              {...form.getInputProps("positionId")}
-            />
-
             <TextInput
-              label="Описание"
-              placeholder="Введите описание"
-              {...form.getInputProps("desc")}
+              label="Фамилия (en)"
+              placeholder="Введите фамилию на английском"
+              {...form.getInputProps("surname.en")}
+            />
+            <TextInput
+              label="Фамилия (uz)"
+              placeholder="Введите фамилию на узбекском"
+              {...form.getInputProps("surname.uz")}
+            /><Select
+                label="Должность"
+                placeholder="Выберите должность"
+                data={positions.map((pos) => ({
+                  value: pos.id,
+                  label: pos.title[i18n.language as "ru" | "en" | "uz"],
+                }))}
+                {...form.getInputProps("positionId")}
+              />
+            <TextInput
+              label="Описание (ru)"
+              placeholder="Введите описание на русском"
+              {...form.getInputProps("desc.ru")}
+            />
+            <TextInput
+              label="Описание (en)"
+              placeholder="Введите описание на английском"
+              {...form.getInputProps("desc.en")}
+            />
+            <TextInput
+              label="Описание (uz)"
+              placeholder="Введите описание на узбекском"
+              {...form.getInputProps("desc.uz")}
             />
 
             <Group justify="flex-end" mt="md">

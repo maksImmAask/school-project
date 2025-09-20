@@ -3,29 +3,27 @@ import { Group, Stack, Table, Title } from "@mantine/core";
 import { useEducationStore } from "../../../store/useEducationStore";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 import { EducationModal } from "./components/education/addedit";
+import { useTranslation } from "react-i18next";
 
 export const Education = () => {
-  const { educations, fetchEducations,deleteEducation} = useEducationStore();
-
-
-
+  const { i18n } = useTranslation();
+  const { educations, fetchEducations, deleteEducation } = useEducationStore();
 
   useEffect(() => {
     fetchEducations();
   }, [fetchEducations]);
 
-
   const rows = educations.map((education) => (
     <Table.Tr key={education.id}>
-      <Table.Td>{education.title}</Table.Td>
-      <Table.Td>{education.desc}</Table.Td>
-      <Table.Td>{education.date}</Table.Td>
+      <Table.Td>{education.title[i18n.language as "ru" | "en" | "uz"]}</Table.Td>
+      <Table.Td>{education.desc[i18n.language as "ru" | "en" | "uz"]}</Table.Td>
+      <Table.Td>{education.date}</Table.Td>       
       <Table.Td>{education.startTime}</Table.Td>
       <Table.Td>{education.endTime}</Table.Td>
       <Table.Td>
         <Group>
           <EducationModal educationId={education.id} />
-          <ConfirmDeleteModal onConfirm={() => {deleteEducation(education.id)}} />
+          <ConfirmDeleteModal onConfirm={() => deleteEducation(education.id)} />
         </Group>
       </Table.Td>
     </Table.Tr>
@@ -51,8 +49,6 @@ export const Education = () => {
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
-
-
     </Stack>
   );
 };

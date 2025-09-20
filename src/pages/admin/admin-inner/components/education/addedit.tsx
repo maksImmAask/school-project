@@ -6,36 +6,43 @@ import {
   Group,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
+import { useForm, isNotEmpty } from "@mantine/form";
 import { useEffect } from "react";
 import { useEducationStore } from "../../../../../store/useEducationStore";
 import { DateInput, TimeInput } from "@mantine/dates";
 
 interface EducationModalProps {
-  educationId?: string | null; 
+  educationId?: string | null;
 }
+
+const INITIAL_VALUES = {
+  title: { ru: "", en: "", uz: "" },
+  desc: { ru: "", en: "", uz: "" },
+  date: "",
+  startTime: "",
+  endTime: "",
+};
 
 export const EducationModal = ({ educationId }: EducationModalProps) => {
   const { addEducation, updateEducation, getEducation } = useEducationStore();
-
   const [opened, { open, close }] = useDisclosure(false);
 
   const form = useForm({
-    initialValues: {
-      title: "",
-      desc: "",
-      date: "",
-      startTime: "",
-      endTime: "",
-    },
+    initialValues: INITIAL_VALUES,
     validate: {
-      title: (value) =>
-        value.trim().length < 2 ? "Название должно содержать минимум 2 символа" : null,
-      desc: (value) =>
-        value.trim().length < 5 ? "Описание должно содержать минимум 5 символов" : null,
-      date: (value) => (!value.trim() ? "Дата обязательна" : null),
-      startTime: (value) => (!value.trim() ? "Время начала обязательно" : null),
-      endTime: (value) => (!value.trim() ? "Время окончания обязательно" : null),
+      title: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
+      desc: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
+      date: isNotEmpty("Дата обязательна"),
+      startTime: isNotEmpty("Время начала обязательно"),
+      endTime: isNotEmpty("Время окончания обязательно"),
     },
   });
 
@@ -44,20 +51,15 @@ export const EducationModal = ({ educationId }: EducationModalProps) => {
       const fetchEducation = async () => {
         const education = await getEducation(educationId);
         if (education) {
-          form.setValues({
-            title: education.title,
-            desc: education.desc,
-            date: education.date,
-            startTime: education.startTime,
-            endTime: education.endTime,
-          });
+          form.setValues(education); 
         }
       };
       fetchEducation();
     } else if (opened && !educationId) {
       form.reset();
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [opened, educationId, getEducation]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [opened, educationId]);
 
   const handleSubmit = form.onSubmit(async (values) => {
     if (educationId) {
@@ -70,10 +72,7 @@ export const EducationModal = ({ educationId }: EducationModalProps) => {
 
   return (
     <>
-      <Button
-        variant={educationId ? "light" : "filled"}
-        onClick={open}
-      >
+      <Button variant={educationId ? "light" : "filled"} onClick={open}>
         {educationId ? "Редактировать обучение" : "Добавить обучение"}
       </Button>
 
@@ -82,34 +81,56 @@ export const EducationModal = ({ educationId }: EducationModalProps) => {
         onClose={close}
         title={educationId ? "Редактировать обучение" : "Добавить обучение"}
         centered
-        size="md"
+        size="lg"  
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>. 
           <Stack>
             <TextInput
-              label="Название"
-              placeholder="Введите название обучения"
-              {...form.getInputProps("title")}
+              label="Название (ru)"
+              placeholder="Введите название на русском"
+              {...form.getInputProps("title.ru")}
+            />
+            <TextInput
+              label="Название (en)"
+              placeholder="Введите название на английском"
+              {...form.getInputProps("title.en")}
+            />
+            <TextInput
+              label="Название (uz)"
+              placeholder="Введите название на узбекском"
+              {...form.getInputProps("title.uz")}
             />
 
             <TextInput
-              label="Описание"
-              placeholder="Введите описание"
-              {...form.getInputProps("desc")}
+              label="Описание (ru)"
+              placeholder="Введите описание на русском"
+              {...form.getInputProps("desc.ru")}
             />
-
+            <TextInput
+              label="Описание (en)"
+              placeholder="Введите описание на английском"
+              {...form.getInputProps("desc.en")}
+            />
+            <TextInput
+              label="Описание (uz)"
+              placeholder="Введите описание на узбекском"
+              {...form.getInputProps("desc.uz")}
+            />
             <DateInput
               label="Дата"
+              placeholder="Выберите дату"
               {...form.getInputProps("date")}
             />
 
-            <Group grow>
+            <Group>
               <TimeInput
                 label="Время начала"
+                placeholder="00:00"
                 {...form.getInputProps("startTime")}
               />
               <TimeInput
                 label="Время окончания"
+                placeholder="00:00"
                 {...form.getInputProps("endTime")}
               />
             </Group>
