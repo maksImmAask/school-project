@@ -2,34 +2,39 @@ import {
   Modal,
   Button,
   TextInput,
-  Textarea,
   Stack,
   Group,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
+import { isNotEmpty, useForm } from "@mantine/form";
 import { useEffect } from "react";
 import { useFacultiesStore } from "../../../../../store/useFacultyStore";
 
 interface FacultyModalProps {
   facultyId?: string | null;
 }
-
+const INITIAL_VALUES = {
+  name: { ru: "", en: "", uz: "" },
+  desc: { ru: "", en: "", uz: "" },
+}
 export const FacultyModal = ({ facultyId }: FacultyModalProps) => {
   const { addFaculty, updateFaculty, getFaculty } = useFacultiesStore();
 
   const [opened, { open, close }] = useDisclosure(false);
 
   const form = useForm({
-    initialValues: {
-      name: "",
-      desc: "",
-    },
+    initialValues: INITIAL_VALUES,
     validate: {
-      name: (value) =>
-        value.trim().length < 2 ? "Название должно содержать минимум 2 символа" : null,
-      desc: (value) =>
-        value.trim().length < 5 ? "Описание должно содержать минимум 5 символов" : null,
+      name: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
+      desc: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
     },
   });
 
@@ -78,17 +83,35 @@ export const FacultyModal = ({ facultyId }: FacultyModalProps) => {
         <form onSubmit={handleSubmit}>
           <Stack>
             <TextInput
-              label="Название факультета"
-              placeholder="Введите название"
-              {...form.getInputProps("name")}
+              label="Имя (ru)"
+              placeholder="Введите имя на русском"
+              {...form.getInputProps("name.ru")}
+            />
+            <TextInput
+              label="Имя (en)"
+              placeholder="Введите имя на английском"
+              {...form.getInputProps("name.en")}
+            />
+            <TextInput
+              label="Имя (uz)"
+              placeholder="Введите имя на узбекском"
+              {...form.getInputProps("name.uz")}
             />
 
-            <Textarea
-              label="Описание"
-              placeholder="Введите описание факультета"
-              autosize
-              minRows={3}
-              {...form.getInputProps("desc")}
+            <TextInput
+              label="Описание (ru)"
+              placeholder="Введите описание на русском"
+              {...form.getInputProps("desc.ru")}
+            />
+            <TextInput
+              label="Описание (en)"
+              placeholder="Введите описание на английском"
+              {...form.getInputProps("desc.en")}
+            />
+            <TextInput
+              label="Описание (uz)"
+              placeholder="Введите описание на узбекском"
+              {...form.getInputProps("desc.uz")}
             />
 
             <Group justify="flex-end" mt="md">

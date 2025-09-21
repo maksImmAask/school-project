@@ -10,9 +10,10 @@ import {
 import { useFacultiesStore } from "../../../store/useFacultyStore";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 import { FacultyModal } from "./components/faculties/addedit";
+import { useTranslation } from "react-i18next";
 export const FacultiesPage = () => {
   const { faculties, fetchFaculties, loading , deleteFaculty} = useFacultiesStore();
-
+  const {i18n}=useTranslation()
 
   useEffect(() => {
     fetchFaculties(); 
@@ -49,8 +50,8 @@ export const FacultiesPage = () => {
             faculties.map((faculty, index) => (
               <Table.Tr key={faculty.id}>
                 <Table.Td>{index + 1}</Table.Td>
-                <Table.Td>{faculty.name}</Table.Td>
-                <Table.Td>{faculty.desc}</Table.Td>
+                <Table.Td>{faculty.name[i18n.language as "ru" | "en" | "uz"]}</Table.Td>
+                <Table.Td>{faculty.desc[i18n.language as "ru" | "en" | "uz"]}</Table.Td>
                 <Table.Td>
                   <FacultyModal facultyId={faculty.id} />
                   <ConfirmDeleteModal onConfirm={() => {deleteFaculty(faculty.id)}} />

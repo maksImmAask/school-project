@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { api } from "../api/http";
+import type { lang } from "../types/lang";
 
 export type NewsItem = {
   id: string;
-  title: string;
-  desc: string;
+  title: lang;
+  desc: lang;
   img: string;
   date: string;
 };

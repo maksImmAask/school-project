@@ -127,7 +127,8 @@ export const OwnerModal = ({ ownerId }: OwnerModalProps) => {
               label="Фамилия (uz)"
               placeholder="Введите фамилию на узбекском"
               {...form.getInputProps("surname.uz")}
-            /><Select
+            />
+            <Select
                 label="Должность"
                 placeholder="Выберите должность"
                 data={positions.map((pos) => ({

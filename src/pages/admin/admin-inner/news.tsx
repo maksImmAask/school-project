@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import {
   Table,
   Button,
@@ -15,10 +15,11 @@ import { useNewsStore } from "../../../store/useNewsStore";
 import type { NewsItem } from "../../../store/useNewsStore";
 import { ConfirmDeleteModal } from "../../../shared/ui/confirmDelete";
 import { NewsModal } from "./components/news/addedit";
+import { useTranslation } from "react-i18next";
 
 export const News = () => {
   const { news, loading, error, fetchNews, deleteNewsItem } = useNewsStore();
-
+  const {i18n}=useTranslation()
   const [imageOpened, setImageOpened] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -35,8 +36,8 @@ export const News = () => {
   const rows = news.map((item: NewsItem, index: number) => (
     <Table.Tr key={item.id}>
       <Table.Td>{index + 1}</Table.Td>
-      <Table.Td>{item.title}</Table.Td>
-      <Table.Td>{item.desc}</Table.Td>
+      <Table.Td>{item.title[i18n.language as "ru" | "en" | "uz"]}</Table.Td>
+      <Table.Td>{item.desc[i18n.language as "ru" | "en" | "uz"]}</Table.Td>
       <Table.Td>{item.date}</Table.Td>
       <Table.Td>
         <Button

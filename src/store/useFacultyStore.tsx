@@ -1,17 +1,14 @@
 import { create } from "zustand";
 import { api } from "../api/http";
 import { showNotification } from "@mantine/notifications";
+import type { lang } from "../types/lang";
 
 export type Faculty = {
   id: string;
-  name: string;
-  desc: string;
+  name: lang;
+  desc: lang;
 };
 
-export type CreateFaculty = {
-  name: string;
-  desc: string;
-};
 
 type FacultiesStore = {
   faculties: Faculty[];
@@ -20,8 +17,8 @@ type FacultiesStore = {
 
   fetchFaculties: () => Promise<void>;
   getFaculty: (id: string) => Promise<Faculty | null>;
-  addFaculty: (faculty: CreateFaculty) => Promise<void>;
-  updateFaculty: (id: string, faculty: Partial<CreateFaculty>) => Promise<void>;
+  addFaculty: (faculty: Omit<Faculty, "id">) => Promise<void>;
+  updateFaculty: (id: string, faculty: Partial<Omit<Faculty, "id">>) => Promise<void>;
   deleteFaculty: (id: string) => Promise<void>;
 };
 

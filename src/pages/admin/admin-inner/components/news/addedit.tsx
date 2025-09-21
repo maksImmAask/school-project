@@ -7,7 +7,7 @@ import {
   FileInput,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
+import { isNotEmpty, useForm } from "@mantine/form";
 import { useEffect } from "react";
 import { fileToBase64 } from "../../../../../utils/filetobase64";
 import { useNewsStore } from "../../../../../store/useNewsStore";
@@ -15,21 +15,29 @@ import { useNewsStore } from "../../../../../store/useNewsStore";
 interface NewsModalProps {
   newsId?: string | null;
 }
-
+const INITIAL_VALUES = {
+  title: { ru: "", en: "", uz: "" },
+  desc: { ru: "", en: "", uz: "" },
+  img: ""
+}
 export const NewsModal = ({ newsId }: NewsModalProps) => {
   const { addNewsItem, updateNewsItem, getNewsItem } = useNewsStore();
 
   const [opened, { open, close }] = useDisclosure(false);
 
   const form = useForm({
-    initialValues: {
-      title: "",
-      desc: "",
-      img: "",
-    },
+    initialValues: INITIAL_VALUES,
     validate: {
-      title: (value) => (value.trim().length < 3 ? "Минимум 3 символа" : null),
-      desc: (value) => (!value.trim() ? "Обязательное поле" : null),
+      title: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
+      desc: {
+        ru: isNotEmpty("Обязательное поле"),
+        en: isNotEmpty("Обязательное поле"),
+        uz: isNotEmpty("Обязательное поле"),
+      },
     },
   });
 
@@ -91,14 +99,35 @@ export const NewsModal = ({ newsId }: NewsModalProps) => {
         <form onSubmit={handleSubmit}>
           <Stack>
             <TextInput
-              label="Заголовок"
-              placeholder="Введите заголовок"
-              {...form.getInputProps("title")}
+              label="Title (ru)"
+              placeholder="Введите title на русском"
+              {...form.getInputProps("title.ru")}
             />
             <TextInput
-              label="Описание"
-              placeholder="Введите описание"
-              {...form.getInputProps("desc")}
+              label="Title (en)"
+              placeholder="Введите title на английском"
+              {...form.getInputProps("title.en")}
+            />
+            <TextInput
+              label="Title (uz)"
+              placeholder="Введите title на узбекском"
+              {...form.getInputProps("title.uz")}
+            />
+
+            <TextInput
+              label="Desc (ru)"
+              placeholder="Введите desc на русском"
+              {...form.getInputProps("desc.ru")}
+            />
+            <TextInput
+              label="Desc (en)"
+              placeholder="Введите desc на английском"
+              {...form.getInputProps("desc.en")}
+            />
+            <TextInput
+              label="Desc (uz)"
+              placeholder="Введите desc на узбекском"
+              {...form.getInputProps("desc.uz")}
             />
             <FileInput
               label="Изображение"
