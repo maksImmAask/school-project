@@ -1,12 +1,15 @@
-import { Box, Flex, NavLink, Text } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import { Box, Flex, Grid, NavLink, Text } from "@mantine/core";
+import { useEducationStore } from "../../store/useEducationStore";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 export const Study = () => {
-  const { t } = useTranslation();
-  const isMobile = useMediaQuery('(min-width: 400px)');
-  const isTablet = useMediaQuery('(min-width: 768px)');
-  const isDesktop = useMediaQuery('(min-width: 1024px)');
+  const { t, i18n } = useTranslation();
+  const {educations,fetchEducations}=useEducationStore()
+  const sixedu = educations.slice(0,6)
+  useEffect(()=>{
+    fetchEducations()
+  }, [fetchEducations])
   return (
     <>
      <section className="study-section">
@@ -19,46 +22,19 @@ export const Study = () => {
               <Flex className="item-flex-study" direction={'column'}>
                 <Text size="30px">{t("study.extracurricular")}</Text>
                 <Box flex={1}>
-                  <Flex direction={isDesktop ? 'column' : isTablet ? 'row' : isMobile ? 'column' : 'row'}>
-                    <Box>
-                      <Flex direction={isDesktop ? 'row' : isTablet ? 'column' : isMobile ? 'column' : 'row'}>
+                  <Grid>
+                    {sixedu.map((item)=>{
+                      return (
+                      <Grid.Col span={4}>
                         <Box className="item-study-box" flex={1}>
-                          <Text size="20px" fw={700}>{t("study.clubs.chess.title")}</Text>
-                          <Text>{t("study.clubs.chess.desc")}</Text>
-                          <NavLink href="#" label={t("study.clubs.chess.schedule")} />
+                          <Text size="20px" fw={700}>{item.title[i18n.language as "ru"|"en"|"uz"]}</Text>
+                          <Text>{item.desc[i18n.language as "ru"|"en"|"uz"]}</Text>
+                          <NavLink href="#" label={item.date} />
                         </Box>
-                        <Box className="item-study-box" flex={1}>
-                          <Text size="20px" fw={700}>{t("study.clubs.music.title")}</Text>
-                          <Text>{t("study.clubs.music.desc")}</Text>
-                          <NavLink href="#" label={t("study.clubs.music.schedule")} />
-                        </Box>
-                        <Box className="item-study-box" flex={1}>
-                          <Text size="20px" fw={700}>{t("study.clubs.art.title")}</Text>
-                          <Text>{t("study.clubs.art.desc")}</Text>
-                          <NavLink href="#" label={t("study.clubs.art.schedule")} />
-                        </Box>
-                      </Flex>
-                    </Box>
-                    <Box>
-                      <Flex direction={isDesktop ? 'row' : isTablet ? 'column' : isMobile ? 'column' : 'row'}>
-                        <Box className="item-study-box" flex={1}>
-                          <Text size="20px" fw={700}>{t("study.clubs.sports.title")}</Text>
-                          <Text>{t("study.clubs.sports.desc")}</Text>
-                          <NavLink href="#" label={t("study.clubs.sports.schedule")} />
-                        </Box>
-                        <Box className="item-study-box" flex={1}>
-                          <Text size="20px" fw={700}>{t("study.clubs.theater.title")}</Text>
-                          <Text>{t("study.clubs.theater.desc")}</Text>
-                          <NavLink href="#" label={t("study.clubs.theater.schedule")} />
-                        </Box>
-                        <Box className="item-study-box" flex={1}>
-                          <Text size="20px" fw={700}>{t("study.clubs.science.title")}</Text>
-                          <Text>{t("study.clubs.science.desc")}</Text>
-                          <NavLink href="#" label={t("study.clubs.science.schedule")} />
-                        </Box>
-                      </Flex>
-                    </Box>
-                  </Flex>
+                      </Grid.Col>
+                      )
+                    })}
+                  </Grid>
                 </Box>
               </Flex>
             </Box>

@@ -15,6 +15,7 @@ import { Admin } from '../pages/admin/admin'
 import { Education } from '../pages/admin/admin-inner/education'
 import { Users } from '../pages/admin/admin-inner/users'
 import { News as AdminNews } from '../pages/admin/admin-inner/news'
+import { AdminHeader } from '../layout/admin-layout'
 import { Teachers } from '../pages/admin/admin-inner/teachers'
 import { Owners } from '../pages/admin/admin-inner/owners'
 import { FacultiesPage } from '../pages/admin/admin-inner/faculties'
@@ -37,6 +38,8 @@ export const Router = createBrowserRouter([
       { path: ROUTES.NOT_FOUND, element: <NotFoundPage /> },
     ],
   },
+  {element: <AdminHeader/>,
+    children: [
       {path: ROUTES.ADMIN, element: <Admin /> , children: [
         {
           path: ROUTES.POSITION, element: <PositionOptions />
@@ -67,6 +70,8 @@ export const Router = createBrowserRouter([
           path: ROUTES.FACULTIES, element: <FacultiesPage />
         }
       ]},
+    ]
+  },
       { path: ROUTES.LOGIN, element: <LoginPage /> },
       { path: ROUTES.REGISTER, element: <RegisterPage /> },
 ])

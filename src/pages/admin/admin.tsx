@@ -1,17 +1,11 @@
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import { Button, Flex, Box, Select } from "@mantine/core";
+import { Button, Flex, Box} from "@mantine/core";
 import {  useEffect } from "react";
 import { useAuthStore } from "../../store/useAuthStore";
-import i18n from "../../l18next";
 
 export const Admin = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const change = (value: string | null) => {
-    if (value) {
-      i18n.changeLanguage(value);
-    }
-  };
   const { isAuthenticated } = useAuthStore();
   const isActive = (path: string) => location.pathname === path;
   useEffect(() => {
@@ -102,16 +96,6 @@ export const Admin = () => {
         >
           Education
         </Button>
-        <Select
-          placeholder={i18n.language}
-          data={[
-            { value: "ru", label: "RU" },
-            { value: "en", label: "EN" },
-            { value: "uz", label: "UZ" }
-          ]}
-          value={i18n.language}
-          onChange={change}
-        />
       </Box>
 
       <Box style={{ flex: 1, padding: "20px" }}>

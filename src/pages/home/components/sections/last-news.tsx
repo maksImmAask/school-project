@@ -2,10 +2,48 @@ import {Box, Flex, Text, Button } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { Calendar, Blogger, Profile2User, Book } from "iconsax-reactjs";
 import { useTranslation } from 'react-i18next';
+import { useNewsStore } from '../../../../store/useNewsStore';
+import { useEffect } from 'react';
+import i18n from '../../../../l18next';
 export const Lastnews = () => {
   const { t} = useTranslation()
   const isMobile = useMediaQuery('(min-width: 480px)');
   const isNotebook = useMediaQuery('(min-width: 1024px)')
+  const {news, fetchNews} = useNewsStore()
+  useEffect (()=>{
+    fetchNews()
+  }, [fetchNews])
+  const latestthree = news.slice(1,3)
+  const newsitem = latestthree.map((item)=>{
+    return (
+      <>
+                      <Box flex={1} className="news-item">
+                        <Flex className="news-text-flex" direction={isMobile ? 'row' :'column'}>
+                          <Box flex={1} className='img-box-item' ><img className='img-news' src={item.img} alt="" /></Box>
+                          <Box flex={2} className='box-image-flex'>
+                            <Flex direction={'column'} className='flex-text-box-item'>
+                              <Box flex={0.5}>
+                                <Text className="data"  c={'gray'} fs={'5px'}>
+                                  <Calendar size="16" color="gray"/>
+                                   {item.date}
+                                </Text>
+                              </Box>
+                              <Box flex={1}>
+                                <Text className="title">{item.title[i18n.language as "ru" | "en" | "uz"]}</Text>
+                              </Box>
+                              <Box flex={1}>
+                                <Text className="description">
+                                  {item.desc[i18n.language as "ru" | "en" | "uz"]}
+                                </Text>
+                              </Box>
+                              <Button>{t("home.first-section.more-btn")}</Button>
+                            </Flex>
+                          </Box>
+                        </Flex>
+                      </Box>
+      </>
+    )
+  })
   const isLargeNotebook = useMediaQuery('(min-width: 1440px)')
   return (
     <>
@@ -28,78 +66,7 @@ export const Lastnews = () => {
                   </Box>
                   <Box flex={2} className="news-item-box">
                     <Flex direction={'column'} className="news-item-flex" gap="md">
-                      <Box flex={1} className="news-item">
-                        <Flex className="news-text-flex" direction={isMobile ? 'row' :'column'}>
-                          <Box flex={1} className='img-box-item' ><img className='img-news' src="https://avatars.mds.yandex.net/i?id=160309fe7cfc3fc3402538983f654eab8ff6c3cd-16340611-images-thumbs&n=13" alt="" /></Box>
-                          <Box flex={2} className='box-image-flex'>
-                            <Flex direction={'column'} className='flex-text-box-item'>
-                              <Box flex={0.5}>
-                                <Text className="data"  c={'gray'} fs={'5px'}>
-                                  <Calendar size="16" color="gray"/>
-                                   {t("home.second-section.date")}
-                                </Text>
-                              </Box>
-                              <Box flex={1}>
-                                <Text className="title">{t("home.second-section.news-1")}</Text>
-                              </Box>
-                              <Box flex={1}>
-                                <Text className="description">
-                                  {t("home.second-section.new-1-desc")}
-                                </Text>
-                              </Box>
-                              <Button>{t("home.first-section.more-btn")}</Button>
-                            </Flex>
-                          </Box>
-                        </Flex>
-                      </Box>
-                      <Box flex={1} className="news-item">
-                        <Flex className="news-text-flex" direction={isMobile ? 'row' :'column'}>
-                          <Box flex={1} className='img-box-item' ><img className='img-news' src="https://avatars.mds.yandex.net/i?id=20a8adbe445d157f60d323267062dbc1e859b7f2-5026103-images-thumbs&n=13" alt="" /></Box>
-                          <Box flex={2} className='box-image-flex'>
-                            <Flex direction={'column'} className='flex-text-box-item'>
-                              <Box flex={0.5}>
-                                <Text className="data"  c={'gray'} fs={'5px'}>
-                                  <Calendar size="16" color="gray"/>
-                                   {t("home.second-section.date2")}
-                                </Text>
-                              </Box>
-                              <Box flex={1}>
-                                <Text className="title">{t("home.second-section.new-2")}</Text>
-                              </Box>
-                              <Box flex={1}>
-                                <Text className="description">
-                                  {t("home.second-section.new-2-desc")}
-                                </Text>
-                              </Box>
-                              <Button>{t("home.first-section.more-btn")}</Button>
-                            </Flex>
-                          </Box>
-                        </Flex>
-                      </Box>
-                      <Box flex={1} className="news-item">
-                        <Flex className="news-text-flex" direction={isMobile ? 'row' :'column'}>
-                          <Box flex={1}  className='img-box-item'><img src="https://avatars.mds.yandex.net/i?id=aa3ac368a7c23f3ca455ad76f2a2aa6438b6c799-5583511-images-thumbs&n=13" alt="" className="img-news" /></Box>
-                          <Box flex={2} className='box-image-flex'>
-                            <Flex direction={'column'} className='flex-text-box-item'>
-                              <Box flex={0.5}>
-                                <Text className="data"  c={'gray'} fs={'5px'}>
-                                  <Calendar size="16" color="gray"/>
-                                   {t("home.second-section.date3")}
-                                </Text>
-                              </Box>
-                              <Box flex={1}>
-                                <Text className="title">{t("home.second-section.new-3")}</Text>
-                              </Box>
-                              <Box flex={1}>
-                                <Text className="description">
-                                  {t("home.second-section.new-3-desc")}
-                                </Text>
-                              </Box>
-                              <Button>{t("home.first-section.more-btn")}</Button>
-                            </Flex>
-                          </Box>
-                        </Flex>
-                      </Box>
+                      {newsitem}
                     </Flex>
                   </Box>
                 </Flex>

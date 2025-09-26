@@ -1,10 +1,15 @@
 import { Box, Flex, Text } from "@mantine/core"
-import { Book, Medal, Profile2User } from "iconsax-reactjs"
+import { useOwnersStore } from "../../../store/useOwnersStore"
 import { useTranslation } from "react-i18next"
+import { useEffect } from "react"
 
 export const Leadership = () => {
-  const { t } = useTranslation()
-
+  const { t, i18n } = useTranslation()
+  const {fetchOwners,owners}=useOwnersStore()
+  const sliceowners = owners.slice(0,3)
+  useEffect(()=>{
+    fetchOwners()
+  },[fetchOwners])
   return (
     <section className="leadership">
       <div className="container">
@@ -14,32 +19,18 @@ export const Leadership = () => {
           </Text>
           <Box className="items-leader">
             <Flex className="leader-flex" gap="md">
+              {sliceowners.map((item)=>{
+                return (
+                  <>
               <Box className="flex-item-leader" flex={1}>
-                <Profile2User className="icon-leader" size="80" color="var(--mantine-color-blue-6)" />
                 <Text className="leader-title">
-                  {t("about.leadership.members.0.name")}
+                  {item.name[i18n.language as "ru" | "en"| "uz"]}
                 </Text>
-                <Text>{t("about.leadership.members.0.role")}</Text>
-                <Text>{t("about.leadership.members.0.desc")}</Text>
+                <Text>{item.desc[i18n.language as "ru" | "en"| "uz"]}</Text>
               </Box>
-
-              <Box className="flex-item-leader" flex={1}>
-                <Book className="icon-leader" size="80" color="var(--mantine-color-blue-6)" />
-                <Text className="leader-title">
-                  {t("about.leadership.members.1.name")}
-                </Text>
-                <Text>{t("about.leadership.members.1.role")}</Text>
-                <Text>{t("about.leadership.members.1.desc")}</Text>
-              </Box>
-
-              <Box className="flex-item-leader" flex={1}>
-                <Medal className="icon-leader" size="80" color="var(--mantine-color-blue-6)" />
-                <Text className="leader-title">
-                  {t("about.leadership.members.2.name")}
-                </Text>
-                <Text>{t("about.leadership.members.2.role")}</Text>
-                <Text>{t("about.leadership.members.2.desc")}</Text>
-              </Box>
+                  </>
+                )
+              })}
             </Flex>
           </Box>
         </Box>
