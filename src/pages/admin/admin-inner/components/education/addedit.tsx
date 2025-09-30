@@ -15,7 +15,7 @@ interface EducationModalProps {
   educationId?: string | null;
 }
 
-const INITIAL_VALUES = {
+const INITIAL_VALUES = { 
   title: { ru: "", en: "", uz: "" },
   desc: { ru: "", en: "", uz: "" },
   date: "",
@@ -64,7 +64,8 @@ export const EducationModal = ({ educationId }: EducationModalProps) => {
   const handleSubmit = form.onSubmit(async (values) => {
     if (educationId) {
       await updateEducation(educationId, values);
-    } else {
+    } else { 
+      
       await addEducation(values);
     }
     close();

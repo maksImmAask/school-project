@@ -1,20 +1,10 @@
 import { Accordion, Box, Button, Flex, NavLink, Text } from "@mantine/core"
 import { Link1 } from "iconsax-reactjs"
 import { useTranslation } from "react-i18next"
-
+import { useQuestionsStore } from "../../../store/useQuestionsStore"
 export const Questions = () => {
-  const { t } = useTranslation()
-
-  const questions = [
-    t("questions.faq.1"),
-    t("questions.faq.2"),
-    t("questions.faq.3"),
-    t("questions.faq.4"),
-    t("questions.faq.5"),
-    t("questions.faq.6"),
-    t("questions.faq.7"),
-    t("questions.faq.8")
-  ]
+  const { t , i18n} = useTranslation()
+  const { questions } = useQuestionsStore()
 
   const leftLinks = [
     t("support.external.left.links.1"),
@@ -31,10 +21,10 @@ export const Questions = () => {
   ]
 
   const items = questions.map((item, index) => (
-    <Accordion.Item key={index} value={item}>
-      <Accordion.Control>{item}</Accordion.Control>
+    <Accordion.Item key={index} value={item.id}>
+      <Accordion.Control>{item.question[i18n.language as "ru"|"en"|"uz"]}</Accordion.Control>
       <Accordion.Panel>
-        {t("questions.faqAnswer")}
+        {item.answer[i18n.language as "ru"|"en"|"uz"]}
       </Accordion.Panel>
     </Accordion.Item>
   ))

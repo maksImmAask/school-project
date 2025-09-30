@@ -5,6 +5,7 @@ export const WelcomeAbout = () => {
   const { t } = useTranslation()
 
   return (
+    
     <section className="about-welcome">
       <div className="container">
         <Box className="welcome-about-box">

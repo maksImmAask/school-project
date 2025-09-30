@@ -38,7 +38,12 @@ export const News = () => {
                                 <Text>{item.date}</Text>
                                 <Text size="30px" c={'black'} fw={700}>{item.title[i18n.language as "ru" | "en" | "uz"]}</Text>
                                 <Text>{item.desc[i18n.language as "ru" | "en" | "uz"]}</Text>
-                                <Button variant="outline" onClick={()=>{nav('/new')}}>{t("newsPage.items.0.button")}</Button>
+                                <Button
+                                  variant="outline"
+                                  onClick={() => nav(`/news/${item.id}`)}
+                                >
+                                  {t("newsPage.items.0.button")}
+                                </Button>
                               </Box>
                             </Flex>
                           </Box>

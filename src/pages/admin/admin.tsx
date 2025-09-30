@@ -52,11 +52,32 @@ export const Admin = () => {
           Faculties
         </Button>
         <Button
+          variant={isActive("/admin/events") ? "filled" : "light"}
+          color={isActive("/admin/events") ? "blue" : "gray"}
+          onClick={() => navigate("/admin/events")}
+        >
+          Events
+        </Button>
+        <Button
+          variant={isActive("/admin/rules") ? "filled" : "light"}
+          color={isActive("/admin/rules") ? "blue" : "gray"}
+          onClick={() => navigate("/admin/rules")}
+        >
+          Rules
+        </Button>
+        <Button
           variant={isActive("/admin/galery") ? "filled" : "light"}
           color={isActive("/admin/galery") ? "blue" : "gray"}
           onClick={() => navigate("/admin/galery")}
         >
           Galery
+        </Button>
+        <Button
+          variant={isActive("/admin/questions") ? "filled" : "light"}
+          color={isActive("/admin/questions") ? "blue" : "gray"}
+          onClick={() => navigate("/admin/questions")}
+        >
+          Questions
         </Button>
         <Button
           variant={isActive("/admin/position") ? "filled" : "light"}

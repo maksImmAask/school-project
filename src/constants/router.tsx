@@ -9,9 +9,11 @@ import { News } from '../pages/news/news'
 import { Helper } from '../pages/helper/helper'
 import { NotFoundPage } from '../pages/not-found/not-found'
 import { NewPage } from '../pages/new-page/new-page'
+import { RulesPage } from '../pages/admin/admin-inner/rules'
 import { LoginPage } from '../pages/auth/login'
 import { RegisterPage } from '../pages/auth/register'
 import { Admin } from '../pages/admin/admin'
+import { Events } from '../pages/admin/admin-inner/events'
 import { Education } from '../pages/admin/admin-inner/education'
 import { Users } from '../pages/admin/admin-inner/users'
 import { News as AdminNews } from '../pages/admin/admin-inner/news'
@@ -20,6 +22,7 @@ import { Teachers } from '../pages/admin/admin-inner/teachers'
 import { Owners } from '../pages/admin/admin-inner/owners'
 import { FacultiesPage } from '../pages/admin/admin-inner/faculties'
 import { Gallery } from '../pages/admin/admin-inner/galery'
+import { QuestionsPage } from '../pages/admin/admin-inner/questions'
 import { PositionOptions } from '../pages/admin/admin-inner/position'
 
 import { Layout } from '../layout/layout'
@@ -45,9 +48,17 @@ export const Router = createBrowserRouter([
           path: ROUTES.POSITION, element: <PositionOptions />
         }
         ,
-
+        {
+          path: ROUTES.QUESTIONS, element: <QuestionsPage />
+        },
+        {
+          path: ROUTES.RULES_PAGE, element: <RulesPage />
+        },
         {
           path: ROUTES.EDUCATION, element: <Education />
+        },
+        {
+          path: ROUTES.EVENTS, element: <Events />
         },
         {
           path: ROUTES.OWNERS, element: <Owners />

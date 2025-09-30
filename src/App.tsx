@@ -5,7 +5,7 @@ import '@mantine/core/styles.css';
 import theme from "./shared/theme/theme";
 import './global.css'
 import '@mantine/notifications/styles.css';
-
+import '@mantine/dates/styles.css';
 import { Notifications } from "@mantine/notifications";
 export default function App() {
   return (

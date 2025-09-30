@@ -1,28 +1,16 @@
 import { Box, Flex, Text, Accordion, Grid, Button } from "@mantine/core";
 import { Document } from "iconsax-reactjs";
 import { useTranslation } from "react-i18next";
+import { useRulesStore } from "../../store/useRulesStore";
+import { useEffect } from "react";
 
 export const Rules = () => {
-  const { t } = useTranslation();
+  const { t , i18n} = useTranslation();
+  const {rules, fetchRules} =useRulesStore()
 
-  const rules = [
-    "rulesPage.rules.attendance",
-    "rulesPage.rules.behavior",
-    "rulesPage.rules.integrity",
-    "rulesPage.rules.dressCode",
-    "rulesPage.rules.technology",
-    "rulesPage.rules.healthSafety",
-    "rulesPage.rules.extracurricular",
-    "rulesPage.rules.communication",
-  ];
-
-  const items = rules.map((key, index) => (
-    <Accordion.Item key={index} value={t(`${key}.title`)}>
-      <Accordion.Control>{t(`${key}.title`)}</Accordion.Control>
-      <Accordion.Panel>{t(`${key}.desc`)}</Accordion.Panel>
-    </Accordion.Item>
-  ));
-
+  useEffect(()=>{
+    fetchRules()
+  }, [fetchRules])
   return (
     <>
       <section>
@@ -36,7 +24,14 @@ export const Rules = () => {
               <Box>
                 <Flex gap={"20px"}>
                   <Box flex={1} bg={"white"} p={"20px"} bdrs={"20px"}>
-                    <Accordion>{items}</Accordion>
+                    <Accordion>
+                    {rules.map((key, index) => (
+                      <Accordion.Item key={index} value={key.id}>
+                        <Accordion.Control>{key.title[i18n.language as "ru"|"uz"|"en"]}</Accordion.Control>
+                        <Accordion.Panel>{key.desc[i18n.language as "ru"|"uz"|"en"]}</Accordion.Panel>
+                      </Accordion.Item>
+                    ))}
+                    </Accordion>
                   </Box>
                   <Box
                     bg={"white"}

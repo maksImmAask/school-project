@@ -9,6 +9,7 @@ import {
   Container,
   Anchor,
   Input,
+  Box,
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "@mantine/form";
@@ -34,6 +35,7 @@ export const LoginPage = () => {
   const handleSubmit = async (values: typeof form.values) => {
     await login(values.email, values.password);
   };
+
   useEffect(() => {
     if (isAuthenticated) {
       nav("/");
@@ -48,8 +50,18 @@ export const LoginPage = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        position: "relative",
       }}
     >
+      <Box style={{ position: "absolute", top: 20, left: 20 }}>
+        <Button
+          variant="light"
+          onClick={() => nav("/")}
+        >
+          Назад
+        </Button>
+      </Box>
+
       <Paper shadow="md" radius="md" p="xl" withBorder w={400}>
         <Title order={2} ta="center" mb="lg">
           Login

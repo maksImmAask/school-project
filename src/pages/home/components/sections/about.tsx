@@ -1,8 +1,16 @@
 import { Flex, Box, Text, Button,  } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+
+import { useEventsStore } from "../../../../store/useEventsStore";
 import { useTranslation } from 'react-i18next';
+import { useEffect } from "react";
 export const About = () => {
-  const { t } = useTranslation();
+  const { t , i18n} = useTranslation();
+  const {events,fetchEvents}=useEventsStore()
+  const threeevents = events.slice(0,3)
+  useEffect (()=>{
+    fetchEvents()
+  }, [fetchEvents])
   const isMobile = useMediaQuery('(min-width: 480px)');
   return (
     <>
@@ -70,30 +78,17 @@ export const About = () => {
                   </Box>
                   <Box flex={6}>
                     <Flex direction={'column'} className="event-item-flex">
-                      <Box className="event-item">
-                        <Flex direction={'column'} className="event-item-flex">
-                          <Text className="title" flex={1}>{t("home.fourth-section.event1")}</Text>
-                          <Text className="description" flex={1}>{t("home.fourth-section.event1date")}</Text>
-                          <Text className="description" flex={1}>{t("home.fourth-section.event1time")}</Text>
-                          <Text className="description" flex={1}>{t("home.fourth-section.event1desc")}</Text>
-                        </Flex>
-                      </Box>
-                      <Box className="event-item">
-                        <Flex direction={'column'} className="event-item-flex">
-                          <Text className="title" flex={1}>{t("home.fourth-section.event2")}</Text>
-                          <Text className="description" flex={1}>{t("home.fourth-section.event2date")}</Text>
-                          <Text className="description" flex={1}>{t("home.fourth-section.event2time")}</Text>
-                          <Text className="description" flex={1}>{t("home.fourth-section.event2desc")}</Text>
-                        </Flex>
-                      </Box>
-                      <Box className="event-item">
-                        <Flex direction={'column'} className="event-item-flex">
-                          <Text className="title" flex={1}>{t("home.fourth-section.event3")}</Text>
-                          <Text className="description" flex={1}>{t("home.fourth-section.event3date")}</Text>
-                          <Text className="description" flex={1}>{t("home.fourth-section.event3time")}</Text>
-                          <Text className="description" flex={1}>{t("home.fourth-section.event3desc")}</Text>
-                        </Flex>
-                      </Box>
+                      {threeevents.map((item)=>{
+                        return (
+                          <Box className="event-item">
+                            <Flex direction={'column'} className="event-item-flex">
+                              <Text className="title" flex={1}>{item.title[i18n.language as "ru"|"en"|"uz"]}</Text>
+                              <Text className="description" flex={1}>{item.place[i18n.language as "ru"|"en"|"uz"]}</Text>
+                              <Text className="description" flex={1}>{item.date}</Text>
+                            </Flex>
+                          </Box>
+                        )
+                      })}
                     </Flex>
                   </Box>
                   <Box flex={1}>

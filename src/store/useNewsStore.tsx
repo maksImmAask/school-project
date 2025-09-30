@@ -12,6 +12,7 @@ export type NewsItem = {
 
 type NewsStore = {
   news: NewsItem[];
+  currentNews: NewsItem | null;
   loading: boolean;
   error: string | null;
 
@@ -24,6 +25,7 @@ type NewsStore = {
 
 export const useNewsStore = create<NewsStore>((set) => ({
   news: [],
+  currentNews: null,
   loading: false,
   error: null,
 
@@ -39,11 +41,14 @@ export const useNewsStore = create<NewsStore>((set) => ({
   },
 
   getNewsItem: async (id) => {
+    set({ loading: true, error: null });
     try {
       const { data } = await api.get<NewsItem>(`/news/${id}`);
-      return data;
+      set({ currentNews: data, loading: false });
+      return data; 
     } catch (err) {
       console.error(err);
+      set({ error: "Не удалось загрузить новость", loading: false });
       return null;
     }
   },
@@ -60,7 +65,7 @@ export const useNewsStore = create<NewsStore>((set) => ({
     }
   },
 
-  updateNewsItem: async (id, news) => {
+updateNewsItem: async (id, news) => {
     try {
       const { data } = await api.put<NewsItem>(`/news/${id}`, news);
       set((state) => ({
@@ -77,6 +82,7 @@ export const useNewsStore = create<NewsStore>((set) => ({
       await api.delete(`/news/${id}`);
       set((state) => ({
         news: state.news.filter((n) => n.id !== id),
+        currentNews: state.currentNews?.id === id ? null : state.currentNews,
       }));
     } catch (err) {
       console.error(err);

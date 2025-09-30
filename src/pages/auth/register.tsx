@@ -67,6 +67,14 @@ export const RegisterPage = () => {
         justifyContent: "center",
       }}
     >
+      <Box style={{ position: "absolute", top: 20, left: 20 }}>
+        <Button
+          variant="light"
+          onClick={() => nav("/")}
+        >
+          Назад
+        </Button>
+      </Box>
       <Paper shadow="md" radius="md" p="xl" withBorder w={400}>
         <Box>
         <Title order={2} ta="center" mb="lg">

@@ -1,4 +1,4 @@
-import {Box, Flex, Text, Button } from '@mantine/core'
+import {Box, Flex, Text, Button, Image } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { Calendar, Blogger, Profile2User, Book } from "iconsax-reactjs";
 import { useTranslation } from 'react-i18next';
@@ -13,13 +13,13 @@ export const Lastnews = () => {
   useEffect (()=>{
     fetchNews()
   }, [fetchNews])
-  const latestthree = news.slice(1,3)
+  const latestthree = news.slice(0,3)
   const newsitem = latestthree.map((item)=>{
     return (
       <>
                       <Box flex={1} className="news-item">
                         <Flex className="news-text-flex" direction={isMobile ? 'row' :'column'}>
-                          <Box flex={1} className='img-box-item' ><img className='img-news' src={item.img} alt="" /></Box>
+                          <Box flex={1} className='img-box-item' ><Image w={"100%"}  h={"100%"} src={item.img} alt="" /></Box>
                           <Box flex={2} className='box-image-flex'>
                             <Flex direction={'column'} className='flex-text-box-item'>
                               <Box flex={0.5}>

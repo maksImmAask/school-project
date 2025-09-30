@@ -2,13 +2,11 @@ import { create } from "zustand";
 import { api } from "../api/http";
 import { showNotification } from "@mantine/notifications";
 import type { lang } from "../types/lang";
-
 export type Faculty = {
   id: string;
   name: lang;
   desc: lang;
 };
-
 
 type FacultiesStore = {
   faculties: Faculty[];
@@ -23,6 +21,7 @@ type FacultiesStore = {
 };
 
 export const useFacultiesStore = create<FacultiesStore>((set) => ({
+
   faculties: [],
   loading: false,
   error: null,
@@ -57,7 +56,7 @@ export const useFacultiesStore = create<FacultiesStore>((set) => ({
 
       showNotification({
         title: "Факультет создан",
-        message: `Факультет "${data.name}" успешно создан`,
+        message: `Факультет успешно создан`,
         color: "green",
       });
     } catch (err) {
@@ -82,7 +81,7 @@ export const useFacultiesStore = create<FacultiesStore>((set) => ({
 
       showNotification({
         title: "Факультет обновлен",
-        message: `Факультет "${data.name}" успешно обновлен`,
+        message: `Факультет   успешно обновлен`,
         color: "green",
       });
     } catch (err) {
